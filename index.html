@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feather & Thread | Birds & Crochet Shop</title>
+    <style>
+        :root {
+            --primary: #5b8e7d;
+            --accent: #f4a261;
+            --background: #fdfbf7;
+            --text: #2b2d42;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        nav button {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .page-view {
+            display: none;
+        }
+
+        .page-view.active {
+            display: block;
+        }
+
+        /* REPEATING BIRD & CROCHET PATTERN BACKGROUND */
+        #home-page {
+            background-color: #fcf8f2;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><g fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="translate(15, 15) scale(0.6)"><path d="M10,25 C10,10 25,5 35,15 C40,10 50,10 55,20 C60,30 55,40 45,45 C35,50 15,45 10,25 Z" stroke="%23f4a261" stroke-width="2.5"/><path d="M25,18 C30,25 40,25 45,18" stroke="%23f4a261" stroke-width="2"/><path d="M18,32 C28,38 38,32 48,36" stroke="%23f4a261" stroke-width="2"/><circle cx="50" cy="45" r="8" stroke="%23e76f51" stroke-width="2"/><path d="M56,51 L68,63" stroke="%23e76f51" stroke-width="2.5"/></g><g transform="translate(70, 65) scale(0.6)"><path d="M15,20 C10,12 20,5 30,10 C40,5 50,12 45,20 C50,30 40,40 30,35 C20,40 10,30 15,20 Z" stroke="%235b8e7d" stroke-width="2.5"/><path d="M20,15 C25,22 35,22 40,15" stroke="%235b8e7d" stroke-width="2"/><path d="M15,25 C25,30 35,25 45,30" stroke="%235b8e7d" stroke-width="2"/></g><g transform="translate(65, 15) scale(0.65)"><path d="M10,30 C10,15 25,10 35,10 C45,10 50,20 45,30 C40,40 25,45 15,40 Z" stroke="%235b8e7d" stroke-width="2.5"/><circle cx="38" cy="18" r="2" fill="%232b2d42"/><path d="M45,20 L55,22 L45,26 Z" fill="%23f4a261"/><path d="M12,35 C5,45 2,55 0,60 C8,55 18,48 22,42" stroke="%235b8e7d" stroke-width="2"/><path d="M22,42 L25,55 M28,41 L33,55" stroke="%23e76f51" stroke-width="2"/></g><g transform="translate(10, 70) scale(0.65)"><path d="M10,30 C10,15 25,10 35,10 C45,10 50,20 45,30 C40,40 25,45 15,40 Z" stroke="%23f4a261" stroke-width="2.5"/><circle cx="38" cy="18" r="2" fill="%232b2d42"/><path d="M45,20 L55,22 L45,26 Z" fill="%23e76f51"/><path d="M12,35 C5,45 2,55 0,60 C8,55 18,48 22,42" stroke="%23f4a261" stroke-width="2"/><path d="M22,42 L25,55 M28,41 L33,55" stroke="%235b8e7d" stroke-width="2"/></g></g></svg>');
+            background-repeat: repeat;
+            padding-bottom: 2rem;
+            min-height: 85vh;
+        }
+
+        .home-hero {
+            text-align: center;
+            padding: 2rem 1rem 0.5rem;
+        }
+
+        .home-hero h2 {
+            font-size: 1.8rem;
+            color: var(--text);
+            margin-bottom: 0.3rem;
+            background: rgba(253, 251, 247, 0.85);
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 12px;
+        }
+
+        .home-hero p {
+            background: rgba(253, 251, 247, 0.85);
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+
+        /* MINIMIZED CATEGORY SELECTION CARDS */
+        .category-selection {
+            max-width: 750px;
+            margin: 1rem auto;
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 0 1rem;
+        }
+
+        .category-card {
+            border-radius: 12px;
+            padding: 1.2rem 1rem;
+            flex: 1;
+            min-width: 200px;
+            max-width: 280px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.5s ease;
+            text-align: center;
+        }
+
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 22px rgba(0,0,0,0.1);
+        }
+
+        .category-card.crochet-hero {
+            background: linear-gradient(135deg, #ffffff 0%, #fff0f3 100%);
+        }
+        .category-card.crochet-hero:hover {
+            background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 100%);
+        }
+
+        .category-card.bird-hero {
+            background: linear-gradient(135deg, #ffffff 0%, #e8f8f5 100%);
+        }
+        .category-card.bird-hero:hover {
+            background: linear-gradient(135deg, #d1f2eb 0%, #a3e4d7 100%);
+        }
+
+        .category-card h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin: 0.3rem 0;
+        }
+
+        .category-card p {
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .icon-large {
+            font-size: 2.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        /* MINIMIZED SLIDESHOW SHOWCASE CARDS */
+        .showcase-container {
+            max-width: 800px;
+            margin: 1.5rem auto 0;
+            padding: 0 1rem;
+            text-align: center;
+        }
+
+        .showcase-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: bold;
+            background: rgba(253, 251, 247, 0.85);
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 10px;
+        }
+
+        .slideshow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+        }
+
+        .slideshow-card {
+            position: relative;
+            height: 140px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            background: #fff;
+        }
+
+        .slideshow-card img {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .slideshow-card img.active-slide {
+            opacity: 1;
+        }
+
+        .slideshow-card .overlay-label {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            background: rgba(43, 45, 66, 0.7);
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.25rem;
+            font-weight: bold;
+        }
+
+        /* CATALOG & CARDS STYLING */
+        .catalog-container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .back-btn {
+            background: none;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            text-align: center;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, background 0.4s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .card-crochet-1 { background: linear-gradient(135deg, #ffffff 0%, #fff0f5 100%); }
+        .card-crochet-1:hover { background: linear-gradient(135deg, #ffdeeb 0%, #ffc2d1 100%); }
+        .card-crochet-2 { background: linear-gradient(135deg, #ffffff 0%, #f3e8ff 100%); }
+        .card-crochet-2:hover { background: linear-gradient(135deg, #e9d5ff 0%, #d8b4fe 100%); }
+        .card-crochet-3 { background: linear-gradient(135deg, #ffffff 0%, #fffedd 100%); }
+        .card-crochet-3:hover { background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%); }
+        .card-crochet-4 { background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%); }
+        .card-crochet-4:hover { background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); }
+
+        .card-bird-1 { background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); }
+        .card-bird-1:hover { background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); }
+        .card-bird-2 { background: linear-gradient(135deg, #ffffff 0%, #ecfeff 100%); }
+        .card-bird-2:hover { background: linear-gradient(135deg, #cffafe 0%, #a5f3fc 100%); }
+        .card-bird-3 { background: linear-gradient(135deg, #ffffff 0%, #fefce8 100%); }
+        .card-bird-3:hover { background: linear-gradient(135deg, #fef08a 0%, #fde047 100%); }
+        .card-bird-4 { background: linear-gradient(135deg, #ffffff 0%, #fdf2f8 100%); }
+        .card-bird-4:hover { background: linear-gradient(135deg, #fbcfe8 0%, #f9a8d4 100%); }
+
+        .product-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 0.5rem 0;
+        }
+
+        /* QUANTITY SELECTOR STYLING */
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .qty-btn {
+            background: white;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .qty-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .qty-val {
+            font-size: 0.95rem;
+            font-weight: bold;
+            min-width: 24px;
+        }
+
+        .btn {
+            background-color: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            font-size: 0.85rem;
+        }
+
+        .btn:hover {
+            background-color: #e76f51;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 480px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .close-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--text);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 onclick="showPage('home-page')">🦜 Feather & Thread</h1>
+        <nav>
+            <button onclick="toggleCart()">🛒 Cart (<span id="cart-count">0</span>)</button>
+        </nav>
+    </header>
+
+    <!-- PAGE 1: HOMEPAGE SELECTION -->
+    <div id="home-page" class="page-view active">
+        <section class="home-hero">
+            <h2>Welcome to Feather & Thread</h2><br>
+            <p>Handcrafted Crochet & Premium Bird Care Accessories</p>
+        </section>
+
+        <div class="category-selection">
+            <div class="category-card crochet-hero" onclick="showPage('crochet-page')">
+                <div class="icon-large">🧶</div>
+                <h3>Crochet Products</h3>
+                <p>Handmade pouches, cat bows, hats & purses.</p>
+                <button class="btn">Shop Crochet</button>
+            </div>
+
+            <div class="category-card bird-hero" onclick="showPage('birds-page')">
+                <div class="icon-large">🦜</div>
+                <h3>Bird Accessories</h3>
+                <p>Bowls, automatic fountains & chewing toys.</p>
+                <button class="btn">Shop Accessories</button>
+            </div>
+        </div>
+
+        <!-- 2-SECOND DYNAMIC SLIDESHOW SHOWCASE -->
+        <div class="showcase-container">
+            <div class="showcase-title">Featured Collections</div>
+            <div class="slideshow-grid">
+                
+                <div class="slideshow-card" data-slideshow>
+                    <img src="images/beauty-pouch.jpeg" class="active-slide" alt="Crochet Pouch">
+                    <img src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcSCL-i2U_SDV50LloLjkGPuExZf-OgRSdnjYya03oX4YXoWsfJMb5FYhSoOodjK251CU88gjp3bOGxu-cU" alt="Bird Bowl">
+                    <img src="images/purse.jpeg" alt="Crochet Purse">
+                    <div class="overlay-label">Trending</div>
+                </div>
+
+                <div class="slideshow-card" data-slideshow>
+                    <img src="https://i5.walmartimages.com/asr/b484b76b-8712-4280-b18b-51b4a9cd7962.9e9915935173a1323c436163f03e8e26.jpeg" class="active-slide" alt="Bird Fountain">
+                    <img src="images/cat_bow.jpeg" alt="Crochet Cat Bow">
+                    <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcSSxa78H6R5Q15jyulOPl4-qFvqoRZOPvhDCIuca4qH6tr9sUdt9syjLjoMVDyKihub6KFxccZdQbWUM3Q" alt="Ceramic Dish">
+                    <div class="overlay-label">Popular</div>
+                </div>
+
+                <div class="slideshow-card" data-slideshow>
+                    <img src="images/hat.jpeg" class="active-slide" alt="Crochet Hat">
+                    <img src="https://i5.walmartimages.com/asr/b484b76b-8712-4280-b18b-51b4a9cd7962.9e9915935173a1323c436163f03e8e26.jpeg" alt="Bird Toy">
+                    <img src="images/beauty-pouch.jpeg" alt="Crochet Pouch">
+                    <div class="overlay-label">Favorites</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 2: CROCHET PRODUCTS CATALOG -->
+    <div id="crochet-page" class="page-view">
+        <div class="catalog-container">
+            <button class="back-btn" onclick="showPage('home-page')">← Back to Collections</button>
+            <h2>🧶 Handmade Crochet Products</h2>
+            <hr><br>
+            
+            <div class="grid">
+                <div class="product-card card-crochet-1">
+                    <img src="images/beauty-pouch.jpeg" alt="Crochet Beauty Pouch">
+                    <h4>Beauty Pouch</h4>
+                    <p>Soft woven zipper pouch for makeup and cosmetics.</p>
+                    <div class="price">1200.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-c1', -1)">-</button>
+                        <span id="qty-c1" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-c1', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Beauty Pouch', 1200.00, 'qty-c1')">Add to Cart</button>
+                </div>
+
+                <div class="product-card card-crochet-2">
+                    <img src="images/cat_bow.jpeg" alt="Crochet Cat Bow">
+                    <h4>Crochet Cat Bow Collar</h4>
+                    <p>Cute handcrafted necktie bow for your cat.</p>
+                    <div class="price">200.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-c2', -1)">-</button>
+                        <span id="qty-c2" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-c2', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Crochet Cat Bow', 200.00, 'qty-c2')">Add to Cart</button>
+                </div>
+
+                <div class="product-card card-crochet-3">
+                    <img src="images/purse.jpeg" alt="Crochet Purse">
+                    <h4>Handcrafted Crochet Purse</h4>
+                    <p>Stylish shoulder bag made with durable cotton yarn.</p>
+                    <div class="price">1000.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-c3', -1)">-</button>
+                        <span id="qty-c3" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-c3', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Crochet Purse', 1000.00, 'qty-c3')">Add to Cart</button>
+                </div>
+
+                <div class="product-card card-crochet-4">
+                    <img src="images/hat.jpeg" alt="Crochet Hat">
+                    <h4>Cozy Crochet Hat</h4>
+                    <p>Warm winter beanie woven with super-soft wool.</p>
+                    <div class="price">1000.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-c4', -1)">-</button>
+                        <span id="qty-c4" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-c4', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Crochet Purse', 1000.00, 'qty-c4')">Add to Cart</button>
+                </div>
+
+                <div class="product-card card-crochet-5">
+                    <img src="images/square_cushion.jpeg" alt="Crochet Square Cushion">
+                    <h5>Cozy Crochet Square Cushion</h5>
+                    <p>Warm winter beanie woven with super-soft wool.</p>
+                    <div class="price">1000.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-c5', -1)">-</button>
+                        <span id="qty-c5" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-c5', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Crochet Purse', 1000.00, 'qty-c5')">Add to Cart</button>
+                </div>
+
+                <div class="product-card card-crochet-6">
+                    <img src="images/triangle_cushion.jpeg" alt="Crochet Triangle Cushion">
+                    <h6>Crochet Triangle Cushion</h6>
+                    <p>Warm winter beanie woven with super-soft wool.</p>
+                    <div class="price">1000.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-c6', -1)">-</button>
+                        <span id="qty-c6" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-c6', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Crochet Purse', 1000.00, 'qty-c6')">Add to Cart</button>
+                </div>
+
+
+                <div class="product-card card-crochet-7">
+                    <img src="images/plastic_sheet.jpg" alt="Crochet Plastic Sheet">
+                    <h7>Crochet Plastic Sheet</h57>
+                    <p>Warm winter beanie woven with super-soft wool.</p>
+                    <div class="price">700.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-c7', -1)">-</button>
+                        <span id="qty-c7" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-c7', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Cozy Hat', 700.00, 'qty-c7')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: BIRD ACCESSORIES CATALOG -->
+    <div id="birds-page" class="page-view">
+        <div class="catalog-container">
+            <button class="back-btn" onclick="showPage('home-page')">← Back to Collections</button>
+            <h2>🦜 Bird Accessories & Care</h2>
+            <hr><br>
+            
+            <div class="grid">
+                <div class="product-card card-bird-1">
+                    <img src="images/bird_image/platform.png" alt="Bird Wooden Platform">
+                    <h4>Wooden Platform</h4>
+                    <p>Wooden Platform for sitting bird inside the cages.</p>
+                    <div class="price">80.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-b1', -1)">-</button>
+                        <span id="qty-b1" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-b1', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Bird Wooden Platform', 100.00, 'qty-b1')">Add to Cart</button>
+                </div>
+
+                <div class="product-card card-bird-2">
+                    <img src="images/bird_image/bathing-basin.png" alt="Bird Fountain Bathing Basin">
+                    <h4>Automatic Water Fountain</h4>
+                    <p>Gravity-fed clean water dispenser for bathing pet birds.</p>
+                    <div class="price">800.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-b2', -1)">-</button>
+                        <span id="qty-b2" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-b2', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Automatic Water Fountain', 800.00, 'qty-b2')">Add to Cart</button>
+                </div>
+
+                <div class="product-card card-bird-3">
+                    <img src="images/bird_image/apple_wood_hanging.png" alt="Bird Chewing Toy">
+                    <h4>Apple Wooden Bird Chewing Toy</h4>
+                    <p>Parrot Toys Bite Toys Training Molar Teeth Relieving.</p>
+                    <div class="price">100.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-b3', -1)">-</button>
+                        <span id="qty-b3" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-b3', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Takraw Wooden Bird Chewing Toy', 400.00, 'qty-b3')">Add to Cart</button>
+                </div>
+
+                 <div class="product-card card-bird-4">
+                    <img src="images/bird_image/small-ball.jpg" alt="Bird Chewing Toy">
+                    <h5>Takraw Wooden Bird Chewing Toy</h5>
+                    <p>Parrot Toys Bite Toys Training Molar Teeth Relieving.</p>
+                    <div class="price">150.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-b4', -1)">-</button>
+                        <span id="qty-b4" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-b4', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Takraw Wooden Bird Chewing Toy', 400.00, 'qty-b4')">Add to Cart</button>
+                </div>
+
+                <div class="product-card card-bird-5">
+                    <img src="images/bird_image/swing.webp" alt="Hanging swing">
+                    <h6>Wood Hanging swing toy for Bird</h6>
+                    <p>Natural wood, wicker, and bell toy.</p>
+                    <div class="price">100.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-b5', -1)">-</button>
+                        <span id="qty-b5" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-b5', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Hanging Chewing Toys', 1400.00, 'qty-b5')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CART MODAL -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="toggleCart()">X</button>
+            <h2>Your Shopping Cart</h2>
+            <div id="cart-items"></div>
+            <hr>
+            <h3>Total: <span id="cart-total">0.00</span> BDT</h3>
+            <button class="btn" style="width: 100%;" onclick="alert('Proceeding to Checkout!')">Checkout</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Feather & Thread Co. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let cart = [];
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page-view').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function adjustQty(elementId, delta) {
+            const qtyElement = document.getElementById(elementId);
+            let current = parseInt(qtyElement.innerText);
+            current += delta;
+            if (current < 1) current = 1;
+            qtyElement.innerText = current;
+        }
+
+        function addToCart(name, price, qtyElementId) {
+            const qty = parseInt(document.getElementById(qtyElementId).innerText);
+            
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += qty;
+            } else {
+                cart.push({ name, price, quantity: qty });
+            }
+            
+            updateCartUI();
+            alert(`Added ${qty} x ${name} to your cart!`);
+            
+            // Reset quantity to 1 after adding
+            document.getElementById(qtyElementId).innerText = 1;
+        }
+
+        function toggleCart() {
+            const modal = document.getElementById('cart-modal');
+            modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function updateCartUI() {
+            const totalItemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').innerText = totalItemsCount;
+            
+            const container = document.getElementById('cart-items');
+            container.innerHTML = '';
+            
+            let total = 0;
+            if (cart.length === 0) {
+                container.innerHTML = '<p>Your cart is empty.</p>';
+            } else {
+                cart.forEach((item) => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+                    container.innerHTML += `
+                        <div class="cart-item">
+                            <span>${item.name} (x${item.quantity})</span>
+                            <span>${itemTotal.toFixed(2)} BDT</span>
+                        </div>
+                    `;
+                });
+            }
+            
+            document.getElementById('cart-total').innerText = total.toFixed(2);
+        }
+
+        setInterval(() => {
+            const slideshows = document.querySelectorAll('[data-slideshow]');
+            slideshows.forEach(card => {
+                const images = card.querySelectorAll('img');
+                let activeIdx = Array.from(images).findIndex(img => img.classList.contains('active-slide'));
+                images[activeIdx].classList.remove('active-slide');
+                let nextIdx = (activeIdx + 1) % images.length;
+                images[nextIdx].classList.add('active-slide');
+            });
+        }, 2000);
+    </script>
+</body>
+</html>
