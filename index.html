@@ -54,6 +54,45 @@
         .page-view {
             display: none;
         }
+        .top-nav {
+            display:flex;
+            align-items:center;
+            justify-content:flex-end;
+            gap:.4rem;
+            flex-wrap:wrap;
+        }
+        .top-nav button {
+            background:transparent;
+            color:white;
+            border:1px solid rgba(255,255,255,.75);
+            padding:.45rem .8rem;
+            border-radius:20px;
+            cursor:pointer;
+            font-weight:600;
+            font-size:.86rem;
+        }
+        .top-nav button:hover { background:rgba(255,255,255,.14); }
+        .top-nav .cart-nav-btn { background:var(--accent); border-color:var(--accent); }
+        .top-nav .account-btn { background:white; color:var(--primary); border-color:white; }
+        #account-status { color:white; font-size:.85rem; font-weight:600; }
+        .info-page { max-width:1000px; margin:auto; padding:2.5rem 1rem 4rem; }
+        .info-card { background:white; border-radius:18px; padding:2rem; box-shadow:0 8px 24px rgba(0,0,0,.07); margin-top:1rem; }
+        .info-page h2 { font-size:2rem; margin-bottom:.5rem; }
+        .info-page h3 { color:var(--primary); margin-top:1.5rem; }
+        .contact-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:1.5rem 0; }
+        .contact-box { background:#f7fbf9; border-radius:12px; padding:1.2rem; text-align:center; }
+        .contact-box strong { display:block; margin-bottom:.3rem; }
+        .auth-tabs { display:flex; gap:.5rem; margin-bottom:1rem; }
+        .auth-tab { flex:1; border:1px solid #ddd; background:#f7f7f7; padding:.7rem; border-radius:8px; cursor:pointer; font-weight:700; }
+        .auth-tab.active { background:var(--primary); color:white; border-color:var(--primary); }
+        .auth-note { color:#666; font-size:.82rem; margin-top:.8rem; }
+        @media(max-width:760px){
+            header { padding:.8rem 1rem; align-items:flex-start; }
+            header h1 { font-size:1.15rem; }
+            .top-nav button { padding:.35rem .5rem; font-size:.73rem; }
+            .contact-grid { grid-template-columns:1fr; }
+        }
+
 
         .page-view.active {
             display: block;
@@ -266,6 +305,7 @@
         .card-bird-4:hover { background: linear-gradient(135deg, #fbcfe8 0%, #f9a8d4 100%); }
 
         .product-card img {
+            cursor: pointer;
             width: 100%;
             height: 180px;
             object-fit: cover;
@@ -377,22 +417,926 @@
             background-color: var(--text);
             color: white;
         }
-    </style>
+
+        /* PRODUCT DETAIL PAGE */
+        .detail-container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1rem 3rem;
+        }
+
+        .detail-back {
+            background: none;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 0.45rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-card {
+            background: white;
+            border-radius: 18px;
+            padding: 2rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            display: grid;
+            grid-template-columns: minmax(300px, 1fr) minmax(300px, 1fr);
+            gap: 2.5rem;
+        }
+
+        .detail-gallery {
+            min-width: 0;
+        }
+
+        .detail-main-image {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            border-radius: 14px;
+            background: #f7f7f7;
+            cursor: zoom-in;
+        }
+
+        .thumbnail-row {
+            display: flex;
+            gap: 0.7rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .product-thumb {
+            width: 76px;
+            height: 76px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            background: #f4f4f4;
+        }
+
+        .product-thumb.active {
+            border-color: var(--primary);
+        }
+
+        .detail-info h2 {
+            font-size: 2rem;
+            margin: 0 0 0.6rem;
+        }
+
+        .detail-price {
+            color: var(--primary);
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .detail-description {
+            font-size: 1.05rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .detail-actions {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .preorder-btn {
+            background: var(--primary);
+        }
+
+        .preorder-btn:hover {
+            background: #467463;
+        }
+
+        .detail-features {
+            margin: 1.4rem 0;
+            padding: 1rem 1.2rem;
+            background: #f7fbf9;
+            border-radius: 12px;
+        }
+
+        .detail-features h3 {
+            margin-top: 0;
+        }
+
+        .detail-features ul {
+            padding-left: 1.2rem;
+            margin-bottom: 0;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.65rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font: inherit;
+        }
+
+        .form-group textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .modal-content.large-modal {
+            max-width: 560px;
+        }
+
+        .image-lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .image-lightbox img {
+            max-width: 95vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 20px;
+            right: 25px;
+            background: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 42px;
+            height: 42px;
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 760px) {
+            .detail-card {
+                grid-template-columns: 1fr;
+                padding: 1.2rem;
+            }
+
+            .detail-main-image {
+                height: 320px;
+            }
+
+            .detail-info h2 {
+                font-size: 1.6rem;
+            }
+        }
+
+
+
+        /* ===== PROFESSIONAL MARKETPLACE UPGRADE ===== */
+        :root {
+            --market-orange:#f57224;
+            --market-orange-dark:#df5d13;
+            --market-navy:#172b4d;
+            --market-muted:#667085;
+            --market-line:#e7e9ee;
+            --market-soft:#f6f7f9;
+            --market-green:#179c6b;
+            --market-shadow:0 10px 35px rgba(16,24,40,.08);
+        }
+        * { box-sizing:border-box; }
+        body { background:#f5f5f5; color:#202124; }
+        button, input, select, textarea { font:inherit; }
+        button { -webkit-tap-highlight-color:transparent; }
+
+        .announcement-bar { background:#111827; color:#fff; font-size:.78rem; }
+        .announcement-inner { max-width:1240px; margin:auto; min-height:34px; padding:6px 18px; display:flex; justify-content:space-between; gap:16px; align-items:center; }
+        .announcement-links { color:#d1d5db; }
+
+        .market-header { position:sticky; top:0; z-index:500; background:linear-gradient(135deg,#ff7a2f,#f45a13); box-shadow:0 3px 18px rgba(0,0,0,.12); padding:0; }
+        .market-header-main { max-width:1240px; margin:auto; padding:14px 18px 12px; display:grid; grid-template-columns:240px minmax(300px,1fr) auto; gap:20px; align-items:center; }
+        .brand-button { border:0; background:transparent; color:white; display:flex; align-items:center; gap:10px; cursor:pointer; padding:0; text-align:left; }
+        .brand-mark { width:42px; height:42px; border-radius:12px; background:white; display:grid; place-items:center; font-size:1.5rem; box-shadow:0 5px 15px rgba(0,0,0,.12); }
+        .brand-button strong { display:block; font-size:1.08rem; letter-spacing:.1px; }
+        .brand-button small { display:block; opacity:.85; font-size:.7rem; margin-top:1px; }
+
+        .global-search-wrap { position:relative; display:flex; background:white; border-radius:10px; overflow:visible; box-shadow:0 4px 18px rgba(0,0,0,.12); }
+        .global-search-wrap input { width:100%; height:44px; border:0; outline:0; padding:0 16px; background:#fff; border-radius:10px 0 0 10px; color:#333; }
+        .search-button { width:52px; border:0; background:#fff3eb; color:var(--market-orange); cursor:pointer; border-left:1px solid #f3e5dc; border-radius:0 10px 10px 0; font-size:1.05rem; }
+        .search-suggestions { display:none; position:absolute; top:50px; left:0; right:0; background:#fff; border-radius:10px; box-shadow:0 16px 42px rgba(0,0,0,.16); overflow:hidden; z-index:900; border:1px solid #eee; }
+        .search-suggestions.active { display:block; }
+        .search-suggestion { width:100%; border:0; background:#fff; padding:11px 14px; text-align:left; cursor:pointer; border-bottom:1px solid #f1f1f1; display:flex; justify-content:space-between; gap:12px; }
+        .search-suggestion:hover { background:#fff7f2; }
+        .search-suggestion small { color:#999; }
+
+        .header-actions { display:flex; align-items:stretch; gap:8px; }
+        .header-action { min-width:78px; color:white; background:transparent; border:1px solid rgba(255,255,255,.28); border-radius:10px; padding:6px 8px; cursor:pointer; display:grid; grid-template-columns:24px auto; grid-template-rows:auto auto; column-gap:4px; text-align:left; }
+        .header-action > span:first-child { grid-row:1/3; align-self:center; font-size:1.1rem; }
+        .header-action small { font-size:.62rem; opacity:.82; }
+        .header-action strong { font-size:.72rem; white-space:nowrap; }
+        .header-action:hover { background:rgba(255,255,255,.12); }
+        .cart-action { background:rgba(126,35,0,.16); }
+
+        .market-nav { max-width:1240px; margin:auto; display:flex; align-items:center; gap:4px; padding:0 18px 10px; }
+        .market-nav button { border:0; background:transparent; color:#fff; padding:6px 11px; border-radius:7px; cursor:pointer; font-size:.8rem; font-weight:600; }
+        .market-nav button:hover { background:rgba(255,255,255,.13); }
+        .desktop-account-status { margin-left:auto; color:#fff; font-size:.76rem; font-weight:600; opacity:.9; }
+
+        .trust-strip { background:white; border-bottom:1px solid var(--market-line); display:grid; grid-template-columns:repeat(4,1fr); max-width:100%; text-align:center; color:#475467; font-size:.78rem; }
+        .trust-strip div { padding:10px 8px; border-right:1px solid #f0f0f0; }
+
+        #home-page { background:#f5f5f5 !important; background-image:none !important; padding-bottom:40px; }
+        .market-hero { max-width:1240px; margin:18px auto 0; display:grid; grid-template-columns:1fr 330px; gap:18px; padding:0 18px; }
+        .hero-copy { min-height:300px; border-radius:18px; padding:38px 42px; background:linear-gradient(115deg,#fff7f0 0%,#fff 50%,#eefaf6 100%); box-shadow:var(--market-shadow); position:relative; overflow:hidden; }
+        .hero-copy:after { content:'🧶  🦜'; position:absolute; right:38px; bottom:25px; font-size:5rem; opacity:.10; transform:rotate(-6deg); }
+        .eyebrow, .mini-label { display:inline-block; color:var(--market-orange); font-size:.7rem; letter-spacing:1.4px; font-weight:800; }
+        .hero-copy h2 { max-width:720px; font-size:2.45rem; line-height:1.08; margin:10px 0 12px; color:#1f2937; }
+        .hero-copy p { max-width:650px; color:#667085; font-size:1rem; margin:0 0 22px; }
+        .hero-actions { display:flex; gap:10px; flex-wrap:wrap; }
+        .btn.btn-primary, .checkout-btn { background:var(--market-orange); border-radius:8px; }
+        .btn.btn-primary:hover, .checkout-btn:hover { background:var(--market-orange-dark); }
+        .btn.btn-secondary { background:white; color:var(--market-navy); border:1px solid #d9dde5; border-radius:8px; }
+        .hero-mini-benefits { display:flex; gap:16px; flex-wrap:wrap; margin-top:20px; color:#667085; font-size:.78rem; }
+
+        .hero-promo-card { border-radius:18px; padding:28px; color:white; background:linear-gradient(145deg,#172b4d,#2c4775); box-shadow:var(--market-shadow); position:relative; overflow:hidden; }
+        .hero-promo-card:after { content:'%'; position:absolute; right:-10px; bottom:-45px; font-size:10rem; font-weight:900; opacity:.08; }
+        .promo-kicker { font-size:.7rem; letter-spacing:1.5px; color:#ffd0b6; font-weight:800; }
+        .promo-value { font-size:2.25rem; font-weight:900; margin:8px 0 5px; }
+        .hero-promo-card p { margin:0 0 22px; color:#e9eef7; }
+        .countdown-label { font-size:.7rem; color:#b9c8dd; }
+        .deal-countdown { font-size:1.35rem; font-weight:800; letter-spacing:2px; margin:3px 0 14px; }
+        .copy-code-btn { position:relative; z-index:2; width:100%; border:0; border-radius:8px; background:#fff; color:#172b4d; font-weight:800; padding:10px; cursor:pointer; }
+
+        .category-selection { max-width:1240px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); margin:18px auto; gap:14px; padding:0 18px; }
+        .category-card { max-width:none; min-width:0; padding:22px; border:1px solid #edf0f2; border-radius:14px; text-align:left; background:#fff !important; box-shadow:0 5px 20px rgba(16,24,40,.05); }
+        .category-card .icon-large { display:inline-grid; place-items:center; width:48px; height:48px; border-radius:12px; background:#fff2e9; }
+        .category-card h3 { color:#1f2937; }
+        .category-card:hover { transform:translateY(-3px); border-color:#ffd2b7; box-shadow:0 10px 30px rgba(16,24,40,.09); }
+        .showcase-container { max-width:1240px; background:#fff; border-radius:16px; padding:20px; margin:18px auto 0; box-shadow:0 5px 20px rgba(16,24,40,.05); }
+        .showcase-title { background:none; color:#1f2937; font-size:1.25rem; padding:0; margin-bottom:14px; }
+        .slideshow-grid { grid-template-columns:repeat(3,1fr); gap:14px; }
+        .slideshow-card { height:190px; border-radius:12px; box-shadow:none; border:1px solid #eee; }
+
+        .catalog-container { max-width:1240px; background:#fff; margin:18px auto; padding:22px; border-radius:14px; box-shadow:0 5px 20px rgba(16,24,40,.05); }
+        .catalog-container h2 { color:#1f2937; margin-bottom:4px; }
+        .back-btn, .detail-back { border:0; background:#f5f6f8; color:#344054; border-radius:8px; }
+        .catalog-toolbar { display:grid; grid-template-columns:1fr auto auto; gap:10px; align-items:center; margin:14px 0 20px; padding:12px; background:#f8f9fb; border:1px solid #eceef2; border-radius:10px; }
+        .catalog-toolbar input, .catalog-toolbar select { height:40px; border:1px solid #d8dde5; border-radius:8px; padding:0 11px; background:#fff; color:#344054; }
+        .catalog-result-count { color:#667085; font-size:.8rem; }
+        .grid { grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
+        .product-card { position:relative; background:#fff !important; border:1px solid #eceff2; border-radius:12px; padding:12px; text-align:left; box-shadow:none; min-width:0; }
+        .product-card:hover { transform:translateY(-2px); border-color:#ffd2b7; box-shadow:0 10px 25px rgba(16,24,40,.09); }
+        .product-card img { height:210px; border-radius:8px; margin-bottom:10px; }
+        .product-card h4, .product-card h5, .product-card h6, .product-card h7, .product-card h8 { margin:.25rem 0; font-size:.96rem; line-height:1.3; color:#202124; min-height:38px; }
+        .product-card > p { color:#7a7f87; font-size:.78rem; line-height:1.4; min-height:44px; margin:.3rem 0; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+        .price { color:var(--market-orange); font-size:1.05rem; margin:.45rem 0; }
+        .quantity-control { justify-content:flex-start; }
+        .qty-btn { border-color:#d0d5dd; color:#344054; border-radius:7px; width:30px; height:30px; }
+        .qty-btn:hover { background:#f2f4f7; color:#111; }
+        .product-card > .btn { width:100%; border-radius:8px; background:var(--market-orange); }
+        .product-card > .btn:hover { background:var(--market-orange-dark); }
+        .product-card-actions { display:grid; grid-template-columns:1fr 1fr; gap:7px; margin-top:7px; }
+        .product-card-actions .buy-now { background:#fff2e9; color:#d6530d; border:1px solid #ffd6bf; border-radius:8px; padding:8px; cursor:pointer; font-weight:700; }
+        .wish-btn { position:absolute; top:20px; right:20px; width:34px; height:34px; border:0; border-radius:50%; background:rgba(255,255,255,.92); box-shadow:0 3px 12px rgba(0,0,0,.1); cursor:pointer; z-index:3; font-size:1.1rem; color:#667085; }
+        .wish-btn.active { color:#e5484d; background:#fff0f1; }
+        .category-chip { position:absolute; top:20px; left:20px; background:#fff; color:#475467; border-radius:999px; padding:5px 8px; font-size:.62rem; font-weight:800; z-index:3; box-shadow:0 2px 10px rgba(0,0,0,.08); }
+
+        .detail-container { max-width:1240px; }
+        .detail-card { border-radius:14px; box-shadow:0 5px 20px rgba(16,24,40,.06); }
+        .detail-price { color:var(--market-orange); }
+        .detail-features { background:#f8fafb; }
+        .detail-actions .btn { border-radius:8px; min-height:42px; }
+        .detail-actions .preorder-btn { background:#172b4d; }
+        .detail-actions .buy-now-detail { background:#fff2e9; color:#d6530d; border:1px solid #ffd6bf; }
+
+        .modal { backdrop-filter:blur(4px); background:rgba(10,18,33,.54); }
+        .modal-content { border-radius:14px; box-shadow:0 30px 80px rgba(0,0,0,.2); }
+        .modal-content.cart-panel { max-width:620px; }
+        .modal-heading-row { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; }
+        .modal-heading-row h2 { margin:.2rem 0 1rem; }
+        .secure-chip { background:#ecfdf3; color:#067647; font-size:.7rem; font-weight:700; padding:6px 9px; border-radius:999px; }
+        .cart-item { padding:11px 0; margin:0; gap:14px; }
+        .cart-item-main { display:flex; flex-direction:column; flex:1; }
+        .cart-item-main small { color:#98a2b3; }
+        .cart-item-controls { display:flex; align-items:center; gap:6px; }
+        .cart-remove { border:0; background:#fff0f1; color:#b42318; border-radius:7px; padding:5px 8px; cursor:pointer; }
+        .coupon-box { display:flex; gap:8px; margin-top:14px; }
+        .coupon-box input { flex:1; height:42px; border:1px solid #d0d5dd; border-radius:8px; padding:0 11px; }
+        .coupon-box button { border:0; border-radius:8px; padding:0 18px; background:#172b4d; color:#fff; font-weight:700; cursor:pointer; }
+        .coupon-message { min-height:20px; font-size:.78rem; color:#667085; margin:4px 0; }
+        .cart-summary { margin:12px 0; padding:12px 0; border-top:1px solid #eee; }
+        .cart-summary > div { display:flex; justify-content:space-between; padding:4px 0; color:#475467; }
+        .discount-text { color:#067647; }
+        .cart-total-row { border-top:1px solid #eee; margin-top:7px; padding-top:10px !important; font-size:1.05rem; color:#101828 !important; }
+        .checkout-note { font-size:.72rem; color:#98a2b3; text-align:center; margin-bottom:0; }
+        .checkout-panel { max-width:900px; }
+        .checkout-layout { display:grid; grid-template-columns:1.2fr .8fr; gap:20px; }
+        .checkout-panel select { width:100%; padding:.65rem; border:1px solid #ccc; border-radius:8px; background:#fff; }
+        .checkout-summary-card { background:#f8fafb; border:1px solid #eef0f3; border-radius:12px; padding:18px; }
+        .checkout-mini-item { display:flex; justify-content:space-between; gap:10px; padding:7px 0; font-size:.82rem; border-bottom:1px solid #eee; }
+        .checkout-total { display:flex; justify-content:space-between; font-size:1.05rem; margin:12px 0 15px; }
+        .wishlist-panel { max-width:650px; }
+        .wishlist-row { display:grid; grid-template-columns:64px 1fr auto; gap:12px; align-items:center; padding:10px 0; border-bottom:1px solid #eee; }
+        .wishlist-row img { width:64px; height:64px; object-fit:cover; border-radius:8px; background:#f5f5f5; }
+        .wishlist-row button { border:0; background:#fff2e9; color:#d6530d; border-radius:7px; padding:7px 10px; cursor:pointer; }
+        .order-success-card { max-width:440px; text-align:center; }
+        .success-icon { width:58px; height:58px; display:grid; place-items:center; margin:0 auto 12px; border-radius:50%; background:#ecfdf3; color:#067647; font-size:1.8rem; font-weight:800; }
+
+        .toast-stack { position:fixed; right:18px; bottom:20px; display:flex; flex-direction:column; gap:8px; z-index:3000; }
+        .toast { min-width:260px; max-width:360px; padding:12px 14px; background:#1f2937; color:white; border-radius:9px; box-shadow:0 10px 30px rgba(0,0,0,.18); animation:toastIn .22s ease; font-size:.82rem; }
+        @keyframes toastIn { from { transform:translateY(10px); opacity:0; } to { transform:none; opacity:1; } }
+
+        .search-results-page { max-width:1240px; margin:18px auto; padding:22px; background:#fff; border-radius:14px; box-shadow:0 5px 20px rgba(16,24,40,.05); }
+        .search-results-head { display:flex; justify-content:space-between; gap:12px; align-items:end; margin-bottom:18px; }
+        .search-results-head h2 { margin:0; }
+        .search-empty { padding:50px 20px; text-align:center; color:#667085; }
+
+        .pro-footer { background:#111827; color:#d0d5dd; text-align:left; padding:45px 18px 18px; }
+        .footer-grid { max-width:1240px; margin:auto; display:grid; grid-template-columns:1.5fr 1fr 1fr 1.3fr; gap:32px; }
+        .pro-footer h3, .pro-footer h4 { color:white; margin-top:0; }
+        .pro-footer button { display:block; border:0; background:transparent; color:#d0d5dd; padding:4px 0; cursor:pointer; text-align:left; }
+        .pro-footer button:hover { color:white; }
+        .pro-footer span { font-size:.8rem; }
+        .newsletter { display:flex; gap:5px; }
+        .newsletter input { min-width:0; flex:1; height:38px; border:1px solid #344054; background:#1d2939; color:#fff; border-radius:7px; padding:0 10px; }
+        .newsletter button { background:var(--market-orange); color:#fff; padding:0 13px; border-radius:7px; }
+        .footer-bottom { max-width:1240px; margin:30px auto 0; padding-top:18px; border-top:1px solid #344054; display:flex; justify-content:space-between; gap:12px; }
+
+        .mobile-bottom-nav { display:none; }
+
+        @media (max-width: 980px) {
+            .market-header-main { grid-template-columns:180px 1fr; }
+            .header-actions { grid-column:1/3; justify-content:flex-end; }
+            .grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+            .market-hero { grid-template-columns:1fr 270px; }
+            .hero-copy { padding:32px; }
+            .hero-copy h2 { font-size:2rem; }
+            .footer-grid { grid-template-columns:repeat(2,1fr); }
+        }
+        @media (max-width: 760px) {
+            .announcement-links { display:none; }
+            .announcement-inner { justify-content:center; text-align:center; }
+            .market-header { top:0; }
+            .market-header-main { grid-template-columns:1fr auto; padding:10px 12px; gap:10px; }
+            .brand-button { min-width:0; }
+            .brand-button small { display:none; }
+            .global-search-wrap { grid-column:1/3; grid-row:2; }
+            .header-actions { grid-column:auto; grid-row:1; }
+            .header-action:not(.cart-action) { display:none; }
+            .cart-action { min-width:70px; }
+            .market-nav { overflow-x:auto; white-space:nowrap; padding:0 10px 8px; scrollbar-width:none; }
+            .desktop-account-status { display:none; }
+            .trust-strip { grid-template-columns:repeat(2,1fr); }
+            .market-hero { grid-template-columns:1fr; padding:0 10px; margin-top:10px; }
+            .hero-copy { min-height:auto; padding:25px 20px; }
+            .hero-copy h2 { font-size:1.65rem; }
+            .hero-promo-card { padding:22px; }
+            .category-selection { grid-template-columns:1fr 1fr; padding:0 10px; gap:8px; }
+            .category-card { padding:14px; }
+            .showcase-container { margin:10px; padding:14px; }
+            .slideshow-grid { grid-template-columns:1fr; }
+            .slideshow-card { height:180px; }
+            .catalog-container { margin:10px; padding:14px; }
+            .catalog-toolbar { grid-template-columns:1fr; }
+            .grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+            .product-card { padding:8px; }
+            .product-card img { height:160px; }
+            .product-card > p { min-height:0; }
+            .checkout-layout { grid-template-columns:1fr; }
+            .footer-grid { grid-template-columns:1fr; }
+            .footer-bottom { flex-direction:column; }
+            .mobile-bottom-nav { display:grid; grid-template-columns:repeat(4,1fr); position:fixed; bottom:0; left:0; right:0; z-index:1000; background:white; border-top:1px solid #e5e7eb; box-shadow:0 -5px 18px rgba(0,0,0,.08); }
+            .mobile-bottom-nav button { border:0; background:#fff; padding:8px 4px 7px; color:#475467; font-size:.68rem; cursor:pointer; }
+            .mobile-bottom-nav button span { display:block; font-size:1.1rem; }
+            body { padding-bottom:58px; }
+        }
+        @media (max-width: 460px) {
+            .grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+            .product-card img { height:135px; }
+            .product-card h4, .product-card h5, .product-card h6, .product-card h7, .product-card h8 { font-size:.82rem; min-height:34px; }
+            .price { font-size:.92rem; }
+            .quantity-control { transform:scale(.92); transform-origin:left; }
+            .category-selection { grid-template-columns:1fr; }
+        }
+
+    
+
+        /* ===== BLUE HEADER + CLEAR PRODUCT DISPLAY UPDATE ===== */
+        :root {
+            --brand-blue:#0b57d0;
+            --brand-blue-dark:#063b8c;
+            --brand-blue-soft:#eaf2ff;
+            --brand-blue-pale:#f4f8ff;
+        }
+
+        /* Strong, professional blue top area */
+        .announcement-bar {
+            background:#052f68 !important;
+            border-bottom:1px solid rgba(255,255,255,.12);
+        }
+        .market-header {
+            background:linear-gradient(135deg,var(--brand-blue) 0%,var(--brand-blue-dark) 100%) !important;
+            box-shadow:0 4px 18px rgba(6,59,140,.25) !important;
+        }
+        .market-nav button:hover,
+        .header-action:hover { background:rgba(255,255,255,.16) !important; }
+        .cart-action { background:rgba(255,255,255,.12) !important; }
+        .search-button {
+            background:#eaf2ff !important;
+            color:var(--brand-blue) !important;
+            border-left:1px solid #d7e5ff !important;
+        }
+        .global-search-wrap:focus-within {
+            box-shadow:0 0 0 3px rgba(255,255,255,.28),0 6px 20px rgba(0,0,0,.16);
+        }
+
+        /* Home page uses soft blue surfaces for a cleaner visual hierarchy */
+        #home-page { background:var(--brand-blue-pale) !important; }
+        .hero-copy {
+            background:linear-gradient(115deg,#ffffff 0%,#f5f9ff 58%,#eaf2ff 100%) !important;
+            border:1px solid #dbe8ff;
+        }
+        .eyebrow, .mini-label { color:var(--brand-blue) !important; }
+        .hero-promo-card {
+            background:linear-gradient(145deg,#0b57d0,#063b8c) !important;
+        }
+        .btn.btn-primary { background:var(--brand-blue) !important; }
+        .btn.btn-primary:hover { background:var(--brand-blue-dark) !important; }
+        .category-card .icon-large { background:#eaf2ff !important; }
+        .category-card:hover { border-color:#a9c7ff !important; box-shadow:0 12px 30px rgba(11,87,208,.11) !important; }
+
+        /* Featured images are larger and easier to inspect */
+        .showcase-container {
+            border:1px solid #e3ebf8;
+            box-shadow:0 8px 24px rgba(20,70,130,.07) !important;
+        }
+        .slideshow-grid { gap:18px !important; }
+        .slideshow-card {
+            height:260px !important;
+            border:1px solid #dfe8f4 !important;
+            background:#fff !important;
+        }
+        .slideshow-card img {
+            object-fit:contain !important;
+            background:#fff !important;
+            padding:8px;
+        }
+        .slideshow-card .overlay-label {
+            padding:9px 12px !important;
+            font-size:.86rem !important;
+            background:linear-gradient(90deg,rgba(3,37,82,.90),rgba(11,87,208,.82)) !important;
+            letter-spacing:.2px;
+        }
+
+        /* New home-page product preview section */
+        .home-products-section {
+            max-width:1240px;
+            margin:18px auto 0;
+            padding:22px 18px 26px;
+            background:#fff;
+            border:1px solid #e3ebf8;
+            border-radius:16px;
+            box-shadow:0 8px 24px rgba(20,70,130,.07);
+        }
+        .home-products-head {
+            display:flex;
+            justify-content:space-between;
+            align-items:end;
+            gap:16px;
+            margin-bottom:16px;
+        }
+        .home-products-head h2 { margin:0; color:#172b4d; font-size:1.45rem; }
+        .home-products-head p { margin:4px 0 0; color:#667085; font-size:.84rem; }
+        .home-products-head button {
+            border:1px solid #b7cff6;
+            background:#eff5ff;
+            color:var(--brand-blue);
+            border-radius:8px;
+            padding:9px 13px;
+            font-weight:700;
+            cursor:pointer;
+        }
+        .home-products-grid {
+            display:grid;
+            grid-template-columns:repeat(3,minmax(0,1fr));
+            gap:16px;
+        }
+        .home-product-card {
+            min-width:0;
+            border:1px solid #e6ebf2;
+            border-radius:14px;
+            overflow:hidden;
+            background:#fff;
+            transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+        }
+        .home-product-card:hover {
+            transform:translateY(-3px);
+            border-color:#abc8f7;
+            box-shadow:0 12px 26px rgba(11,87,208,.10);
+        }
+        .home-product-image-wrap {
+            height:235px;
+            padding:12px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background:#fbfcfe;
+            border-bottom:1px solid #eef1f5;
+            cursor:pointer;
+        }
+        .home-product-card img {
+            width:100%;
+            height:100%;
+            object-fit:contain;
+            display:block;
+        }
+        .home-product-info { padding:14px; }
+        .home-product-category {
+            display:inline-block;
+            color:var(--brand-blue);
+            background:#eef5ff;
+            border-radius:999px;
+            padding:4px 8px;
+            font-size:.67rem;
+            font-weight:800;
+            margin-bottom:7px;
+        }
+        .home-product-info h3 { margin:0 0 5px; font-size:1rem; color:#202124; }
+        .home-product-info p { margin:0 0 10px; color:#707781; font-size:.78rem; line-height:1.45; min-height:34px; }
+        .home-product-bottom { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+        .home-product-price { color:#0b57d0; font-weight:800; font-size:1.03rem; }
+        .home-product-view {
+            border:0;
+            border-radius:8px;
+            background:var(--brand-blue);
+            color:#fff;
+            padding:8px 11px;
+            cursor:pointer;
+            font-weight:700;
+            font-size:.76rem;
+        }
+        .home-product-view:hover { background:var(--brand-blue-dark); }
+
+        /* Catalog: show more of each product, not just a cropped photo */
+        .grid { grid-template-columns:repeat(3,minmax(0,1fr)) !important; gap:18px !important; }
+        .product-card { padding:14px !important; }
+        .product-card img {
+            height:270px !important;
+            object-fit:contain !important;
+            background:#fbfcfe !important;
+            padding:8px;
+            border:1px solid #eef1f5;
+        }
+        .product-card h4, .product-card h5, .product-card h6,
+        .product-card h7, .product-card h8 { font-size:1rem !important; min-height:auto !important; }
+        .product-card > p { font-size:.82rem !important; min-height:42px; }
+        .product-card:hover { border-color:#abc8f7 !important; box-shadow:0 10px 26px rgba(11,87,208,.10) !important; }
+
+        @media (max-width:980px) {
+            .home-products-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+            .grid { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+            .product-card img { height:230px !important; }
+        }
+        @media (max-width:760px) {
+            .slideshow-card { height:230px !important; }
+            .home-products-section { margin:10px; padding:16px 12px 20px; }
+            .home-products-head { align-items:flex-start; flex-direction:column; }
+            .home-products-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+            .home-product-image-wrap { height:180px; padding:7px; }
+            .home-product-info { padding:10px; }
+            .home-product-info p { display:none; }
+            .home-product-bottom { align-items:flex-start; flex-direction:column; }
+            .home-product-view { width:100%; }
+            .product-card img { height:190px !important; }
+        }
+        @media (max-width:460px) {
+            .home-products-grid { grid-template-columns:1fr; }
+            .home-product-image-wrap { height:250px; }
+            .grid { grid-template-columns:1fr !important; }
+            .product-card img { height:300px !important; }
+        }
+
+
+        /* ===== SIMPLE + PHONE FRIENDLY FINAL OVERRIDES ===== */
+        html, body { max-width:100%; overflow-x:hidden; }
+        body { -webkit-text-size-adjust:100%; }
+
+        /* No promotional/offers UI */
+        .announcement-bar,
+        .hero-promo-card,
+        #deal-anchor,
+        .promo-kicker,
+        .promo-value,
+        .countdown-label,
+        .deal-countdown,
+        .copy-code-btn,
+        .coupon-box,
+        .coupon-message,
+        .discount-text { display:none !important; }
+
+        /* Cleaner full-width hero now that the offer card is gone */
+        .market-hero { grid-template-columns:minmax(0,1fr) !important; }
+        .hero-copy { min-height:240px; }
+        .simple-trust-strip { grid-template-columns:repeat(3,1fr); }
+
+        /* Keep product photos easy to see */
+        .product-card img,
+        .home-product-image-wrap img,
+        .slideshow-card img { object-fit:contain !important; background:#fff !important; }
+
+        @media (max-width: 760px) {
+            body { padding-bottom:64px !important; }
+
+            /* Compact mobile header: brand + account/cart, then full-width search */
+            .market-header { position:sticky; top:0; z-index:1100; }
+            .market-header-main {
+                width:100%;
+                padding:9px 10px 10px !important;
+                display:grid !important;
+                grid-template-columns:minmax(0,1fr) auto !important;
+                grid-template-areas:
+                    "brand actions"
+                    "search search" !important;
+                gap:8px 10px !important;
+                align-items:center !important;
+            }
+            .brand-button {
+                grid-area:brand;
+                min-width:0 !important;
+                max-width:100%;
+                gap:7px !important;
+            }
+            .brand-mark { width:36px !important; height:36px !important; border-radius:10px !important; font-size:1.25rem !important; flex:0 0 auto; }
+            .brand-button > span:last-child { min-width:0; }
+            .brand-button strong {
+                font-size:.95rem !important;
+                white-space:nowrap;
+                overflow:hidden;
+                text-overflow:ellipsis;
+                max-width:180px;
+            }
+            .brand-button small { display:none !important; }
+
+            .header-actions {
+                display:flex !important;
+                grid-column:auto !important;
+                grid-row:auto !important;
+                justify-content:flex-end !important;
+                gap:6px !important;
+                min-width:0;
+                grid-area:actions !important;
+            }
+            .header-actions .header-action:nth-child(2) { display:none !important; }
+            #account-nav-btn,
+            .cart-action {
+                display:grid !important;
+                min-width:0 !important;
+                width:auto !important;
+                padding:5px 7px !important;
+                border-radius:9px !important;
+                grid-template-columns:20px auto !important;
+                column-gap:3px !important;
+            }
+            #account-nav-btn small,
+            .cart-action small { display:none !important; }
+            #account-nav-btn strong,
+            .cart-action strong { font-size:.66rem !important; line-height:1.15; white-space:nowrap; }
+            #account-nav-btn > span:first-child,
+            .cart-action > span:first-child { font-size:1rem !important; }
+
+            .global-search-wrap {
+                grid-column:auto !important;
+                grid-row:auto !important;
+                width:100% !important;
+                min-width:0 !important;
+                border-radius:9px !important;
+                grid-area:search !important;
+            }
+            .global-search-wrap input {
+                min-width:0;
+                width:100%;
+                height:42px !important;
+                font-size:16px !important;
+                padding:0 12px !important;
+            }
+            .search-button { width:46px !important; flex:0 0 46px; }
+            .search-suggestions { top:46px !important; max-height:55vh; overflow-y:auto; }
+
+            /* Desktop nav is replaced by the fixed mobile bottom nav */
+            .market-nav { display:none !important; }
+
+            .simple-trust-strip {
+                grid-template-columns:1fr !important;
+                font-size:.74rem !important;
+            }
+            .simple-trust-strip div {
+                padding:7px 10px !important;
+                border-right:0 !important;
+                border-bottom:1px solid #f0f2f5;
+            }
+            .simple-trust-strip div:last-child { border-bottom:0; }
+
+            #home-page { padding-bottom:20px !important; }
+            .market-hero { padding:0 10px !important; margin-top:10px !important; }
+            .hero-copy {
+                min-height:auto !important;
+                padding:22px 18px !important;
+                border-radius:14px !important;
+            }
+            .hero-copy:after { display:none !important; }
+            .hero-copy h2 { font-size:1.55rem !important; line-height:1.15 !important; margin:8px 0 10px !important; }
+            .hero-copy p { font-size:.9rem !important; margin-bottom:16px !important; }
+            .hero-actions { display:grid !important; grid-template-columns:1fr 1fr !important; gap:8px !important; }
+            .hero-actions .btn { width:100%; padding:10px 8px !important; font-size:.82rem !important; }
+            .hero-mini-benefits { gap:8px 12px !important; font-size:.72rem !important; margin-top:14px !important; }
+
+            .category-selection {
+                grid-template-columns:1fr !important;
+                gap:10px !important;
+                padding:0 10px !important;
+                margin:10px auto !important;
+            }
+            .category-card { padding:16px !important; }
+
+            .showcase-container,
+            .home-products-section,
+            .catalog-container,
+            .search-results-page {
+                margin:10px !important;
+                padding:14px !important;
+                border-radius:12px !important;
+                width:auto !important;
+                max-width:none !important;
+            }
+            .showcase-grid,
+            .slideshow-grid { grid-template-columns:1fr !important; }
+            .slideshow-card { height:230px !important; }
+
+            .home-products-head {
+                align-items:flex-start !important;
+                flex-direction:column !important;
+                gap:10px !important;
+            }
+            .home-products-head button { width:100%; }
+            .home-products-grid { grid-template-columns:1fr !important; gap:12px !important; }
+            .home-product-image-wrap { height:270px !important; }
+            .home-product-info { padding:14px !important; }
+            .home-product-bottom { gap:8px; flex-wrap:wrap; }
+            .home-product-view { min-height:40px; }
+
+            /* Catalog: one clear card per row on normal phones */
+            .catalog-toolbar { grid-template-columns:1fr !important; gap:8px !important; }
+            .catalog-toolbar input,
+            .catalog-toolbar select { width:100% !important; min-width:0; font-size:16px; }
+            .grid { grid-template-columns:1fr !important; gap:12px !important; }
+            .product-card { padding:12px !important; border-radius:12px !important; }
+            .product-card img { height:280px !important; padding:8px; }
+            .product-card h4,
+            .product-card h5,
+            .product-card h6,
+            .product-card h7,
+            .product-card h8 {
+                min-height:0 !important;
+                font-size:1rem !important;
+            }
+            .product-card > p { min-height:0 !important; font-size:.82rem !important; }
+            .quantity-control { transform:none !important; }
+            .product-card-actions { grid-template-columns:1fr 1fr !important; }
+
+            /* Product detail and modals fit viewport without overlapping */
+            .detail-container { margin:10px auto !important; padding:0 10px 76px !important; }
+            .detail-card { grid-template-columns:1fr !important; gap:16px !important; padding:14px !important; }
+            .detail-main-image { height:320px !important; object-fit:contain !important; }
+            .detail-info h2 { font-size:1.45rem !important; }
+            .detail-actions { display:grid !important; grid-template-columns:1fr !important; }
+            .detail-actions .btn { width:100%; }
+
+            .modal { padding:10px !important; align-items:flex-end !important; }
+            .modal-content,
+            .modal-content.large-modal,
+            .modal-content.cart-panel,
+            .checkout-panel,
+            .wishlist-panel,
+            .order-success-card {
+                width:100% !important;
+                max-width:100% !important;
+                max-height:88dvh !important;
+                overflow-y:auto !important;
+                padding:16px !important;
+                border-radius:16px 16px 0 0 !important;
+                margin:0 !important;
+            }
+            .checkout-layout { grid-template-columns:1fr !important; }
+            .cart-item { align-items:flex-start !important; flex-direction:column !important; }
+            .cart-item-controls { width:100%; flex-wrap:wrap !important; justify-content:flex-start; }
+            .wishlist-row { grid-template-columns:56px minmax(0,1fr) !important; }
+            .wishlist-row button { grid-column:1 / -1; width:100%; }
+            .form-group input,
+            .form-group textarea,
+            .checkout-panel select { font-size:16px !important; }
+
+            /* Simple fixed bottom navigation with equal-width buttons */
+            .mobile-bottom-nav {
+                display:grid !important;
+                grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+                position:fixed;
+                bottom:0;
+                left:0;
+                right:0;
+                z-index:1500;
+                padding-bottom:env(safe-area-inset-bottom);
+                background:#fff;
+                border-top:1px solid #dfe5ee;
+                box-shadow:0 -4px 16px rgba(0,0,0,.08);
+            }
+            .mobile-bottom-nav button {
+                min-width:0;
+                border:0;
+                background:#fff;
+                color:#344054;
+                padding:7px 2px 6px !important;
+                font-size:.65rem !important;
+                line-height:1.1;
+                cursor:pointer;
+                overflow:hidden;
+            }
+            .mobile-bottom-nav button span { display:block; font-size:1.05rem !important; margin-bottom:2px; }
+        }
+
+        @media (max-width: 380px) {
+            .brand-button strong { max-width:135px; font-size:.88rem !important; }
+            #account-nav-btn { display:none !important; }
+            .hero-actions { grid-template-columns:1fr !important; }
+            .product-card img { height:245px !important; }
+            .detail-main-image { height:280px !important; }
+        }
+
+</style>
 </head>
 <body>
+<header class="market-header">
+        <div class="market-header-main">
+            <button class="brand-button" onclick="showPage('home-page')" aria-label="Feather and Thread home">
+                <span class="brand-mark">🦜</span>
+                <span><strong>Feather & Thread</strong><small>Handmade & Bird Care</small></span>
+            </button>
 
-    <header>
-        <h1 onclick="showPage('home-page')">🦜 Feather & Thread</h1>
-        <nav>
-            <button onclick="toggleCart()">🛒 Cart (<span id="cart-count">0</span>)</button>
+            <div class="global-search-wrap">
+                <input id="global-search" type="search" placeholder="Search crochet, bird accessories, gifts..." autocomplete="off" oninput="showSearchSuggestions()" onkeydown="if(event.key==='Enter') runGlobalSearch()">
+                <button class="search-button" onclick="runGlobalSearch()" aria-label="Search">🔎</button>
+                <div id="search-suggestions" class="search-suggestions"></div>
+            </div>
+
+            <div class="header-actions">
+                <button class="header-action" id="account-nav-btn" onclick="openAccountModal()"><span>👤</span><small>Account</small><strong id="account-short-label">Login</strong></button>
+                <button class="header-action" onclick="openWishlist()"><span>♡</span><small>Wishlist</small><strong><span id="wishlist-count">0</span> saved</strong></button>
+                <button class="header-action cart-action" onclick="toggleCart()"><span>🛒</span><small>Cart</small><strong><span id="cart-count">0</span> items</strong></button>
+            </div>
+        </div>
+
+        <nav class="market-nav" aria-label="Primary navigation">
+            <button onclick="showPage('home-page')">Home</button>
+            <button onclick="showPage('crochet-page')">🧶 Crochet</button>
+            <button onclick="showPage('birds-page')">🦜 Bird Care</button>
+            <button onclick="showPage('about-page')">About Us</button>
+            <button onclick="showPage('contact-page')">Contact</button>
+            <span id="account-status" class="desktop-account-status"></span>
         </nav>
     </header>
 
+    <div class="trust-strip simple-trust-strip">
+        <div>✓ Clear product photos</div>
+        <div>🛒 Easy cart & checkout</div>
+        <div>📱 Phone friendly</div>
+    </div>
+
     <!-- PAGE 1: HOMEPAGE SELECTION -->
     <div id="home-page" class="page-view active">
-        <section class="home-hero">
-            <h2>Welcome to Feather & Thread</h2><br>
-            <p>Handcrafted Crochet & Premium Bird Care Accessories</p>
+        <section class="market-hero">
+            <div class="hero-copy">
+                <span class="eyebrow">FEATHER & THREAD MARKETPLACE</span>
+                <h2>Handmade favorites & bird-care essentials.</h2>
+                <p>Shop crochet products and bird accessories with clear photos, simple navigation, and easy checkout.</p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary" onclick="showPage('crochet-page')">Shop Crochet</button>
+                    <button class="btn btn-secondary" onclick="showPage('birds-page')">Shop Bird Care</button>
+                </div>
+                <div class="hero-mini-benefits">
+                    <span>✓ Easy search</span><span>✓ Clear products</span><span>✓ Quick checkout</span>
+                </div>
+            </div>
         </section>
 
         <div class="category-selection">
@@ -418,25 +1362,147 @@
                 
                 <div class="slideshow-card" data-slideshow>
                     <img src="images/beauty-pouch.jpeg" class="active-slide" alt="Crochet Pouch">
-                    <img src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcSCL-i2U_SDV50LloLjkGPuExZf-OgRSdnjYya03oX4YXoWsfJMb5FYhSoOodjK251CU88gjp3bOGxu-cU" alt="Bird Bowl">
-                    <img src="images/purse.jpeg" alt="Crochet Purse">
+                    <img src="images/bird_image/apple_wood_hanging.png" alt="Bird Hanging Toy">
+                    <img src="images/purse.jpeg" alt="Crochet Purse" onclick="openProduct('crochet-purse')">
                     <div class="overlay-label">Trending</div>
                 </div>
 
                 <div class="slideshow-card" data-slideshow>
-                    <img src="https://i5.walmartimages.com/asr/b484b76b-8712-4280-b18b-51b4a9cd7962.9e9915935173a1323c436163f03e8e26.jpeg" class="active-slide" alt="Bird Fountain">
-                    <img src="images/cat_bow.jpeg" alt="Crochet Cat Bow">
-                    <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcSSxa78H6R5Q15jyulOPl4-qFvqoRZOPvhDCIuca4qH6tr9sUdt9syjLjoMVDyKihub6KFxccZdQbWUM3Q" alt="Ceramic Dish">
+                    <img src="images/bird_image/bathing-basin.png" class="active-slide" alt="Bird Fountain">
+                    <img src="images/cat_bow.jpeg" alt="Crochet Cat Bow" onclick="openProduct('cat-bow')">
+                    <img src="images/wall_3d_art.png" alt="Crochet 3D Art">
                     <div class="overlay-label">Popular</div>
                 </div>
 
                 <div class="slideshow-card" data-slideshow>
                     <img src="images/hat.jpeg" class="active-slide" alt="Crochet Hat">
-                    <img src="https://i5.walmartimages.com/asr/b484b76b-8712-4280-b18b-51b4a9cd7962.9e9915935173a1323c436163f03e8e26.jpeg" alt="Bird Toy">
+                    <img src="images/bird_image/chewing-toy.webp" alt="Bird Toy">
                     <img src="images/beauty-pouch.jpeg" alt="Crochet Pouch">
                     <div class="overlay-label">Favorites</div>
                 </div>
 
+            </div>
+        </div>
+
+
+        <!-- CLEAR PRODUCT PREVIEW SECTION -->
+        <section class="home-products-section" aria-labelledby="popular-products-title">
+            <div class="home-products-head">
+                <div>
+                    <h2 id="popular-products-title">Popular Products</h2>
+                    <p>Larger product photos and quick access to customer favorites.</p>
+                </div>
+                <button onclick="showPage('crochet-page')">Browse all products →</button>
+            </div>
+            <div class="home-products-grid">
+                <article class="home-product-card">
+                    <div class="home-product-image-wrap" onclick="openProduct('beauty-pouch')">
+                        <img src="images/maroon_purse.png" alt="Crochet Beauty Pouch">
+                    </div>
+                    <div class="home-product-info">
+                        <span class="home-product-category">CROCHET</span>
+                        <h3>Beauty Pouch</h3>
+                        <p>Soft woven zipper pouch for makeup and everyday essentials.</p>
+                        <div class="home-product-bottom"><span class="home-product-price">৳1,200</span><button class="home-product-view" onclick="openProduct('beauty-pouch')">View Product</button></div>
+                    </div>
+                </article>
+                <article class="home-product-card">
+                    <div class="home-product-image-wrap" onclick="openProduct('crochet-purse')">
+                        <img src="images/purse.jpeg" alt="Handcrafted Crochet Purse">
+                    </div>
+                    <div class="home-product-info">
+                        <span class="home-product-category">CROCHET</span>
+                        <h3>Handcrafted Crochet Purse</h3>
+                        <p>Stylish shoulder bag made with durable cotton yarn.</p>
+                        <div class="home-product-bottom"><span class="home-product-price">৳1,000</span><button class="home-product-view" onclick="openProduct('crochet-purse')">View Product</button></div>
+                    </div>
+                </article>
+                <article class="home-product-card">
+                    <div class="home-product-image-wrap" onclick="openProduct('cat-bow')">
+                        <img src="images/cat_bow.jpeg" alt="Crochet Cat Bow Collar">
+                    </div>
+                    <div class="home-product-info">
+                        <span class="home-product-category">CROCHET</span>
+                        <h3>Crochet Cat Bow Collar</h3>
+                        <p>Cute handcrafted bow accessory for a neat pet look.</p>
+                        <div class="home-product-bottom"><span class="home-product-price">৳200</span><button class="home-product-view" onclick="openProduct('cat-bow')">View Product</button></div>
+                    </div>
+                </article>
+                <article class="home-product-card">
+                    <div class="home-product-image-wrap" onclick="openProduct('bird-fountain')">
+                        <img src="images/bird_image/bathing-basin.png" alt="Automatic Water Fountain for Birds">
+                    </div>
+                    <div class="home-product-info">
+                        <span class="home-product-category">BIRD CARE</span>
+                        <h3>Automatic Water Fountain</h3>
+                        <p>Convenient water and bathing accessory for pet birds.</p>
+                        <div class="home-product-bottom"><span class="home-product-price">৳800</span><button class="home-product-view" onclick="openProduct('bird-fountain')">View Product</button></div>
+                    </div>
+                </article>
+                <article class="home-product-card">
+                    <div class="home-product-image-wrap" onclick="openProduct('apple-wood-toy')">
+                        <img src="images/bird_image/apple_wood_hanging.png" alt="Apple Wooden Bird Chewing Toy">
+                    </div>
+                    <div class="home-product-info">
+                        <span class="home-product-category">BIRD CARE</span>
+                        <h3>Apple Wooden Chewing Toy</h3>
+                        <p>Wooden enrichment toy designed for chewing and activity.</p>
+                        <div class="home-product-bottom"><span class="home-product-price">৳100</span><button class="home-product-view" onclick="openProduct('apple-wood-toy')">View Product</button></div>
+                    </div>
+                </article>
+                <article class="home-product-card">
+                    <div class="home-product-image-wrap" onclick="openProduct('bird-swing')">
+                        <img src="images/bird_image/swing.webp" alt="Wood Hanging Swing Toy for Bird">
+                    </div>
+                    <div class="home-product-info">
+                        <span class="home-product-category">BIRD CARE</span>
+                        <h3>Wood Hanging Bird Swing</h3>
+                        <p>Natural-style swing accessory for resting and play.</p>
+                        <div class="home-product-bottom"><span class="home-product-price">৳100</span><button class="home-product-view" onclick="openProduct('bird-swing')">View Product</button></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </div>
+
+    <!-- ABOUT US PAGE -->
+    <div id="about-page" class="page-view">
+        <div class="info-page">
+            <button class="detail-back" onclick="showPage('home-page')">← Back to Home</button>
+            <div class="info-card">
+                <h2>About Feather & Thread</h2>
+                <p>Welcome to <strong>Feather & Thread</strong> — a cozy shop bringing together handcrafted crochet pieces and useful bird-care accessories.</p>
+                <p>Our crochet collection focuses on practical, cute handmade products, while our bird accessories help with everyday feeding, resting and enrichment for pet birds.</p>
+                <h3>What We Offer</h3>
+                <ul>
+                    <li>Handcrafted crochet products and accessories</li>
+                    <li>Bird feeding, resting and enrichment accessories</li>
+                    <li>Product detail pages with image galleries</li>
+                    <li>Add-to-cart and pre-order options</li>
+                </ul>
+                <h3>Our Goal</h3>
+                <p>We want shopping at Feather & Thread to feel simple, friendly and personal, with clear product information and an easy way to discover something special.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT US PAGE -->
+    <div id="contact-page" class="page-view">
+        <div class="info-page">
+            <button class="detail-back" onclick="showPage('home-page')">← Back to Home</button>
+            <div class="info-card">
+                <h2>Contact Us</h2>
+                <p>Have a question about a product, order or pre-order? We'd love to hear from you.</p>
+                <div class="contact-grid">
+                    <div class="contact-box"><strong>📞 Phone</strong><span>+880 1817099416</span></div>
+                    <div class="contact-box"><strong>✉️ Email</strong><span>Homayramim1710@gmail.com</span></div>
+                    <div class="contact-box"><strong>📍 Location</strong><span>Bangladesh</span></div>
+                </div>
+                <h3>Send Us a Message</h3>
+                <div class="form-group"><label for="contact-name">Your Name</label><input id="contact-name" type="text" placeholder="Enter your name"></div>
+                <div class="form-group"><label for="contact-email">Email</label><input id="contact-email" type="email" placeholder="Enter your email"></div>
+                <div class="form-group"><label for="contact-message">Message</label><textarea id="contact-message" placeholder="Write your message"></textarea></div>
+                <button class="btn" onclick="submitContactMessage()">Send Message</button>
             </div>
         </div>
     </div>
@@ -449,8 +1515,8 @@
             <hr><br>
             
             <div class="grid">
-                <div class="product-card card-crochet-1">
-                    <img src="images/beauty-pouch.jpeg" alt="Crochet Beauty Pouch">
+                <div class="product-card card-crochet-1" data-product-id="beauty-pouch">
+                    <img src="images/maroon_purse.png" alt="Crochet Beauty Pouch" onclick="openProduct('beauty-pouch')">
                     <h4>Beauty Pouch</h4>
                     <p>Soft woven zipper pouch for makeup and cosmetics.</p>
                     <div class="price">1200.00 BDT</div>
@@ -462,8 +1528,8 @@
                     <button class="btn" onclick="addToCart('Beauty Pouch', 1200.00, 'qty-c1')">Add to Cart</button>
                 </div>
 
-                <div class="product-card card-crochet-2">
-                    <img src="images/cat_bow.jpeg" alt="Crochet Cat Bow">
+                <div class="product-card card-crochet-2" data-product-id="cat-bow">
+                    <img src="images/cat_bow.jpeg" alt="Crochet Cat Bow" onclick="openProduct('cat-bow')">
                     <h4>Crochet Cat Bow Collar</h4>
                     <p>Cute handcrafted necktie bow for your cat.</p>
                     <div class="price">200.00 BDT</div>
@@ -475,8 +1541,8 @@
                     <button class="btn" onclick="addToCart('Crochet Cat Bow', 200.00, 'qty-c2')">Add to Cart</button>
                 </div>
 
-                <div class="product-card card-crochet-3">
-                    <img src="images/purse.jpeg" alt="Crochet Purse">
+                <div class="product-card card-crochet-3" data-product-id="crochet-purse">
+                    <img src="images/purse.jpeg" alt="Crochet Purse" onclick="openProduct('crochet-purse')">
                     <h4>Handcrafted Crochet Purse</h4>
                     <p>Stylish shoulder bag made with durable cotton yarn.</p>
                     <div class="price">1000.00 BDT</div>
@@ -488,8 +1554,8 @@
                     <button class="btn" onclick="addToCart('Crochet Purse', 1000.00, 'qty-c3')">Add to Cart</button>
                 </div>
 
-                <div class="product-card card-crochet-4">
-                    <img src="images/hat.jpeg" alt="Crochet Hat">
+                <div class="product-card card-crochet-4" data-product-id="crochet-hat">
+                    <img src="images/hat.jpeg" alt="Crochet Hat" onclick="openProduct('crochet-hat')">
                     <h4>Cozy Crochet Hat</h4>
                     <p>Warm winter beanie woven with super-soft wool.</p>
                     <div class="price">1000.00 BDT</div>
@@ -498,48 +1564,160 @@
                         <span id="qty-c4" class="qty-val">1</span>
                         <button class="qty-btn" onclick="adjustQty('qty-c4', 1)">+</button>
                     </div>
-                    <button class="btn" onclick="addToCart('Crochet Purse', 1000.00, 'qty-c4')">Add to Cart</button>
+                    <button class="btn" onclick="addToCart('Cozy Crochet Hat', 1000.00, 'qty-c4')">Add to Cart</button>
                 </div>
 
-                <div class="product-card card-crochet-5">
-                    <img src="images/square_cushion.jpeg" alt="Crochet Square Cushion">
+                <div class="product-card card-crochet-5" data-product-id="square-cushion">
+                    <img src="images/square_cushion.jpeg" alt="Crochet Square Cushion" onclick="openProduct('square-cushion')">
                     <h5>Cozy Crochet Square Cushion</h5>
-                    <p>Warm winter beanie woven with super-soft wool.</p>
+                    <p>Soft handmade cushion with a cozy textured crochet finish.</p>
                     <div class="price">1000.00 BDT</div>
                     <div class="quantity-control">
                         <button class="qty-btn" onclick="adjustQty('qty-c5', -1)">-</button>
                         <span id="qty-c5" class="qty-val">1</span>
                         <button class="qty-btn" onclick="adjustQty('qty-c5', 1)">+</button>
                     </div>
-                    <button class="btn" onclick="addToCart('Crochet Purse', 1000.00, 'qty-c5')">Add to Cart</button>
+                    <button class="btn" onclick="addToCart('Cozy Crochet Square Cushion', 1000.00, 'qty-c5')">Add to Cart</button>
                 </div>
 
-                <div class="product-card card-crochet-6">
-                    <img src="images/triangle_cushion.jpeg" alt="Crochet Triangle Cushion">
+                <div class="product-card card-crochet-6" data-product-id="triangle-cushion">
+                    <img src="images/triangle_cushion.jpeg" alt="Crochet Triangle Cushion" onclick="openProduct('triangle-cushion')">
                     <h6>Crochet Triangle Cushion</h6>
-                    <p>Warm winter beanie woven with super-soft wool.</p>
+                    <p>Decorative triangle cushion with a handcrafted crochet look.</p>
                     <div class="price">1000.00 BDT</div>
                     <div class="quantity-control">
                         <button class="qty-btn" onclick="adjustQty('qty-c6', -1)">-</button>
                         <span id="qty-c6" class="qty-val">1</span>
                         <button class="qty-btn" onclick="adjustQty('qty-c6', 1)">+</button>
                     </div>
-                    <button class="btn" onclick="addToCart('Crochet Purse', 1000.00, 'qty-c6')">Add to Cart</button>
+                    <button class="btn" onclick="addToCart('Crochet Triangle Cushion', 1000.00, 'qty-c6')">Add to Cart</button>
                 </div>
 
 
-                <div class="product-card card-crochet-7">
-                    <img src="images/plastic_sheet.jpg" alt="Crochet Plastic Sheet">
-                    <h7>Crochet Plastic Sheet</h57>
-                    <p>Warm winter beanie woven with super-soft wool.</p>
+                <div class="product-card card-crochet-7" data-product-id="plastic-sheet">
+                    <img src="images/plastic_sheet.jpg" alt="Crochet Plastic Sheet" onclick="openProduct('plastic-sheet')">
+                    <h7>Crochet Plastic Sheet</h7>
+                    <p>Useful plastic canvas sheet for structured crochet craft projects.</p>
                     <div class="price">700.00 BDT</div>
                     <div class="quantity-control">
                         <button class="qty-btn" onclick="adjustQty('qty-c7', -1)">-</button>
                         <span id="qty-c7" class="qty-val">1</span>
                         <button class="qty-btn" onclick="adjustQty('qty-c7', 1)">+</button>
                     </div>
-                    <button class="btn" onclick="addToCart('Cozy Hat', 700.00, 'qty-c7')">Add to Cart</button>
+                    <button class="btn" onclick="addToCart('Crochet Plastic Sheet', 700.00, 'qty-c7')">Add to Cart</button>
                 </div>
+
+                <div class="product-card card-crochet-8" data-product-id="table-cloth-sheet">
+                    <img src="images/Table_cloth_sheet.webp" alt="Designable Table cloth sheet" onclick="openProduct('table-cloth-sheet')">
+                    <h8>Table Cloth sheet</h8>
+                    <p>Cheerful handmade Table.</p>
+                    <div class="price">250.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-cnew1', -1)">-</button>
+                        <span id="qty-cnew1" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-cnew1', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Sunflower Crochet Keychain', 250.00, 'qty-cnew1')">Add to Cart</button>
+                </div>
+
+
+                <div class="product-card card-cnew-new" data-product-id="Crochet thread">
+                    <img src="images/crochet_thread.jpeg" alt="Crochet Multi Color thread" onclick="openProduct('Crochet thread')">
+                    <h5>Crochet Bow Keychain</h5>
+                    <p>Cute crochet bow charm for keys, backpacks and handbags.</p>
+                    <div class="price">220.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-cnew2', -1)">-</button>
+                        <span id="qty-cnew2" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-cnew2', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Crochet Bow Keychain', 220.00, 'qty-cnew2')">Add to Cart</button>
+                </div>
+
+
+                <div class="product-card card-cnew-new" data-product-id="granny-tote">
+                    <img src="https://imagedelivery.net/0ObHXyjKhN5YJrtuYFSvjQ/i-23686047-16fb-4a9e-aa0b-e0f96d77a82f-crochet-coasters-set-of-4-eco-friendly-organic-cotton-the-stitchy-room/display" alt="Granny Square Crochet Tote" onclick="openProduct('granny-tote')">
+                    <h5>Granny Square Crochet Tote</h5>
+                    <p>Roomy crochet tote inspired by classic granny-square designs.</p>
+                    <div class="price">1200.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-cnew3', -1)">-</button>
+                        <span id="qty-cnew3" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-cnew3', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Granny Square Crochet Tote', 1200.00, 'qty-cnew3')">Add to Cart</button>
+                </div>
+
+
+                <div class="product-card card-cnew-new" data-product-id="coaster-set">
+                    <img src="https://imagedelivery.net/0ObHXyjKhN5YJrtuYFSvjQ/i-23686047-16fb-4a9e-aa0b-e0f96d77a82f-crochet-coasters-set-of-4-eco-friendly-organic-cotton-the-stitchy-room/display" alt="Crochet Coaster Set" onclick="openProduct('coaster-set')">
+                    <h5>Crochet Coaster Set</h5>
+                    <p>Decorative handmade-style coaster set for cups, mugs and tables.</p>
+                    <div class="price">450.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-cnew4', -1)">-</button>
+                        <span id="qty-cnew4" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-cnew4', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Crochet Coaster Set', 450.00, 'qty-cnew4')">Add to Cart</button>
+                </div>
+
+
+                <div class="product-card card-cnew-new" data-product-id="phone-sleeve">
+                    <img src="https://imagedelivery.net/0ObHXyjKhN5YJrtuYFSvjQ/i-23686047-16fb-4a9e-aa0b-e0f96d77a82f-crochet-coasters-set-of-4-eco-friendly-organic-cotton-the-stitchy-room/display" alt="Crochet Phone Sleeve" onclick="openProduct('phone-sleeve')">
+                    <h5>Crochet Phone Sleeve</h5>
+                    <p>Soft yarn phone sleeve for carrying and protecting your phone.</p>
+                    <div class="price">550.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-cnew5', -1)">-</button>
+                        <span id="qty-cnew5" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-cnew5', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Crochet Phone Sleeve', 550.00, 'qty-cnew5')">Add to Cart</button>
+                </div>
+
+
+                <div class="product-card card-cnew-new" data-product-id="mini-flower-pot">
+                    <img src="https://imagedelivery.net/0ObHXyjKhN5YJrtuYFSvjQ/i-23686047-16fb-4a9e-aa0b-e0f96d77a82f-crochet-coasters-set-of-4-eco-friendly-organic-cotton-the-stitchy-room/display" alt="Mini Crochet Flower Pot" onclick="openProduct('mini-flower-pot')">
+                    <h5>Mini Crochet Flower Pot</h5>
+                    <p>Small decorative crochet flower pot for desks and shelves.</p>
+                    <div class="price">600.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-cnew6', -1)">-</button>
+                        <span id="qty-cnew6" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-cnew6', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Mini Crochet Flower Pot', 600.00, 'qty-cnew6')">Add to Cart</button>
+                </div>
+
+
+                <div class="product-card card-cnew-new" data-product-id="scrunchie-set">
+                    <img src="https://imagedelivery.net/0ObHXyjKhN5YJrtuYFSvjQ/i-23686047-16fb-4a9e-aa0b-e0f96d77a82f-crochet-coasters-set-of-4-eco-friendly-organic-cotton-the-stitchy-room/display" alt="Crochet Scrunchie Set" onclick="openProduct('scrunchie-set')">
+                    <h5>Crochet Scrunchie Set</h5>
+                    <p>Colorful handmade-style scrunchies for everyday hair styling.</p>
+                    <div class="price">300.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-cnew7', -1)">-</button>
+                        <span id="qty-cnew7" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-cnew7', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Crochet Scrunchie Set', 300.00, 'qty-cnew7')">Add to Cart</button>
+                </div>
+
+
+                <div class="product-card card-cnew-new" data-product-id="wristlet-keychain">
+                    <img src="https://imagedelivery.net/0ObHXyjKhN5YJrtuYFSvjQ/i-23686047-16fb-4a9e-aa0b-e0f96d77a82f-crochet-coasters-set-of-4-eco-friendly-organic-cotton-the-stitchy-room/display" alt="Crochet Wristlet Keychain" onclick="openProduct('wristlet-keychain')">
+                    <h5>Crochet Wristlet Keychain</h5>
+                    <p>Comfortable crochet wristlet for keeping keys close at hand.</p>
+                    <div class="price">350.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-cnew8', -1)">-</button>
+                        <span id="qty-cnew8" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-cnew8', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Crochet Wristlet Keychain', 350.00, 'qty-cnew8')">Add to Cart</button>
+                </div>
+
             </div>
         </div>
     </div>
@@ -552,8 +1730,8 @@
             <hr><br>
             
             <div class="grid">
-                <div class="product-card card-bird-1">
-                    <img src="images/bird_image/platform.png" alt="Bird Wooden Platform">
+                <div class="product-card card-bird-1" data-product-id="bird-platform">
+                    <img src="images/bird_image/platform.png" alt="Bird Wooden Platform" onclick="openProduct('bird-platform')">
                     <h4>Wooden Platform</h4>
                     <p>Wooden Platform for sitting bird inside the cages.</p>
                     <div class="price">80.00 BDT</div>
@@ -565,8 +1743,8 @@
                     <button class="btn" onclick="addToCart('Bird Wooden Platform', 100.00, 'qty-b1')">Add to Cart</button>
                 </div>
 
-                <div class="product-card card-bird-2">
-                    <img src="images/bird_image/bathing-basin.png" alt="Bird Fountain Bathing Basin">
+                <div class="product-card card-bird-2" data-product-id="bird-fountain">
+                    <img src="images/bird_image/bathing-basin.png" alt="Bird Fountain Bathing Basin" onclick="openProduct('bird-fountain')">
                     <h4>Automatic Water Fountain</h4>
                     <p>Gravity-fed clean water dispenser for bathing pet birds.</p>
                     <div class="price">800.00 BDT</div>
@@ -578,8 +1756,8 @@
                     <button class="btn" onclick="addToCart('Automatic Water Fountain', 800.00, 'qty-b2')">Add to Cart</button>
                 </div>
 
-                <div class="product-card card-bird-3">
-                    <img src="images/bird_image/apple_wood_hanging.png" alt="Bird Chewing Toy">
+                <div class="product-card card-bird-3" data-product-id="apple-wood-toy">
+                    <img src="images/bird_image/apple_wood_hanging.png" alt="Bird Chewing Toy" onclick="openProduct('apple-wood-toy')">
                     <h4>Apple Wooden Bird Chewing Toy</h4>
                     <p>Parrot Toys Bite Toys Training Molar Teeth Relieving.</p>
                     <div class="price">100.00 BDT</div>
@@ -591,8 +1769,8 @@
                     <button class="btn" onclick="addToCart('Takraw Wooden Bird Chewing Toy', 400.00, 'qty-b3')">Add to Cart</button>
                 </div>
 
-                 <div class="product-card card-bird-4">
-                    <img src="images/bird_image/small-ball.jpg" alt="Bird Chewing Toy">
+                 <div class="product-card card-bird-4" data-product-id="takraw-toy">
+                    <img src="images/bird_image/small-ball.jpg" alt="Bird Chewing Toy" onclick="openProduct('takraw-toy')">
                     <h5>Takraw Wooden Bird Chewing Toy</h5>
                     <p>Parrot Toys Bite Toys Training Molar Teeth Relieving.</p>
                     <div class="price">150.00 BDT</div>
@@ -601,49 +1779,817 @@
                         <span id="qty-b4" class="qty-val">1</span>
                         <button class="qty-btn" onclick="adjustQty('qty-b4', 1)">+</button>
                     </div>
-                    <button class="btn" onclick="addToCart('Takraw Wooden Bird Chewing Toy', 400.00, 'qty-b4')">Add to Cart</button>
+                    <button class="btn" onclick="addToCart('Takraw Wooden Bird Chewing Toy', 150.00, 'qty-b4')">Add to Cart</button>
                 </div>
 
-                <div class="product-card card-bird-5">
-                    <img src="images/bird_image/swing.webp" alt="Hanging swing">
-                    <h6>Wood Hanging swing toy for Bird</h6>
-                    <p>Natural wood, wicker, and bell toy.</p>
-                    <div class="price">100.00 BDT</div>
+                <div class="product-card card-bird-5" data-product-id="fruit-fork">
+                    <img src="images/bird_image/fruit_fork.png" alt="Bird Eating Fruit Fork" onclick="openProduct('fruit-fork')">
+                    <h6>Bird Eating Fruit Fork</h6>
+                    <p>For Birds to eating Fruits and Veggies.</p>
+                    <div class="price">150.00 BDT</div>
                     <div class="quantity-control">
                         <button class="qty-btn" onclick="adjustQty('qty-b5', -1)">-</button>
                         <span id="qty-b5" class="qty-val">1</span>
                         <button class="qty-btn" onclick="adjustQty('qty-b5', 1)">+</button>
                     </div>
-                    <button class="btn" onclick="addToCart('Hanging Chewing Toys', 1400.00, 'qty-b5')">Add to Cart</button>
+                    <button class="btn" onclick="addToCart('Bird Eating Fruit Fork', 150.00, 'qty-b5')">Add to Cart</button>
+                </div>
+
+                <div class="product-card card-bird-6" data-product-id="sink-kettle">
+                    <img src="images/bird_image/water-cap.png" alt="Bird Thickened Sink Kettle" onclick="openProduct('sink-kettle')">
+                    <h6>Bird Thickened Sink kettle</h6>
+                    <p>For Birds to drink water from the kettle.</p>
+                    <div class="price">150.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-b6', -1)">-</button>
+                        <span id="qty-b6" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-b6', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Bird Thickened Sink Kettle', 150.00, 'qty-b6')">Add to Cart</button>
+                </div>
+
+                <div class="product-card card-bird-7" data-product-id="bird-swing">
+                    <img src="images/bird_image/swing.webp" alt="Wood Hanging Swing Toy for Bird" onclick="openProduct('bird-swing')">
+                    <h7>Wood Hanging swing toy for Bird</h7>
+                    <p>Natural wood, wicker, and bell toy.</p>
+                    <div class="price">100.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-b7', -1)">-</button>
+                        <span id="qty-b7" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-b7', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Wood Hanging Swing Toy for Bird', 100.00, 'qty-b7')">Add to Cart</button>
+                </div>
+
+                <div class="product-card card-bnew-new" data-product-id="anti-spill-feeder">
+                    <img src="https://img.joomcdn.net/c24c4096cd416745155483a460266c591567f2bd_original.jpeg" alt="Anti-Spill Hanging Bird Feeder" onclick="openProduct('anti-spill-feeder')">
+                    <h5>Anti-Spill Hanging Bird Feeder</h5>
+                    <p>Covered hanging feeder designed to help keep bird seed inside the cage.</p>
+                    <div class="price">650.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-bnew1', -1)">-</button>
+                        <span id="qty-bnew1" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-bnew1', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Anti-Spill Hanging Bird Feeder', 650.00, 'qty-bnew1')">Add to Cart</button>
+                </div>
+
+
+                <div class="product-card card-bnew-new" data-product-id="natural-perch-set">
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/71wN1AfnA7L._AC_UL348_SR348,348_.jpg" alt="Natural Wood Bird Perch Set" onclick="openProduct('natural-perch-set')">
+                    <h5>Natural Wood Bird Perch Set</h5>
+                    <p>Set of natural-style wooden perches for climbing and resting.</p>
+                    <div class="price">700.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-bnew2', -1)">-</button>
+                        <span id="qty-bnew2" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-bnew2', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Natural Wood Bird Perch Set', 700.00, 'qty-bnew2')">Add to Cart</button>
+                </div>
+
+
+                <div class="product-card card-bnew-new" data-product-id="perch-feeding-cup">
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/71wN1AfnA7L._AC_UL348_SR348,348_.jpg" alt="Bird Perch with Feeding Cup" onclick="openProduct('perch-feeding-cup')">
+                    <h5>Bird Perch with Feeding Cup</h5>
+                    <p>Wooden perch combined with a convenient feeding cup.</p>
+                    <div class="price">550.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-bnew3', -1)">-</button>
+                        <span id="qty-bnew3" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-bnew3', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Bird Perch with Feeding Cup', 550.00, 'qty-bnew3')">Add to Cart</button>
+                </div>
+
+
+                <div class="product-card card-bnew-new" data-product-id="shredding-toy">
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/71H6BUUi1pL._AC_UL348_SR348,348_.jpg" alt="Bird Shredding Foraging Toy" onclick="openProduct('shredding-toy')">
+                    <h5>Bird Shredding Foraging Toy</h5>
+                    <p>Hanging enrichment toy for chewing, shredding and foraging activity.</p>
+                    <div class="price">500.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-bnew4', -1)">-</button>
+                        <span id="qty-bnew4" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-bnew4', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Bird Shredding Foraging Toy', 500.00, 'qty-bnew4')">Add to Cart</button>
+                </div>
+
+
+                <div class="product-card card-bnew-new" data-product-id="cage-ladder">
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/71wN1AfnA7L._AC_UL348_SR348,348_.jpg" alt="Wooden Bird Cage Ladder" onclick="openProduct('cage-ladder')">
+                    <h5>Wooden Bird Cage Ladder</h5>
+                    <p>Climbing ladder accessory for active birds inside the cage.</p>
+                    <div class="price">450.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-bnew5', -1)">-</button>
+                        <span id="qty-bnew5" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-bnew5', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Wooden Bird Cage Ladder', 450.00, 'qty-bnew5')">Add to Cart</button>
+                </div>
+
+
+                <div class="product-card card-bnew-new" data-product-id="bell-toy">
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/71H6BUUi1pL._AC_UL348_SR348,348_.jpg" alt="Bird Bell Chewing Toy" onclick="openProduct('bell-toy')">
+                    <h5>Bird Bell Chewing Toy</h5>
+                    <p>Interactive hanging toy with a bell and chewable enrichment pieces.</p>
+                    <div class="price">350.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-bnew6', -1)">-</button>
+                        <span id="qty-bnew6" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-bnew6', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Bird Bell Chewing Toy', 350.00, 'qty-bnew6')">Add to Cart</button>
+                </div>
+
+
+                <div class="product-card card-bnew-new" data-product-id="seed-cup">
+                    <img src="https://img.joomcdn.net/c24c4096cd416745155483a460266c591567f2bd_original.jpeg" alt="Removable Bird Seed Cup" onclick="openProduct('seed-cup')">
+                    <h5>Removable Bird Seed Cup</h5>
+                    <p>Simple removable feeding cup for seeds and dry bird food.</p>
+                    <div class="price">250.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-bnew7', -1)">-</button>
+                        <span id="qty-bnew7" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-bnew7', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Removable Bird Seed Cup', 250.00, 'qty-bnew7')">Add to Cart</button>
+                </div>
+
+
+                <div class="product-card card-bnew-new" data-product-id="cage-mirror">
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/71H6BUUi1pL._AC_UL348_SR348,348_.jpg" alt="Bird Cage Mirror Toy" onclick="openProduct('cage-mirror')">
+                    <h5>Bird Cage Mirror Toy</h5>
+                    <p>Small mirror toy for adding visual stimulation and activity inside the cage.</p>
+                    <div class="price">300.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-bnew8', -1)">-</button>
+                        <span id="qty-bnew8" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-bnew8', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('Bird Cage Mirror Toy', 300.00, 'qty-bnew8')">Add to Cart</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- PAGE 4: PRODUCT DETAIL -->
+    <div id="product-detail-page" class="page-view">
+        <div class="detail-container">
+            <button class="detail-back" onclick="goBackToCatalog()">← Back to Products</button>
+
+            <div class="detail-card">
+                <div class="detail-gallery">
+                    <img id="detail-main-image" class="detail-main-image" src="" alt="" onclick="openLightbox(this.src)">
+                    <div id="detail-thumbnails" class="thumbnail-row"></div>
+                </div>
+
+                <div class="detail-info">
+                    <h2 id="detail-name"></h2>
+                    <div id="detail-price" class="detail-price"></div>
+                    <p id="detail-description" class="detail-description"></p>
+
+                    <div class="detail-features">
+                        <h3>Product Details</h3>
+                        <ul id="detail-features-list"></ul>
+                    </div>
+
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="changeDetailQty(-1)">-</button>
+                        <span id="detail-qty" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="changeDetailQty(1)">+</button>
+                    </div>
+
+                    <div class="detail-actions">
+                        <button class="btn" onclick="addDetailToCart()">🛒 Add to Cart</button>
+                        <button class="btn preorder-btn" onclick="openPreorder()">📋 Pre-Order This Product</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- CART MODAL -->
-    <div class="modal" id="cart-modal">
+    <!-- LOGIN / SIGN UP MODAL -->
+    <div class="modal" id="account-modal">
         <div class="modal-content">
-            <button class="close-btn" onclick="toggleCart()">X</button>
-            <h2>Your Shopping Cart</h2>
-            <div id="cart-items"></div>
-            <hr>
-            <h3>Total: <span id="cart-total">0.00</span> BDT</h3>
-            <button class="btn" style="width: 100%;" onclick="alert('Proceeding to Checkout!')">Checkout</button>
+            <button class="close-btn" onclick="closeAccountModal()">X</button>
+            <h2 id="account-modal-title">Welcome Back</h2>
+            <div class="auth-tabs">
+                <button id="login-tab" class="auth-tab active" onclick="switchAuth('login')">Login</button>
+                <button id="signup-tab" class="auth-tab" onclick="switchAuth('signup')">Sign Up</button>
+            </div>
+
+            <div id="login-form">
+                <div class="form-group"><label for="login-email">Email</label><input id="login-email" type="email" placeholder="Enter your email"></div>
+                <div class="form-group"><label for="login-password">Password</label><input id="login-password" type="password" placeholder="Enter your password"></div>
+                <button class="btn" style="width:100%;" onclick="loginUser()">Login</button>
+            </div>
+
+            <div id="signup-form" style="display:none;">
+                <div class="form-group"><label for="signup-name">Full Name</label><input id="signup-name" type="text" placeholder="Enter your name"></div>
+                <div class="form-group"><label for="signup-email">Email</label><input id="signup-email" type="email" placeholder="Enter your email"></div>
+                <div class="form-group"><label for="signup-password">Password</label><input id="signup-password" type="password" placeholder="Create a password"></div>
+                <button class="btn" style="width:100%;" onclick="signupUser()">Create Account</button>
+            </div>
+
+            <p class="auth-note">This is a front-end demo account system. Account data is stored in this browser only. A real online account system needs a secure backend/database.</p>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 Feather & Thread Co. All rights reserved.</p>
+    <!-- PRE-ORDER MODAL -->
+    <div class="modal" id="preorder-modal">
+        <div class="modal-content large-modal">
+            <button class="close-btn" onclick="closePreorder()">X</button>
+            <h2>Pre-Order Product</h2>
+            <p id="preorder-product-label"></p>
+
+            <div class="form-group">
+                <label for="preorder-name">Your Name</label>
+                <input id="preorder-name" type="text" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="preorder-phone">Phone Number</label>
+                <input id="preorder-phone" type="tel" placeholder="Enter your phone number" required>
+            </div>
+
+            <div class="form-group">
+                <label for="preorder-qty">Quantity</label>
+                <input id="preorder-qty" type="number" min="1" value="1">
+            </div>
+
+            <div class="form-group">
+                <label for="preorder-address">Delivery Address</label>
+                <textarea id="preorder-address" placeholder="Enter your delivery address"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="preorder-note">Note (optional)</label>
+                <textarea id="preorder-note" placeholder="Any special request?"></textarea>
+            </div>
+
+            <button class="btn preorder-btn" style="width:100%;" onclick="submitPreorder()">Submit Pre-Order</button>
+        </div>
+    </div>
+
+
+    <!-- WISHLIST MODAL -->
+    <div class="modal" id="wishlist-modal">
+        <div class="modal-content wishlist-panel">
+            <button class="close-btn" onclick="closeWishlist()">×</button>
+            <span class="mini-label">SAVED ITEMS</span>
+            <h2>My Wishlist</h2>
+            <div id="wishlist-items"></div>
+        </div>
+    </div>
+
+    <!-- CHECKOUT MODAL -->
+    <div class="modal" id="checkout-modal">
+        <div class="modal-content checkout-panel">
+            <button class="close-btn" onclick="closeCheckout()">×</button>
+            <span class="mini-label">CHECKOUT</span>
+            <h2>Complete Your Order</h2>
+            <div class="checkout-layout">
+                <div>
+                    <div class="form-group"><label for="checkout-name">Full Name</label><input id="checkout-name" type="text" placeholder="Your full name"></div>
+                    <div class="form-group"><label for="checkout-phone">Phone</label><input id="checkout-phone" type="tel" placeholder="01XXXXXXXXX"></div>
+                    <div class="form-group"><label for="checkout-address">Delivery Address</label><textarea id="checkout-address" placeholder="House, road, area, city"></textarea></div>
+                    <div class="form-group"><label for="checkout-payment">Payment Method</label>
+                        <select id="checkout-payment">
+                            <option value="Cash on Delivery">Cash on Delivery</option>
+                            <option value="Mobile Payment - Manual Confirmation">Mobile Payment (manual confirmation)</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label for="checkout-note">Order Note (optional)</label><textarea id="checkout-note" placeholder="Special request, color preference, etc."></textarea></div>
+                </div>
+                <div class="checkout-summary-card">
+                    <h3>Order Summary</h3>
+                    <div id="checkout-items"></div>
+                    <hr>
+                    <div class="checkout-total"><span>Total</span><strong><span id="checkout-total">0.00</span> BDT</strong></div>
+                    <button class="btn checkout-btn" style="width:100%;" onclick="placeDemoOrder()">Place Order</button>
+                    <p class="auth-note">Front-end demo checkout. Connect a secure backend/payment gateway before accepting real online payments.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ORDER SUCCESS MODAL -->
+    <div class="modal" id="order-success-modal">
+        <div class="modal-content order-success-card">
+            <div class="success-icon">✓</div>
+            <h2>Order Received</h2>
+            <p id="order-success-message"></p>
+            <button class="btn" onclick="closeOrderSuccess()">Continue Shopping</button>
+        </div>
+    </div>
+
+    <!-- IMAGE LIGHTBOX -->
+    <div class="image-lightbox" id="image-lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="event.stopPropagation(); closeLightbox()">×</button>
+        <img id="lightbox-image" src="" alt="Product image" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- CART MODAL -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content cart-panel">
+            <button class="close-btn" onclick="toggleCart()">×</button>
+            <div class="modal-heading-row"><div><span class="mini-label">SHOPPING BAG</span><h2>Your Cart</h2></div><span class="secure-chip">✓ Easy checkout</span></div>
+            <div id="cart-items"></div>
+            <div class="cart-summary">
+                <div><span>Subtotal</span><strong><span id="cart-subtotal">0.00</span> BDT</strong></div>
+                <div><span>Discount</span><strong class="discount-text">-<span id="cart-discount">0.00</span> BDT</strong></div>
+                <div class="cart-total-row"><span>Total</span><strong><span id="cart-total">0.00</span> BDT</strong></div>
+            </div>
+            <button class="btn checkout-btn" style="width:100%;" onclick="openCheckout()">Proceed to Checkout →</button>
+            <p class="checkout-note">Delivery details and any applicable delivery charge can be confirmed at checkout.</p>
+        </div>
+    </div>
+
+    <footer class="pro-footer">
+        <div class="footer-grid">
+            <div><h3>🦜 Feather & Thread</h3><p>Handmade crochet pieces and practical bird-care accessories in one friendly storefront.</p></div>
+            <div><h4>Shop</h4><button onclick="showPage('crochet-page')">Crochet</button><button onclick="showPage('birds-page')">Bird Care</button></div>
+            <div><h4>Customer Care</h4><button onclick="showPage('contact-page')">Contact Us</button><button onclick="showPage('about-page')">About Us</button><span>Order support via phone/email</span></div>
+            <div><h4>Stay Updated</h4><p>Get product and offer updates.</p><div class="newsletter"><input id="newsletter-email" type="email" placeholder="Email address"><button onclick="subscribeNewsletter()">Join</button></div></div>
+        </div>
+        <div class="footer-bottom"><span>&copy; 2026 Feather & Thread Co.</span><span>Designed for a simple, trustworthy shopping experience.</span></div>
     </footer>
 
     <script>
         let cart = [];
+
+        function openAccountModal() {
+            const loggedIn = localStorage.getItem('featherThreadUser');
+            if (loggedIn) {
+                const user = JSON.parse(loggedIn);
+                if (confirm(`You are logged in as ${user.name || user.email}. Click OK to log out.`)) logoutUser();
+                return;
+            }
+            switchAuth('login');
+            document.getElementById('account-modal').style.display = 'flex';
+        }
+
+        function closeAccountModal() {
+            document.getElementById('account-modal').style.display = 'none';
+        }
+
+        function switchAuth(type) {
+            const login = type === 'login';
+            document.getElementById('login-form').style.display = login ? 'block' : 'none';
+            document.getElementById('signup-form').style.display = login ? 'none' : 'block';
+            document.getElementById('login-tab').classList.toggle('active', login);
+            document.getElementById('signup-tab').classList.toggle('active', !login);
+            document.getElementById('account-modal-title').innerText = login ? 'Welcome Back' : 'Create Your Account';
+        }
+
+        function signupUser() {
+            const name = document.getElementById('signup-name').value.trim();
+            const email = document.getElementById('signup-email').value.trim();
+            const password = document.getElementById('signup-password').value;
+
+            if (!name || !email || !password) return alert('Please fill in all sign-up fields.');
+            if (password.length < 6) return alert('Password must be at least 6 characters.');
+
+            localStorage.setItem('featherThreadAccount', JSON.stringify({name, email, password}));
+            localStorage.setItem('featherThreadUser', JSON.stringify({name, email}));
+            updateAccountUI();
+            closeAccountModal();
+            alert(`Welcome to Feather & Thread, ${name}!`);
+        }
+
+        function loginUser() {
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value;
+            const saved = localStorage.getItem('featherThreadAccount');
+
+            if (!email || !password) return alert('Please enter your email and password.');
+            if (!saved) {
+                alert('No account found in this browser. Please sign up first.');
+                switchAuth('signup');
+                return;
+            }
+
+            const account = JSON.parse(saved);
+            if (account.email !== email || account.password !== password) return alert('Incorrect email or password.');
+
+            localStorage.setItem('featherThreadUser', JSON.stringify({name: account.name, email: account.email}));
+            updateAccountUI();
+            closeAccountModal();
+            alert(`Welcome back, ${account.name}!`);
+        }
+
+        function logoutUser() {
+            localStorage.removeItem('featherThreadUser');
+            updateAccountUI();
+            alert('You have been logged out.');
+        }
+
+        function updateAccountUI() {
+            const status = document.getElementById('account-status');
+            const button = document.getElementById('account-nav-btn');
+            const saved = localStorage.getItem('featherThreadUser');
+            if (saved) {
+                const user = JSON.parse(saved);
+                status.innerText = `Hi, ${(user.name || 'User').split(' ')[0]}`;
+                button.innerText = 'Account / Logout';
+            } else {
+                status.innerText = '';
+                button.innerText = 'Login / Sign Up';
+            }
+        }
+
+        function submitContactMessage() {
+            const name = document.getElementById('contact-name').value.trim();
+            const email = document.getElementById('contact-email').value.trim();
+            const message = document.getElementById('contact-message').value.trim();
+            if (!name || !email || !message) return alert('Please complete your name, email and message.');
+            alert(`Thank you, ${name}! Your message has been received in this demo.`);
+            document.getElementById('contact-name').value = '';
+            document.getElementById('contact-email').value = '';
+            document.getElementById('contact-message').value = '';
+        }
+
+
+
+        let currentProduct = null;
+        let currentProductGallery = [];
+
+        /*
+         * Add more pictures for any product by adding file paths to its gallery array.
+         * Example:
+         * gallery: ['images/bird_image/platform.png',
+         *           'images/bird_image/platform-side.png',
+         *           'images/bird_image/platform-closeup.png']
+         */
+        const products = {
+            'beauty-pouch': {
+                name: 'Beauty Pouch', price: 1200,
+                image: 'images/beauty-pouch.jpeg',
+                gallery: ['images/beauty-pouch.jpeg'],
+                description: 'Soft woven zipper pouch for makeup and cosmetics.',
+                features: ['Handcrafted crochet design', 'Zipper closure', 'Suitable for cosmetics and small accessories']
+            },
+            'cat-bow': {
+                name: 'Crochet Cat Bow Collar', price: 200,
+                image: 'images/cat_bow.jpeg',
+                gallery: ['images/cat_bow.jpeg'],
+                description: 'Cute handcrafted necktie bow for your cat.',
+                features: ['Handmade crochet piece', 'Lightweight design', 'Designed for stylish pet wear']
+            },
+            'crochet-purse': {
+                name: 'Handcrafted Crochet Purse', price: 1000,
+                image: 'images/purse.jpeg',
+                gallery: ['images/purse.jpeg'],
+                description: 'Stylish shoulder bag made with durable cotton yarn.',
+                features: ['Handcrafted crochet', 'Shoulder-carry design', 'Durable cotton yarn']
+            },
+            'crochet-hat': {
+                name: 'Cozy Crochet Hat', price: 1000,
+                image: 'images/hat.jpeg',
+                gallery: ['images/hat.jpeg'],
+                description: 'Warm winter beanie woven with super-soft wool.',
+                features: ['Soft yarn', 'Warm and comfortable', 'Handcrafted finish']
+            },
+            'square-cushion': {
+                name: 'Cozy Crochet Square Cushion', price: 1000,
+                image: 'images/square_cushion.jpeg',
+                gallery: ['images/square_cushion.jpeg'],
+                description: 'Cozy handcrafted crochet square cushion.',
+                features: ['Handcrafted crochet', 'Soft cushion design', 'Decorative home accessory']
+            },
+            'triangle-cushion': {
+                name: 'Crochet Triangle Cushion', price: 1000,
+                image: 'images/triangle_cushion.jpeg',
+                gallery: ['images/triangle_cushion.jpeg'],
+                description: 'Handcrafted crochet triangle cushion.',
+                features: ['Handcrafted crochet', 'Comfortable cushion', 'Decorative design']
+            },
+            'plastic-sheet': {
+                name: 'Crochet Plastic Sheet', price: 700,
+                image: 'images/plastic_sheet.jpg',
+                gallery: ['images/plastic_sheet.jpg'],
+                description: 'Crochet plastic sheet accessory.',
+                features: ['Lightweight', 'Practical design', 'Easy to use']
+            },
+            'table-cloth-sheet': {
+                name: 'Designable Table cloth sheet', price: 250,
+                image: 'images/Table_cloth_sheet.webp',
+                gallery: ['images/Table_cloth_sheet.webp'],
+                description: 'Cheerful handmade flower different desin home decor gifts.',
+                features: ['Handmade crochet style', 'Compact Table cloth design', 'Home decor accessory']
+            },
+            'bow-keychain': {
+                name: 'Crochet Bow Keychain', price: 220,
+                image: 'images/crochet_thread.jpeg',
+                gallery: ['images/crochet_thread.jpeg'],
+                description: 'Cute crochet bow charm for keys, backpacks and handbags.',
+                features: ['Soft yarn texture', 'Lightweight charm', 'Handmade-style accessory']
+            },
+            'granny-tote': {
+                name: 'Granny Square Crochet Tote', price: 1200,
+                image: 'https://imagedelivery.net/0ObHXyjKhN5YJrtuYFSvjQ/i-23686047-16fb-4a9e-aa0b-e0f96d77a82f-crochet-coasters-set-of-4-eco-friendly-organic-cotton-the-stitchy-room/display',
+                gallery: ['https://imagedelivery.net/0ObHXyjKhN5YJrtuYFSvjQ/i-23686047-16fb-4a9e-aa0b-e0f96d77a82f-crochet-coasters-set-of-4-eco-friendly-organic-cotton-the-stitchy-room/display'],
+                description: 'Roomy crochet tote inspired by classic granny-square designs.',
+                features: ['Reusable everyday bag', 'Spacious carry design', 'Handcrafted crochet look']
+            },
+            'coaster-set': {
+                name: 'Crochet Coaster Set', price: 450,
+                image: 'https://imagedelivery.net/0ObHXyjKhN5YJrtuYFSvjQ/i-23686047-16fb-4a9e-aa0b-e0f96d77a82f-crochet-coasters-set-of-4-eco-friendly-organic-cotton-the-stitchy-room/display',
+                gallery: ['https://imagedelivery.net/0ObHXyjKhN5YJrtuYFSvjQ/i-23686047-16fb-4a9e-aa0b-e0f96d77a82f-crochet-coasters-set-of-4-eco-friendly-organic-cotton-the-stitchy-room/display'],
+                description: 'Decorative handmade-style coaster set for cups, mugs and tables.',
+                features: ['Set of table coasters', 'Textured crochet finish', 'Useful home accessory']
+            },
+            'phone-sleeve': {
+                name: 'Crochet Phone Sleeve', price: 550,
+                image: 'https://imagedelivery.net/0ObHXyjKhN5YJrtuYFSvjQ/i-23686047-16fb-4a9e-aa0b-e0f96d77a82f-crochet-coasters-set-of-4-eco-friendly-organic-cotton-the-stitchy-room/display',
+                gallery: ['https://imagedelivery.net/0ObHXyjKhN5YJrtuYFSvjQ/i-23686047-16fb-4a9e-aa0b-e0f96d77a82f-crochet-coasters-set-of-4-eco-friendly-organic-cotton-the-stitchy-room/display'],
+                description: 'Soft yarn phone sleeve for carrying and protecting your phone.',
+                features: ['Soft protective cover', 'Handmade-style texture', 'Easy everyday carry']
+            },
+            'mini-flower-pot': {
+                name: 'Mini Crochet Flower Pot', price: 600,
+                image: 'https://imagedelivery.net/0ObHXyjKhN5YJrtuYFSvjQ/i-23686047-16fb-4a9e-aa0b-e0f96d77a82f-crochet-coasters-set-of-4-eco-friendly-organic-cotton-the-stitchy-room/display',
+                gallery: ['https://imagedelivery.net/0ObHXyjKhN5YJrtuYFSvjQ/i-23686047-16fb-4a9e-aa0b-e0f96d77a82f-crochet-coasters-set-of-4-eco-friendly-organic-cotton-the-stitchy-room/display'],
+                description: 'Small decorative crochet flower pot for desks and shelves.',
+                features: ['Cute desk decor', 'Handmade-style design', 'Gift-ready size']
+            },
+            'scrunchie-set': {
+                name: 'Crochet Scrunchie Set', price: 300,
+                image: 'https://imagedelivery.net/0ObHXyjKhN5YJrtuYFSvjQ/i-23686047-16fb-4a9e-aa0b-e0f96d77a82f-crochet-coasters-set-of-4-eco-friendly-organic-cotton-the-stitchy-room/display',
+                gallery: ['https://imagedelivery.net/0ObHXyjKhN5YJrtuYFSvjQ/i-23686047-16fb-4a9e-aa0b-e0f96d77a82f-crochet-coasters-set-of-4-eco-friendly-organic-cotton-the-stitchy-room/display'],
+                description: 'Colorful handmade-style scrunchies for everyday hair styling.',
+                features: ['Soft yarn texture', 'Reusable hair accessory', 'Set of multiple colors']
+            },
+            'wristlet-keychain': {
+                name: 'Crochet Wristlet Keychain', price: 350,
+                image: 'https://imagedelivery.net/0ObHXyjKhN5YJrtuYFSvjQ/i-23686047-16fb-4a9e-aa0b-e0f96d77a82f-crochet-coasters-set-of-4-eco-friendly-organic-cotton-the-stitchy-room/display',
+                gallery: ['https://imagedelivery.net/0ObHXyjKhN5YJrtuYFSvjQ/i-23686047-16fb-4a9e-aa0b-e0f96d77a82f-crochet-coasters-set-of-4-eco-friendly-organic-cotton-the-stitchy-room/display'],
+                description: 'Comfortable crochet wristlet for keeping keys close at hand.',
+                features: ['Wrist-friendly design', 'Keyring attachment', 'Handmade-style accessory']
+            },
+            'anti-spill-feeder': {
+                name: 'Anti-Spill Hanging Bird Feeder', price: 650,
+                image: 'https://img.joomcdn.net/c24c4096cd416745155483a460266c591567f2bd_original.jpeg',
+                gallery: ['https://img.joomcdn.net/c24c4096cd416745155483a460266c591567f2bd_original.jpeg'],
+                description: 'Covered hanging feeder designed to help keep bird seed inside the cage.',
+                features: ['Hanging cage design', 'Easy seed monitoring', 'Removable feeding area']
+            },
+            'natural-perch-set': {
+                name: 'Natural Wood Bird Perch Set', price: 700,
+                image: 'https://images-na.ssl-images-amazon.com/images/I/71wN1AfnA7L._AC_UL348_SR348,348_.jpg',
+                gallery: ['https://images-na.ssl-images-amazon.com/images/I/71wN1AfnA7L._AC_UL348_SR348,348_.jpg'],
+                description: 'Set of natural-style wooden perches for climbing and resting.',
+                features: ['Multiple perch pieces', 'Cage mounting hardware', 'Supports climbing and resting']
+            },
+            'perch-feeding-cup': {
+                name: 'Bird Perch with Feeding Cup', price: 550,
+                image: 'https://images-na.ssl-images-amazon.com/images/I/71wN1AfnA7L._AC_UL348_SR348,348_.jpg',
+                gallery: ['https://images-na.ssl-images-amazon.com/images/I/71wN1AfnA7L._AC_UL348_SR348,348_.jpg'],
+                description: 'Wooden perch combined with a convenient feeding cup.',
+                features: ['Perch and cup combination', 'Cage-mounted design', 'Suitable for small pet birds']
+            },
+            'shredding-toy': {
+                name: 'Bird Shredding Foraging Toy', price: 500,
+                image: 'https://images-na.ssl-images-amazon.com/images/I/71H6BUUi1pL._AC_UL348_SR348,348_.jpg',
+                gallery: ['https://images-na.ssl-images-amazon.com/images/I/71H6BUUi1pL._AC_UL348_SR348,348_.jpg'],
+                description: 'Hanging enrichment toy for chewing, shredding and foraging activity.',
+                features: ['Hanging toy design', 'Chewing enrichment', 'Adds cage activity']
+            },
+            'cage-ladder': {
+                name: 'Wooden Bird Cage Ladder', price: 450,
+                image: 'https://images-na.ssl-images-amazon.com/images/I/71wN1AfnA7L._AC_UL348_SR348,348_.jpg',
+                gallery: ['https://images-na.ssl-images-amazon.com/images/I/71wN1AfnA7L._AC_UL348_SR348,348_.jpg'],
+                description: 'Climbing ladder accessory for active birds inside the cage.',
+                features: ['Climbing activity', 'Wooden-style steps', 'Easy cage hanging']
+            },
+            'bell-toy': {
+                name: 'Bird Bell Chewing Toy', price: 350,
+                image: 'https://images-na.ssl-images-amazon.com/images/I/71H6BUUi1pL._AC_UL348_SR348,348_.jpg',
+                gallery: ['https://images-na.ssl-images-amazon.com/images/I/71H6BUUi1pL._AC_UL348_SR348,348_.jpg'],
+                description: 'Interactive hanging toy with a bell and chewable enrichment pieces.',
+                features: ['Bell sound feature', 'Chewing activity', 'Hanging cage accessory']
+            },
+            'seed-cup': {
+                name: 'Removable Bird Seed Cup', price: 250,
+                image: 'https://img.joomcdn.net/c24c4096cd416745155483a460266c591567f2bd_original.jpeg',
+                gallery: ['https://img.joomcdn.net/c24c4096cd416745155483a460266c591567f2bd_original.jpeg'],
+                description: 'Simple removable feeding cup for seeds and dry bird food.',
+                features: ['Easy to refill', 'Removable design', 'Suitable for cage feeding']
+            },
+            'cage-mirror': {
+                name: 'Bird Cage Mirror Toy', price: 300,
+                image: 'https://images-na.ssl-images-amazon.com/images/I/71H6BUUi1pL._AC_UL348_SR348,348_.jpg',
+                gallery: ['https://images-na.ssl-images-amazon.com/images/I/71H6BUUi1pL._AC_UL348_SR348,348_.jpg'],
+                description: 'Small mirror toy for adding visual stimulation and activity inside the cage.',
+                features: ['Compact cage accessory', 'Easy to hang', 'Interactive toy']
+            },
+            'bird-platform': {
+                name: 'Wooden Platform', price: 80,
+                image: 'images/bird_image/platform.png',
+                gallery: ['images/bird_image/platform.png'],
+                description: 'Wooden platform for sitting inside bird cages.',
+                features: ['Natural wooden look', 'Designed as a bird cage perch/platform', 'Suitable for pet birds']
+            },
+            'bird-fountain': {
+                name: 'Automatic Water Fountain', price: 800,
+                image: 'images/bird_image/bathing-basin.png',
+                gallery: ['images/bird_image/bathing-basin.png'],
+                description: 'Gravity-fed clean water dispenser for bathing pet birds.',
+                features: ['Gravity-fed design', 'Made for pet birds', 'Useful for clean drinking/bathing water']
+            },
+            'fruit-fork': {
+                name: 'Bird Eating Fruit Fork', price: 150,
+                image: 'images/bird_image/fruit_fork.png',
+                gallery: ['images/bird_image/fruit_fork.png'],
+                description: 'Fruit and vegetable holder designed for offering fresh food to pet birds.',
+                features: ['Holds fruit and vegetables', 'Easy to place in a bird cage', 'Useful feeding accessory']
+            },
+            'sink-kettle': {
+                name: 'Bird Thickened Sink Kettle', price: 150,
+                image: 'images/bird_image/water-cap.png',
+                gallery: ['images/bird_image/water-cap.png'],
+                description: 'Thickened drinking-water container designed for pet birds.',
+                features: ['Thickened design', 'Suitable for pet birds', 'Convenient drinking-water container']
+            },
+            'apple-wood-toy': {
+                name: 'Apple Wooden Bird Chewing Toy', price: 100,
+                image: 'images/bird_image/apple_wood_hanging.png',
+                gallery: ['images/bird_image/apple_wood_hanging.png'],
+                description: 'Parrot bite and training toy designed for chewing and molar relief.',
+                features: ['Natural wood style', 'Chewing and enrichment toy', 'Suitable for pet birds']
+            },
+            'takraw-toy': {
+                name: 'Takraw Wooden Bird Chewing Toy', price: 150,
+                image: 'images/bird_image/small-ball.jpg',
+                gallery: ['images/bird_image/small-ball.jpg'],
+                description: 'Parrot bite and training toy for chewing and enrichment.',
+                features: ['Bird enrichment toy', 'Chewing activity', 'Suitable for pet birds']
+            },
+            'bird-swing': {
+                name: 'Wood Hanging Swing Toy for Bird', price: 100,
+                image: 'images/bird_image/swing.webp',
+                gallery: ['images/bird_image/swing.webp'],
+                description: 'Natural wood and wicker hanging swing toy with a bell.',
+                features: ['Hanging swing design', 'Natural wood and wicker look', 'Includes bell toy']
+            }
+        };
+
+        function openProduct(productId) {
+            const product = products[productId];
+            if (!product) return;
+
+            currentProduct = product;
+            currentProductGallery = [...product.gallery];
+
+            document.getElementById('detail-name').innerText = product.name;
+            document.getElementById('detail-price').innerText = product.price.toFixed(2) + ' BDT';
+            document.getElementById('detail-description').innerText = product.description;
+            document.getElementById('detail-qty').innerText = '1';
+
+            const featureList = document.getElementById('detail-features-list');
+            featureList.innerHTML = product.features.map(feature => `<li>${feature}</li>`).join('');
+
+            renderProductGallery();
+            showPage('product-detail-page');
+        }
+
+        function renderProductGallery() {
+            const main = document.getElementById('detail-main-image');
+            const thumbs = document.getElementById('detail-thumbnails');
+            thumbs.innerHTML = '';
+
+            if (!currentProductGallery.length) return;
+
+            main.src = currentProductGallery[0];
+            main.alt = currentProduct.name;
+
+            currentProductGallery.forEach((src, index) => {
+                const thumb = document.createElement('img');
+                thumb.src = src;
+                thumb.alt = currentProduct.name + ' photo ' + (index + 1);
+                thumb.className = 'product-thumb' + (index === 0 ? ' active' : '');
+                thumb.onclick = () => selectProductImage(src, thumb);
+                thumb.onerror = () => thumb.remove();
+                thumbs.appendChild(thumb);
+            });
+        }
+
+        function selectProductImage(src, thumb) {
+            document.getElementById('detail-main-image').src = src;
+            document.querySelectorAll('.product-thumb').forEach(item => item.classList.remove('active'));
+            thumb.classList.add('active');
+        }
+
+        function changeDetailQty(delta) {
+            const qtyElement = document.getElementById('detail-qty');
+            let qty = parseInt(qtyElement.innerText) + delta;
+            if (qty < 1) qty = 1;
+            qtyElement.innerText = qty;
+        }
+
+        function addDetailToCart() {
+            if (!currentProduct) return;
+            const qty = parseInt(document.getElementById('detail-qty').innerText);
+
+            const existingItem = cart.find(item => item.name === currentProduct.name);
+            if (existingItem) {
+                existingItem.quantity += qty;
+            } else {
+                cart.push({
+                    name: currentProduct.name,
+                    price: currentProduct.price,
+                    quantity: qty
+                });
+            }
+
+            updateCartUI();
+            alert(`Added ${qty} x ${currentProduct.name} to your cart!`);
+            document.getElementById('detail-qty').innerText = '1';
+        }
+
+        function goBackToCatalog() {
+            if (currentProduct && currentProduct.name.toLowerCase().includes('bird')) {
+                showPage('birds-page');
+            } else if (currentProduct && (
+                currentProduct.name.toLowerCase().includes('pouch') ||
+                currentProduct.name.toLowerCase().includes('crochet') ||
+                currentProduct.name.toLowerCase().includes('purse') ||
+                currentProduct.name.toLowerCase().includes('hat') ||
+                currentProduct.name.toLowerCase().includes('cushion') ||
+                currentProduct.name.toLowerCase().includes('plastic')
+            )) {
+                showPage('crochet-page');
+            } else {
+                showPage('home-page');
+            }
+        }
+
+        function openPreorder() {
+            if (!currentProduct) return;
+            document.getElementById('preorder-product-label').innerText =
+                `${currentProduct.name} — ${currentProduct.price.toFixed(2)} BDT each`;
+            document.getElementById('preorder-qty').value =
+                document.getElementById('detail-qty').innerText;
+            document.getElementById('preorder-modal').style.display = 'flex';
+        }
+
+        function closePreorder() {
+            document.getElementById('preorder-modal').style.display = 'none';
+        }
+
+        function submitPreorder() {
+            const name = document.getElementById('preorder-name').value.trim();
+            const phone = document.getElementById('preorder-phone').value.trim();
+            const qty = parseInt(document.getElementById('preorder-qty').value);
+            const address = document.getElementById('preorder-address').value.trim();
+            const note = document.getElementById('preorder-note').value.trim();
+
+            if (!name || !phone || !qty || qty < 1 || !address) {
+                alert('Please enter your name, phone number, quantity and delivery address.');
+                return;
+            }
+
+            alert(
+                `Pre-order submitted!\\n\\n` +
+                `Product: ${currentProduct.name}\\n` +
+                `Quantity: ${qty}\\n` +
+                `Customer: ${name}\\n` +
+                `Phone: ${phone}\\n` +
+                `Address: ${address}` +
+                (note ? `\\nNote: ${note}` : '')
+            );
+
+            closePreorder();
+        }
+
+        function openLightbox(src) {
+            document.getElementById('lightbox-image').src = src;
+            document.getElementById('image-lightbox').style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('image-lightbox').style.display = 'none';
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeLightbox();
+                closePreorder();
+            }
+        });
+
 
         function showPage(pageId) {
             document.querySelectorAll('.page-view').forEach(page => {
                 page.classList.remove('active');
             });
             document.getElementById(pageId).classList.add('active');
+            closeAccountModal();
             window.scrollTo(0, 0);
         }
 
@@ -703,6 +2649,8 @@
             document.getElementById('cart-total').innerText = total.toFixed(2);
         }
 
+        updateAccountUI();
+
         setInterval(() => {
             const slideshows = document.querySelectorAll('[data-slideshow]');
             slideshows.forEach(card => {
@@ -714,5 +2662,363 @@
             });
         }, 2000);
     </script>
+
+    <div id="toast-stack" class="toast-stack" aria-live="polite"></div>
+    <nav class="mobile-bottom-nav" aria-label="Mobile navigation">
+        <button onclick="showPage('home-page')"><span>⌂</span>Home</button>
+        <button onclick="showPage('crochet-page')"><span>🧶</span>Crochet</button>
+        <button onclick="showPage('birds-page')"><span>🦜</span>Bird Care</button>
+        <button onclick="openWishlist()"><span>♡</span>Wishlist</button>
+    </nav>
+
+
+<script>
+/* ===== PROFESSIONAL MARKETPLACE FEATURES ===== */
+let appliedCoupon = localStorage.getItem('featherThreadCoupon') || '';
+let wishlist = JSON.parse(localStorage.getItem('featherThreadWishlist') || '[]');
+
+function marketToast(message) {
+    const stack = document.getElementById('toast-stack');
+    if (!stack) return;
+    const item = document.createElement('div');
+    item.className = 'toast';
+    item.textContent = message;
+    stack.appendChild(item);
+    setTimeout(() => item.remove(), 2600);
+}
+
+function getCardName(card) {
+    const heading = card.querySelector('h4,h5,h6,h7,h8,h3');
+    return heading ? heading.textContent.trim() : 'Product';
+}
+function getCardPrice(card) {
+    const el = card.querySelector('.price');
+    return el ? parseFloat(el.textContent.replace(/[^0-9.]/g,'')) || 0 : 0;
+}
+function getCardImage(card) {
+    const img = card.querySelector('img');
+    return img ? img.getAttribute('src') : '';
+}
+function getCardDescription(card) {
+    const p = card.querySelector(':scope > p');
+    return p ? p.textContent.trim() : '';
+}
+function getProductCardById(id) { return document.querySelector(`.product-card[data-product-id="${CSS.escape(id)}"]`); }
+
+function allProductIndex() {
+    return Array.from(document.querySelectorAll('.product-card')).map(card => ({
+        id: card.dataset.productId,
+        name: getCardName(card),
+        price: getCardPrice(card),
+        image: getCardImage(card),
+        description: getCardDescription(card),
+        category: card.closest('#birds-page') ? 'Bird Care' : 'Crochet'
+    }));
+}
+
+function decorateProductCards() {
+    document.querySelectorAll('.product-card').forEach(card => {
+        if (card.dataset.marketDecorated) return;
+        card.dataset.marketDecorated = '1';
+        const id = card.dataset.productId;
+        const category = card.closest('#birds-page') ? 'Bird care' : 'Handmade';
+
+        const chip = document.createElement('span');
+        chip.className = 'category-chip';
+        chip.textContent = category;
+        card.appendChild(chip);
+
+        const wish = document.createElement('button');
+        wish.className = 'wish-btn';
+        wish.type = 'button';
+        wish.title = 'Save to wishlist';
+        wish.textContent = '♡';
+        wish.onclick = (e) => { e.stopPropagation(); toggleWishlistItem(id); };
+        card.appendChild(wish);
+
+        const existingAdd = Array.from(card.querySelectorAll('button.btn')).find(b => /Add to Cart/i.test(b.textContent));
+        if (existingAdd) {
+            existingAdd.textContent = '🛒 Add to Cart';
+            const actions = document.createElement('div');
+            actions.className = 'product-card-actions';
+            const buy = document.createElement('button');
+            buy.className = 'buy-now';
+            buy.type = 'button';
+            buy.textContent = 'Buy Now';
+            buy.onclick = () => quickBuy(id);
+            const details = document.createElement('button');
+            details.className = 'buy-now';
+            details.type = 'button';
+            details.textContent = 'View Details';
+            details.onclick = () => openProduct(id);
+            actions.append(buy, details);
+            existingAdd.insertAdjacentElement('afterend', actions);
+        }
+    });
+    updateWishlistButtons();
+}
+
+function ensureCatalogToolbar(pageId) {
+    const page = document.getElementById(pageId);
+    if (!page) return;
+    const container = page.querySelector('.catalog-container');
+    const grid = container && container.querySelector('.grid');
+    if (!container || !grid || container.querySelector('.catalog-toolbar')) return;
+    const toolbar = document.createElement('div');
+    toolbar.className = 'catalog-toolbar';
+    toolbar.innerHTML = `
+        <input type="search" placeholder="Search within this collection" oninput="filterCatalog('${pageId}', this.value)">
+        <select onchange="sortCatalog('${pageId}', this.value)">
+            <option value="default">Sort: Recommended</option>
+            <option value="low">Price: Low to High</option>
+            <option value="high">Price: High to Low</option>
+            <option value="az">Name: A to Z</option>
+        </select>
+        <span class="catalog-result-count" id="${pageId}-count"></span>`;
+    grid.before(toolbar);
+    updateCatalogCount(pageId);
+}
+function updateCatalogCount(pageId) {
+    const page = document.getElementById(pageId);
+    if (!page) return;
+    const cards = Array.from(page.querySelectorAll('.product-card')).filter(c => c.style.display !== 'none');
+    const el = document.getElementById(pageId+'-count');
+    if (el) el.textContent = `${cards.length} products`;
+}
+function filterCatalog(pageId, query) {
+    const q = query.trim().toLowerCase();
+    document.querySelectorAll(`#${pageId} .product-card`).forEach(card => {
+        card.style.display = card.innerText.toLowerCase().includes(q) ? '' : 'none';
+    });
+    updateCatalogCount(pageId);
+}
+function sortCatalog(pageId, mode) {
+    const grid = document.querySelector(`#${pageId} .grid`);
+    if (!grid) return;
+    const cards = Array.from(grid.querySelectorAll('.product-card'));
+    if (mode === 'low') cards.sort((a,b)=>getCardPrice(a)-getCardPrice(b));
+    if (mode === 'high') cards.sort((a,b)=>getCardPrice(b)-getCardPrice(a));
+    if (mode === 'az') cards.sort((a,b)=>getCardName(a).localeCompare(getCardName(b)));
+    cards.forEach(c=>grid.appendChild(c));
+}
+
+function showSearchSuggestions() {
+    const input = document.getElementById('global-search');
+    const box = document.getElementById('search-suggestions');
+    const q = input.value.trim().toLowerCase();
+    if (!q) { box.classList.remove('active'); box.innerHTML=''; return; }
+    const matches = allProductIndex().filter(p => `${p.name} ${p.description} ${p.category}`.toLowerCase().includes(q)).slice(0,6);
+    box.innerHTML = matches.length ? matches.map(p => `<button class="search-suggestion" onclick="selectSearchProduct('${String(p.id).replace(/'/g,"\\'")}')"><span>${p.name}</span><small>${p.category} • ${p.price.toFixed(0)} BDT</small></button>`).join('') : '<div class="search-suggestion"><span>No matching products yet</span></div>';
+    box.classList.add('active');
+}
+function selectSearchProduct(id) {
+    document.getElementById('search-suggestions').classList.remove('active');
+    document.getElementById('global-search').value = '';
+    openProduct(id);
+}
+function ensureSearchPage() {
+    if (document.getElementById('search-page')) return document.getElementById('search-page');
+    const div = document.createElement('div');
+    div.id='search-page'; div.className='page-view';
+    div.innerHTML=`<div class="search-results-page"><button class="back-btn" onclick="showPage('home-page')">← Back to Home</button><div class="search-results-head"><div><span class="mini-label">SEARCH</span><h2 id="search-results-title">Search results</h2></div><span id="search-results-count" class="catalog-result-count"></span></div><div id="search-results-grid" class="grid"></div><div id="search-empty" class="search-empty" style="display:none;">No products found. Try a different keyword.</div></div>`;
+    document.querySelector('footer').before(div);
+    return div;
+}
+function runGlobalSearch() {
+    const q = document.getElementById('global-search').value.trim();
+    if (!q) { marketToast('Type a product name or category to search.'); return; }
+    document.getElementById('search-suggestions').classList.remove('active');
+    ensureSearchPage();
+    const results = allProductIndex().filter(p => `${p.name} ${p.description} ${p.category}`.toLowerCase().includes(q.toLowerCase()));
+    const grid=document.getElementById('search-results-grid');
+    grid.innerHTML='';
+    results.forEach(p=>{
+        const card=document.createElement('div'); card.className='product-card'; card.dataset.productId=p.id;
+        card.innerHTML=`<img src="${p.image}" alt="${p.name}" onclick="openProduct('${String(p.id).replace(/'/g,"\\'")}')"><h4>${p.name}</h4><p>${p.description}</p><div class="price">${p.price.toFixed(2)} BDT</div><button class="btn" onclick="quickAddFromSearch('${String(p.id).replace(/'/g,"\\'")}')">🛒 Add to Cart</button><div class="product-card-actions"><button class="buy-now" onclick="quickBuy('${String(p.id).replace(/'/g,"\\'")}')">Buy Now</button><button class="buy-now" onclick="openProduct('${String(p.id).replace(/'/g,"\\'")}')">View Details</button></div>`;
+        grid.appendChild(card);
+    });
+    document.getElementById('search-results-title').textContent=`Results for “${q}”`;
+    document.getElementById('search-results-count').textContent=`${results.length} products`;
+    document.getElementById('search-empty').style.display=results.length?'none':'block';
+    showPage('search-page');
+}
+function quickAddFromSearch(id) {
+    const p=allProductIndex().find(x=>x.id===id); if(!p)return;
+    addCartProduct(p.name,p.price,1,id,p.image);
+}
+
+function toggleWishlistItem(id) {
+    if (!id) return;
+    if (wishlist.includes(id)) {
+        wishlist = wishlist.filter(x=>x!==id);
+        marketToast('Removed from wishlist');
+    } else {
+        wishlist.push(id);
+        marketToast('Saved to wishlist ♡');
+    }
+    localStorage.setItem('featherThreadWishlist', JSON.stringify(wishlist));
+    updateWishlistButtons();
+}
+function updateWishlistButtons() {
+    document.querySelectorAll('.product-card').forEach(card=>{
+        const btn=card.querySelector('.wish-btn'); if(!btn)return;
+        const active=wishlist.includes(card.dataset.productId);
+        btn.classList.toggle('active',active); btn.textContent=active?'♥':'♡';
+    });
+    const count=document.getElementById('wishlist-count'); if(count)count.textContent=wishlist.length;
+}
+function openWishlist() { renderWishlist(); document.getElementById('wishlist-modal').style.display='flex'; }
+function closeWishlist(){ document.getElementById('wishlist-modal').style.display='none'; }
+function renderWishlist() {
+    const container=document.getElementById('wishlist-items');
+    const idx=allProductIndex();
+    const items=wishlist.map(id=>idx.find(p=>p.id===id)).filter(Boolean);
+    if(!items.length){container.innerHTML='<p>Your wishlist is empty. Tap the ♡ icon on a product to save it.</p>';return;}
+    container.innerHTML=items.map(p=>`<div class="wishlist-row"><img src="${p.image}" alt="${p.name}"><div><strong>${p.name}</strong><br><small>${p.price.toFixed(2)} BDT</small></div><button onclick="closeWishlist(); openProduct('${String(p.id).replace(/'/g,"\\'")}')">View</button></div>`).join('');
+}
+
+function addCartProduct(name, price, quantity=1, id='', image='') {
+    const existing=cart.find(item => item.name===name);
+    if(existing) existing.quantity+=quantity;
+    else cart.push({name,price,quantity,id,image});
+    saveCart(); updateCartUI(); marketToast(`Added ${quantity} × ${name} to cart`);
+}
+function saveCart(){ localStorage.setItem('featherThreadCart', JSON.stringify(cart)); }
+function addToCart(name, price, qtyElementId) {
+    const qty=parseInt(document.getElementById(qtyElementId).innerText)||1;
+    const card=document.getElementById(qtyElementId).closest('.product-card');
+    addCartProduct(name,price,qty,card?.dataset.productId||'',getCardImage(card));
+    document.getElementById(qtyElementId).innerText='1';
+}
+function addDetailToCart(){
+    if(!currentProduct)return;
+    const qty=parseInt(document.getElementById('detail-qty').innerText)||1;
+    addCartProduct(currentProduct.name,currentProduct.price,qty,currentProduct.id||'',currentProduct.image||'');
+    document.getElementById('detail-qty').innerText='1';
+}
+function changeCartQty(index,delta){
+    if(!cart[index])return;
+    cart[index].quantity+=delta;
+    if(cart[index].quantity<=0)cart.splice(index,1);
+    saveCart(); updateCartUI();
+}
+function removeCartItem(index){ cart.splice(index,1); saveCart(); updateCartUI(); }
+function cartTotals(){
+    const subtotal=cart.reduce((s,i)=>s+i.price*i.quantity,0);
+    const discount=0;
+    return {subtotal,discount,total:Math.max(0,subtotal-discount)};
+}
+function updateCartUI(){
+    const totalItemsCount=cart.reduce((s,i)=>s+i.quantity,0);
+    const count=document.getElementById('cart-count'); if(count)count.textContent=totalItemsCount;
+    const container=document.getElementById('cart-items'); if(!container)return;
+    if(!cart.length) container.innerHTML='<div class="search-empty" style="padding:30px 10px;">Your cart is empty.<br><small>Add something you love.</small></div>';
+    else container.innerHTML=cart.map((item,i)=>`<div class="cart-item"><div class="cart-item-main"><strong>${item.name}</strong><small>${item.price.toFixed(2)} BDT each</small></div><div class="cart-item-controls"><button class="qty-btn" onclick="changeCartQty(${i},-1)">−</button><strong>${item.quantity}</strong><button class="qty-btn" onclick="changeCartQty(${i},1)">+</button><strong>${(item.price*item.quantity).toFixed(2)} BDT</strong><button class="cart-remove" onclick="removeCartItem(${i})">Remove</button></div></div>`).join('');
+    const t=cartTotals();
+    ['cart-subtotal','cart-discount','cart-total'].forEach(id=>{const el=document.getElementById(id); if(el) el.textContent=(id==='cart-subtotal'?t.subtotal:id==='cart-discount'?t.discount:t.total).toFixed(2);});
+    const msg=document.getElementById('coupon-message');
+    if(msg && appliedCoupon==='WELCOME10')msg.textContent='✓ WELCOME10 applied: 10% off, up to 300 BDT.';
+}
+function applyCoupon(){
+    const code=(document.getElementById('coupon-input').value||'').trim().toUpperCase();
+    if(code==='WELCOME10'){ appliedCoupon=code; localStorage.setItem('featherThreadCoupon',code); marketToast('Coupon applied successfully'); }
+    else { appliedCoupon=''; localStorage.removeItem('featherThreadCoupon'); marketToast('Coupon not recognized'); }
+    updateCartUI();
+}
+
+function quickBuy(id){
+    const p=allProductIndex().find(x=>x.id===id); if(!p)return;
+    cart=[{name:p.name,price:p.price,quantity:1,id:p.id,image:p.image}]; saveCart(); updateCartUI(); openCheckout();
+}
+function openCheckout(){
+    if(!cart.length){marketToast('Your cart is empty.');return;}
+    const user=JSON.parse(localStorage.getItem('featherThreadUser')||'null');
+    if(user){ document.getElementById('checkout-name').value=user.name||''; }
+    const t=cartTotals();
+    document.getElementById('checkout-items').innerHTML=cart.map(i=>`<div class="checkout-mini-item"><span>${i.name} × ${i.quantity}</span><strong>${(i.price*i.quantity).toFixed(2)} BDT</strong></div>`).join('') + (t.discount?`<div class="checkout-mini-item"><span>Coupon discount</span><strong style="color:#067647;">-${t.discount.toFixed(2)} BDT</strong></div>`:'');
+    document.getElementById('checkout-total').textContent=t.total.toFixed(2);
+    document.getElementById('cart-modal').style.display='none';
+    document.getElementById('checkout-modal').style.display='flex';
+}
+function closeCheckout(){ document.getElementById('checkout-modal').style.display='none'; }
+function placeDemoOrder(){
+    const name=document.getElementById('checkout-name').value.trim();
+    const phone=document.getElementById('checkout-phone').value.trim();
+    const address=document.getElementById('checkout-address').value.trim();
+    const payment=document.getElementById('checkout-payment').value;
+    if(!name||!phone||!address){marketToast('Please complete name, phone and delivery address.');return;}
+    const t=cartTotals();
+    const orderNo='FT-'+Date.now().toString().slice(-8);
+    const order={orderNo,name,phone,address,payment,total:t.total,items:[...cart],createdAt:new Date().toISOString()};
+    const orders=JSON.parse(localStorage.getItem('featherThreadOrders')||'[]'); orders.unshift(order); localStorage.setItem('featherThreadOrders',JSON.stringify(orders.slice(0,20)));
+    cart=[]; appliedCoupon=''; saveCart(); localStorage.removeItem('featherThreadCoupon'); updateCartUI();
+    closeCheckout();
+    document.getElementById('order-success-message').innerHTML=`Thank you, <strong>${name}</strong>!<br>Your demo order reference is <strong>${orderNo}</strong>.<br><small>Please connect this site to a secure backend before using it for real orders.</small>`;
+    document.getElementById('order-success-modal').style.display='flex';
+}
+function closeOrderSuccess(){ document.getElementById('order-success-modal').style.display='none'; showPage('home-page'); }
+
+const originalOpenProduct = openProduct;
+openProduct = function(productId){
+    let product = products[productId];
+    if(!product){
+        const card=getProductCardById(productId);
+        if(card){
+            product={id:productId,name:getCardName(card),price:getCardPrice(card),image:getCardImage(card),gallery:[getCardImage(card)],description:getCardDescription(card),features:['Carefully selected product','See product image and description','Contact us for more details'],category:card.closest('#birds-page')?'Bird Care':'Crochet'};
+        }
+    }
+    if(!product)return;
+    currentProduct={...product,id:productId}; currentProductGallery=[...(product.gallery||[product.image])];
+    document.getElementById('detail-name').innerText=product.name;
+    document.getElementById('detail-price').innerText=product.price.toFixed(2)+' BDT';
+    document.getElementById('detail-description').innerText=product.description||'';
+    document.getElementById('detail-qty').innerText='1';
+    document.getElementById('detail-features-list').innerHTML=(product.features||[]).map(f=>`<li>${f}</li>`).join('');
+    renderProductGallery();
+    localStorage.setItem('featherThreadRecentlyViewed',JSON.stringify([productId,...JSON.parse(localStorage.getItem('featherThreadRecentlyViewed')||'[]').filter(x=>x!==productId)].slice(0,8)));
+    showPage('product-detail-page');
+}
+
+goBackToCatalog = function(){
+    const card=currentProduct && getProductCardById(currentProduct.id);
+    if(card?.closest('#birds-page'))showPage('birds-page');
+    else if(card?.closest('#crochet-page'))showPage('crochet-page');
+    else showPage('home-page');
+}
+
+function ensureDetailBuyNow(){
+    const actions=document.querySelector('.detail-actions'); if(!actions || actions.querySelector('.buy-now-detail'))return;
+    const btn=document.createElement('button'); btn.className='btn buy-now-detail'; btn.textContent='⚡ Buy Now';
+    btn.onclick=()=>{ if(!currentProduct)return; cart=[{name:currentProduct.name,price:currentProduct.price,quantity:parseInt(document.getElementById('detail-qty').innerText)||1,id:currentProduct.id,image:currentProduct.image}]; saveCart(); updateCartUI(); openCheckout(); };
+    actions.prepend(btn);
+}
+
+function copyWelcomeCode(){ navigator.clipboard?.writeText('WELCOME10'); marketToast('WELCOME10 copied'); }
+function focusDeals(){ showPage('home-page'); setTimeout(()=>document.getElementById('deal-anchor')?.scrollIntoView({behavior:'smooth',block:'center'}),80); }
+function updateDealCountdown(){
+    const now=new Date(); const end=new Date(now); end.setHours(23,59,59,999); const diff=Math.max(0,end-now);
+    const h=String(Math.floor(diff/3600000)).padStart(2,'0'); const m=String(Math.floor(diff%3600000/60000)).padStart(2,'0'); const s=String(Math.floor(diff%60000/1000)).padStart(2,'0');
+    const el=document.getElementById('deal-countdown'); if(el)el.textContent=`${h}:${m}:${s}`;
+}
+function subscribeNewsletter(){ const e=document.getElementById('newsletter-email').value.trim(); if(!e||!e.includes('@')){marketToast('Enter a valid email address.');return;} marketToast('Thanks! You are on the update list for this demo.'); document.getElementById('newsletter-email').value=''; }
+
+const originalUpdateAccountUI = updateAccountUI;
+updateAccountUI = function(){
+    originalUpdateAccountUI();
+    const saved=localStorage.getItem('featherThreadUser'); const label=document.getElementById('account-short-label');
+    if(label) label.textContent=saved?(JSON.parse(saved).name||'Account').split(' ')[0]:'Login';
+}
+
+document.addEventListener('click',e=>{ if(!e.target.closest('.global-search-wrap')) document.getElementById('search-suggestions')?.classList.remove('active'); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeWishlist(); closeCheckout(); document.getElementById('order-success-modal').style.display='none'; } });
+
+document.addEventListener('DOMContentLoaded',()=>{
+    try { cart=JSON.parse(localStorage.getItem('featherThreadCart')||'[]'); } catch(e){ cart=[]; }
+    decorateProductCards();
+    ensureCatalogToolbar('crochet-page'); ensureCatalogToolbar('birds-page'); ensureDetailBuyNow();
+    updateWishlistButtons(); updateCartUI(); updateAccountUI();
+});
+</script>
+
 </body>
 </html>
