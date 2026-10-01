@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feather & Thread | Birds & Crochet Shop</title>
+    <title>CROCHETIA</title>
     <style>
         :root {
             --primary: #5b8e7d;
@@ -628,9 +628,10 @@
         .market-header { position:sticky; top:0; z-index:500; background:linear-gradient(135deg,#ff7a2f,#f45a13); box-shadow:0 3px 18px rgba(0,0,0,.12); padding:0; }
         .market-header-main { max-width:1240px; margin:auto; padding:14px 18px 12px; display:grid; grid-template-columns:240px minmax(300px,1fr) auto; gap:20px; align-items:center; }
         .brand-button { border:0; background:transparent; color:white; display:flex; align-items:center; gap:10px; cursor:pointer; padding:0; text-align:left; }
-        .brand-mark { width:42px; height:42px; border-radius:12px; background:white; display:grid; place-items:center; font-size:1.5rem; box-shadow:0 5px 15px rgba(0,0,0,.12); }
-        .brand-button strong { display:block; font-size:1.08rem; letter-spacing:.1px; }
-        .brand-button small { display:block; opacity:.85; font-size:.7rem; margin-top:1px; }
+        .brand-mark { width:62px; height:62px; border-radius:12px; background:white; display:grid; place-items:center; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,.12); }
+        .brand-mark svg { width:100%; height:100%; display:block; }
+        .brand-button strong { display:block; font-family:Georgia, 'Times New Roman', serif; font-size:2rem; line-height:1; letter-spacing:2px; font-weight:800; }
+        .brand-button small { display:none; }
 
         .global-search-wrap { position:relative; display:flex; background:white; border-radius:10px; overflow:visible; box-shadow:0 4px 18px rgba(0,0,0,.12); }
         .global-search-wrap input { width:100%; height:44px; border:0; outline:0; padding:0 16px; background:#fff; border-radius:10px 0 0 10px; color:#333; }
@@ -777,7 +778,7 @@
         .mobile-bottom-nav { display:none; }
 
         @media (max-width: 980px) {
-            .market-header-main { grid-template-columns:180px 1fr; }
+            .market-header-main { grid-template-columns:270px 1fr; }
             .header-actions { grid-column:1/3; justify-content:flex-end; }
             .grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
             .market-hero { grid-template-columns:1fr 270px; }
@@ -791,6 +792,8 @@
             .market-header { top:0; }
             .market-header-main { grid-template-columns:1fr auto; padding:10px 12px; gap:10px; }
             .brand-button { min-width:0; }
+            .brand-mark { width:48px; height:48px; }
+            .brand-button strong { font-size:1.45rem; letter-spacing:1.3px; }
             .brand-button small { display:none; }
             .global-search-wrap { grid-column:1/3; grid-row:2; }
             .header-actions { grid-column:auto; grid-row:1; }
@@ -1288,9 +1291,15 @@
 <body>
 <header class="market-header">
         <div class="market-header-main">
-            <button class="brand-button" onclick="showPage('home-page')" aria-label="Feather and Thread home">
-                <span class="brand-mark">🦜</span>
-                <span><strong>Feather & Thread</strong><small>Handmade & Bird Care</small></span>
+            <button class="brand-button" onclick="showPage('home-page')" aria-label="CROCHETIA home">
+                <span class="brand-mark" aria-hidden="true">
+                    <svg viewBox="0 0 64 64" role="img" aria-label="Yarn ball">
+                        <circle cx="32" cy="32" r="25" fill="#f7b2c8"/>
+                        <path d="M12 31c10-9 23-13 40-10M11 39c13-8 27-9 42-3M18 51c10-8 20-12 34-12M20 14c8 7 17 11 30 12M29 8c3 8 10 14 22 19" fill="none" stroke="#a52b57" stroke-width="3.5" stroke-linecap="round"/>
+                        <path d="M49 46c5 3 7 7 8 12" fill="none" stroke="#a52b57" stroke-width="3.5" stroke-linecap="round"/>
+                    </svg>
+                </span>
+                <span><strong>CROCHETIA</strong></span>
             </button>
 
             <div class="global-search-wrap">
@@ -1326,7 +1335,7 @@
     <div id="home-page" class="page-view active">
         <section class="market-hero">
             <div class="hero-copy">
-                <span class="eyebrow">FEATHER & THREAD MARKETPLACE</span>
+                <span class="eyebrow">CROCHETIA MARKETPLACE</span>
                 <h2>Handmade favorites & bird-care essentials.</h2>
                 <p>Shop crochet products and bird accessories with clear photos, simple navigation, and easy checkout.</p>
                 <div class="hero-actions">
@@ -1361,7 +1370,7 @@
             <div class="slideshow-grid">
                 
                 <div class="slideshow-card" data-slideshow>
-                    <img src="images/beauty-pouch.jpeg" class="active-slide" alt="Crochet Pouch">
+                    <img src="images/Crochet_bag/shoulder_bag_1.png" class="active-slide" alt="Crochet Shoulder bag">
                     <img src="images/bird_image/apple_wood_hanging.png" alt="Bird Hanging Toy">
                     <img src="images/purse.jpeg" alt="Crochet Purse" onclick="openProduct('crochet-purse')">
                     <div class="overlay-label">Trending</div>
@@ -1377,7 +1386,7 @@
                 <div class="slideshow-card" data-slideshow>
                     <img src="images/hat.jpeg" class="active-slide" alt="Crochet Hat">
                     <img src="images/bird_image/chewing-toy.webp" alt="Bird Toy">
-                    <img src="images/beauty-pouch.jpeg" alt="Crochet Pouch">
+                    <img src="images/Crochet_bag/shoulder_bag_1.png" alt="Crochet Shoulder bag">
                     <div class="overlay-label">Favorites</div>
                 </div>
 
@@ -1470,8 +1479,8 @@
         <div class="info-page">
             <button class="detail-back" onclick="showPage('home-page')">← Back to Home</button>
             <div class="info-card">
-                <h2>About Feather & Thread</h2>
-                <p>Welcome to <strong>Feather & Thread</strong> — a cozy shop bringing together handcrafted crochet pieces and useful bird-care accessories.</p>
+                <h2>About CROCHETIA</h2>
+                <p>Welcome to <strong>CROCHETIA</strong> — a cozy shop bringing together handcrafted crochet pieces and useful bird-care accessories.</p>
                 <p>Our crochet collection focuses on practical, cute handmade products, while our bird accessories help with everyday feeding, resting and enrichment for pet birds.</p>
                 <h3>What We Offer</h3>
                 <ul>
@@ -1481,7 +1490,7 @@
                     <li>Add-to-cart and pre-order options</li>
                 </ul>
                 <h3>Our Goal</h3>
-                <p>We want shopping at Feather & Thread to feel simple, friendly and personal, with clear product information and an easy way to discover something special.</p>
+                <p>We want shopping at CROCHETIA to feel simple, friendly and personal, with clear product information and an easy way to discover something special.</p>
             </div>
         </div>
     </div>
@@ -1512,7 +1521,7 @@
         <div class="catalog-container">
             <button class="back-btn" onclick="showPage('home-page')">← Back to Collections</button>
             <h2>🧶 Handmade Crochet Products</h2>
-            <hr><br>
+            
             
             <div class="grid">
                 <div class="product-card card-crochet-1" data-product-id="beauty-pouch">
@@ -1568,7 +1577,7 @@
                 </div>
 
                 <div class="product-card card-crochet-5" data-product-id="square-cushion">
-                    <img src="images/square_cushion.jpeg" alt="Crochet Square Cushion" onclick="openProduct('square-cushion')">
+                    <img src="images/cushion_maroon.png" alt="Crochet Square Cushion" onclick="openProduct('square-cushion')">
                     <h5>Cozy Crochet Square Cushion</h5>
                     <p>Soft handmade cushion with a cozy textured crochet finish.</p>
                     <div class="price">1000.00 BDT</div>
@@ -1621,7 +1630,7 @@
                 </div>
 
 
-                <div class="product-card card-cnew-new" data-product-id="Crochet thread">
+                <!-- <div class="product-card card-cnew-new" data-product-id="Crochet thread">
                     <img src="images/crochet_thread.jpeg" alt="Crochet Multi Color thread" onclick="openProduct('Crochet thread')">
                     <h5>Crochet Bow Keychain</h5>
                     <p>Cute crochet bow charm for keys, backpacks and handbags.</p>
@@ -1632,24 +1641,24 @@
                         <button class="qty-btn" onclick="adjustQty('qty-cnew2', 1)">+</button>
                     </div>
                     <button class="btn" onclick="addToCart('Crochet Bow Keychain', 220.00, 'qty-cnew2')">Add to Cart</button>
-                </div>
+                </div> -->
 
 
-                <div class="product-card card-cnew-new" data-product-id="granny-tote">
-                    <img src="https://imagedelivery.net/0ObHXyjKhN5YJrtuYFSvjQ/i-23686047-16fb-4a9e-aa0b-e0f96d77a82f-crochet-coasters-set-of-4-eco-friendly-organic-cotton-the-stitchy-room/display" alt="Granny Square Crochet Tote" onclick="openProduct('granny-tote')">
+                <div class="product-card card-cnew-new" data-product-id="Crochet Shoulder Bag">
+                    <img src="images/Crochet_bag/shoulder_bag_1.png" alt="Crochet Shoulder Bag" onclick="openProduct('Crochet-Shoulder-Bag')">
                     <h5>Granny Square Crochet Tote</h5>
                     <p>Roomy crochet tote inspired by classic granny-square designs.</p>
-                    <div class="price">1200.00 BDT</div>
+                    <div class="price">1500.00 BDT</div>
                     <div class="quantity-control">
                         <button class="qty-btn" onclick="adjustQty('qty-cnew3', -1)">-</button>
                         <span id="qty-cnew3" class="qty-val">1</span>
                         <button class="qty-btn" onclick="adjustQty('qty-cnew3', 1)">+</button>
                     </div>
-                    <button class="btn" onclick="addToCart('Granny Square Crochet Tote', 1200.00, 'qty-cnew3')">Add to Cart</button>
+                    <button class="btn" onclick="addToCart('Crochet Shoulder Bag', 1200.00, 'qty-cnew3')">Add to Cart</button>
                 </div>
 
 
-                <div class="product-card card-cnew-new" data-product-id="coaster-set">
+                <!-- <div class="product-card card-cnew-new" data-product-id="coaster-set">
                     <img src="https://imagedelivery.net/0ObHXyjKhN5YJrtuYFSvjQ/i-23686047-16fb-4a9e-aa0b-e0f96d77a82f-crochet-coasters-set-of-4-eco-friendly-organic-cotton-the-stitchy-room/display" alt="Crochet Coaster Set" onclick="openProduct('coaster-set')">
                     <h5>Crochet Coaster Set</h5>
                     <p>Decorative handmade-style coaster set for cups, mugs and tables.</p>
@@ -1716,7 +1725,7 @@
                         <button class="qty-btn" onclick="adjustQty('qty-cnew8', 1)">+</button>
                     </div>
                     <button class="btn" onclick="addToCart('Crochet Wristlet Keychain', 350.00, 'qty-cnew8')">Add to Cart</button>
-                </div>
+                </div> -->
 
             </div>
         </div>
@@ -1727,7 +1736,7 @@
         <div class="catalog-container">
             <button class="back-btn" onclick="showPage('home-page')">← Back to Collections</button>
             <h2>🦜 Bird Accessories & Care</h2>
-            <hr><br>
+            
             
             <div class="grid">
                 <div class="product-card card-bird-1" data-product-id="bird-platform">
@@ -1821,7 +1830,7 @@
                     <button class="btn" onclick="addToCart('Wood Hanging Swing Toy for Bird', 100.00, 'qty-b7')">Add to Cart</button>
                 </div>
 
-                <div class="product-card card-bnew-new" data-product-id="anti-spill-feeder">
+                <!-- <div class="product-card card-bnew-new" data-product-id="anti-spill-feeder">
                     <img src="https://img.joomcdn.net/c24c4096cd416745155483a460266c591567f2bd_original.jpeg" alt="Anti-Spill Hanging Bird Feeder" onclick="openProduct('anti-spill-feeder')">
                     <h5>Anti-Spill Hanging Bird Feeder</h5>
                     <p>Covered hanging feeder designed to help keep bird seed inside the cage.</p>
@@ -1930,7 +1939,7 @@
                         <button class="qty-btn" onclick="adjustQty('qty-bnew8', 1)">+</button>
                     </div>
                     <button class="btn" onclick="addToCart('Bird Cage Mirror Toy', 300.00, 'qty-bnew8')">Add to Cart</button>
-                </div>
+                </div> -->
 
             </div>
         </div>
@@ -2069,7 +2078,7 @@
                 <div class="checkout-summary-card">
                     <h3>Order Summary</h3>
                     <div id="checkout-items"></div>
-                    <hr>
+                    
                     <div class="checkout-total"><span>Total</span><strong><span id="checkout-total">0.00</span> BDT</strong></div>
                     <button class="btn checkout-btn" style="width:100%;" onclick="placeDemoOrder()">Place Order</button>
                     <p class="auth-note">Front-end demo checkout. Connect a secure backend/payment gateway before accepting real online payments.</p>
@@ -2112,12 +2121,12 @@
 
     <footer class="pro-footer">
         <div class="footer-grid">
-            <div><h3>🦜 Feather & Thread</h3><p>Handmade crochet pieces and practical bird-care accessories in one friendly storefront.</p></div>
+            <div><h3>🧶 CROCHETIA</h3><p>Handmade crochet pieces and practical bird-care accessories in one friendly storefront.</p></div>
             <div><h4>Shop</h4><button onclick="showPage('crochet-page')">Crochet</button><button onclick="showPage('birds-page')">Bird Care</button></div>
             <div><h4>Customer Care</h4><button onclick="showPage('contact-page')">Contact Us</button><button onclick="showPage('about-page')">About Us</button><span>Order support via phone/email</span></div>
             <div><h4>Stay Updated</h4><p>Get product and offer updates.</p><div class="newsletter"><input id="newsletter-email" type="email" placeholder="Email address"><button onclick="subscribeNewsletter()">Join</button></div></div>
         </div>
-        <div class="footer-bottom"><span>&copy; 2026 Feather & Thread Co.</span><span>Designed for a simple, trustworthy shopping experience.</span></div>
+        <div class="footer-bottom"><span>&copy; 2026 CROCHETIA. All rights reserved.</span></div>
     </footer>
 
     <script>
@@ -2159,7 +2168,7 @@
             localStorage.setItem('featherThreadUser', JSON.stringify({name, email}));
             updateAccountUI();
             closeAccountModal();
-            alert(`Welcome to Feather & Thread, ${name}!`);
+            alert(`Welcome to CROCHETIA, ${name}!`);
         }
 
         function loginUser() {
@@ -2230,7 +2239,7 @@
             'beauty-pouch': {
                 name: 'Beauty Pouch', price: 1200,
                 image: 'images/beauty-pouch.jpeg',
-                gallery: ['images/beauty-pouch.jpeg'],
+                gallery: ['images/beauty-pouch.jpeg', 'images/maroon_purse.png'],
                 description: 'Soft woven zipper pouch for makeup and cosmetics.',
                 features: ['Handcrafted crochet design', 'Zipper closure', 'Suitable for cosmetics and small accessories']
             },
@@ -2257,8 +2266,8 @@
             },
             'square-cushion': {
                 name: 'Cozy Crochet Square Cushion', price: 1000,
-                image: 'images/square_cushion.jpeg',
-                gallery: ['images/square_cushion.jpeg'],
+                image: 'images/cushion_maroon.png',
+                gallery: ['images/cushion_maroon.png'],
                 description: 'Cozy handcrafted crochet square cushion.',
                 features: ['Handcrafted crochet', 'Soft cushion design', 'Decorative home accessory']
             },
@@ -2283,21 +2292,24 @@
                 description: 'Cheerful handmade flower different desin home decor gifts.',
                 features: ['Handmade crochet style', 'Compact Table cloth design', 'Home decor accessory']
             },
-            'bow-keychain': {
+            /*'bow-keychain': {
                 name: 'Crochet Bow Keychain', price: 220,
                 image: 'images/crochet_thread.jpeg',
                 gallery: ['images/crochet_thread.jpeg'],
                 description: 'Cute crochet bow charm for keys, backpacks and handbags.',
                 features: ['Soft yarn texture', 'Lightweight charm', 'Handmade-style accessory']
-            },
-            'granny-tote': {
-                name: 'Granny Square Crochet Tote', price: 1200,
-                image: 'https://imagedelivery.net/0ObHXyjKhN5YJrtuYFSvjQ/i-23686047-16fb-4a9e-aa0b-e0f96d77a82f-crochet-coasters-set-of-4-eco-friendly-organic-cotton-the-stitchy-room/display',
-                gallery: ['https://imagedelivery.net/0ObHXyjKhN5YJrtuYFSvjQ/i-23686047-16fb-4a9e-aa0b-e0f96d77a82f-crochet-coasters-set-of-4-eco-friendly-organic-cotton-the-stitchy-room/display'],
-                description: 'Roomy crochet tote inspired by classic granny-square designs.',
+            },*/
+            'Crochet-Shoulder-Bag': {
+                name: 'Crochet Shoulder Bag', price: 1500,
+                image: 'images/Crochet_bag/shoulder_bag_1.png',
+               gallery: [
+                        'images/Crochet_bag/shoulder_bag_1.png',
+                        'images/Crochet_bag/shoulder_bag_2.png'
+                    ],
+                description: 'Crochet Shoulder Bag designs.',
                 features: ['Reusable everyday bag', 'Spacious carry design', 'Handcrafted crochet look']
             },
-            'coaster-set': {
+            /*'coaster-set': {
                 name: 'Crochet Coaster Set', price: 450,
                 image: 'https://imagedelivery.net/0ObHXyjKhN5YJrtuYFSvjQ/i-23686047-16fb-4a9e-aa0b-e0f96d77a82f-crochet-coasters-set-of-4-eco-friendly-organic-cotton-the-stitchy-room/display',
                 gallery: ['https://imagedelivery.net/0ObHXyjKhN5YJrtuYFSvjQ/i-23686047-16fb-4a9e-aa0b-e0f96d77a82f-crochet-coasters-set-of-4-eco-friendly-organic-cotton-the-stitchy-room/display'],
@@ -2331,7 +2343,7 @@
                 gallery: ['https://imagedelivery.net/0ObHXyjKhN5YJrtuYFSvjQ/i-23686047-16fb-4a9e-aa0b-e0f96d77a82f-crochet-coasters-set-of-4-eco-friendly-organic-cotton-the-stitchy-room/display'],
                 description: 'Comfortable crochet wristlet for keeping keys close at hand.',
                 features: ['Wrist-friendly design', 'Keyring attachment', 'Handmade-style accessory']
-            },
+            },*/
             'anti-spill-feeder': {
                 name: 'Anti-Spill Hanging Bird Feeder', price: 650,
                 image: 'https://img.joomcdn.net/c24c4096cd416745155483a460266c591567f2bd_original.jpeg',
