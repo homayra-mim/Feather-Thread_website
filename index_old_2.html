@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CROCHETIA</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧶</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="market-header">
+        <div class="market-header-main">
+            <button class="brand-button" onclick="showPage('home-page')" aria-label="CROCHETIA home">
+                <span class="brand-mark" aria-hidden="true">
+                    <svg viewBox="0 0 64 64" role="img" aria-label="Yarn ball">
+                        <circle cx="32" cy="32" r="25" fill="#f7b2c8"/>
+                        <path d="M12 31c10-9 23-13 40-10M11 39c13-8 27-9 42-3M18 51c10-8 20-12 34-12M20 14c8 7 17 11 30 12M29 8c3 8 10 14 22 19" fill="none" stroke="#a52b57" stroke-width="3.5" stroke-linecap="round"/>
+                        <path d="M49 46c5 3 7 7 8 12" fill="none" stroke="#a52b57" stroke-width="3.5" stroke-linecap="round"/>
+                    </svg>
+                </span>
+                <span><strong>CROCHETIA</strong></span>
+            </button>
+
+            <div class="global-search-wrap">
+                <input id="global-search" type="search" placeholder="Search crochet, bird accessories, gifts..." autocomplete="off" oninput="showSearchSuggestions()" onkeydown="if(event.key==='Enter') runGlobalSearch()">
+                <button class="search-button" onclick="runGlobalSearch()" aria-label="Search">🔎</button>
+                <div id="search-suggestions" class="search-suggestions"></div>
+            </div>
+
+            <div class="header-actions">
+                <button class="header-action" id="account-nav-btn" onclick="openAccountModal()"><span>👤</span><small>Account</small><strong id="account-short-label">Login</strong></button>
+                <button class="header-action" onclick="openWishlist()"><span>♡</span><small>Wishlist</small><strong><span id="wishlist-count">0</span> saved</strong></button>
+                <button class="header-action cart-action" onclick="toggleCart()"><span>🛒</span><small>Cart</small><strong><span id="cart-count">0</span> items</strong></button>
+            </div>
+        </div>
+
+        <nav class="market-nav" aria-label="Primary navigation">
+            <button onclick="showPage('home-page')">Home</button>
+            <button onclick="showPage('crochet-page')">🧶 Crochet</button>
+            <button onclick="showPage('birds-page')">🦜 Bird Care</button>
+            <button onclick="showPage('about-page')">About Us</button>
+            <button onclick="showPage('contact-page')">Contact</button>
+            <span id="account-status" class="desktop-account-status"></span>
+        </nav>
+    </header>
+
+    <div class="trust-strip simple-trust-strip">
+        <div>✓ Clear product photos</div>
+        <div>🛒 Easy cart & checkout</div>
+        <div>📱 Phone friendly</div>
+    </div>
+
+    <!-- PAGE 1: HOMEPAGE SELECTION -->
+    <div id="home-page" class="page-view active">
+        <section class="market-hero">
+            <div class="hero-copy">
+                <span class="eyebrow">CROCHETIA MARKETPLACE</span>
+                <h2>Handmade favorites & bird-care essentials.</h2>
+                <p>Shop crochet products and bird accessories with clear photos, simple navigation, and easy checkout.</p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary" onclick="showPage('crochet-page')">Shop Crochet</button>
+                    <button class="btn btn-secondary" onclick="showPage('birds-page')">Shop Bird Care</button>
+                </div>
+                <div class="hero-mini-benefits">
+                    <span>✓ Easy search</span><span>✓ Clear products</span><span>✓ Quick checkout</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="category-selection">
+            <div class="category-card crochet-hero" onclick="showPage('crochet-page')">
+                <div class="icon-large">🧶</div>
+                <h3>Crochet Products</h3>
+                <p>Handmade pouches, cat bows, hats & purses.</p>
+                <button class="btn">Shop Crochet</button>
+            </div>
+
+            <div class="category-card bird-hero" onclick="showPage('birds-page')">
+                <div class="icon-large">🦜</div>
+                <h3>Bird Accessories</h3>
+                <p>Bowls, automatic fountains & chewing toys.</p>
+                <button class="btn">Shop Accessories</button>
+            </div>
+        </div>
+
+        <!-- 2-SECOND DYNAMIC SLIDESHOW SHOWCASE -->
+        <div class="showcase-container">
+            <div class="showcase-title">Featured Collections</div>
+            <div class="slideshow-grid">
+                
+                <div class="slideshow-card" data-slideshow>
+                    <img src="images/Crochet_bag/shoulder_bag_1.png" class="active-slide" alt="Crochet Shoulder bag">
+                    <img src="images/bird_image/apple_wood_hanging.png" alt="Bird Hanging Toy">
+                    <img src="images/purse.jpeg" alt="Crochet Purse" onclick="openProduct('crochet-purse')">
+                    <div class="overlay-label">Trending</div>
+                </div>
+
+                <div class="slideshow-card" data-slideshow>
+                    <img src="images/bird_image/bathing-basin.png" class="active-slide" alt="Bird Fountain">
+                    <img src="images/cat_bow.jpeg" alt="Crochet Cat Bow" onclick="openProduct('cat-bow')">
+                    <img src="images/wall_3d_art.png" alt="Crochet 3D Art">
+                    <div class="overlay-label">Popular</div>
+                </div>
+
+                <div class="slideshow-card" data-slideshow>
+                    <img src="images/hat.jpeg" class="active-slide" alt="Crochet Hat">
+                    <img src="images/bird_image/chewing-toy.webp" alt="Bird Toy">
+                    <img src="images/Crochet_bag/shoulder_bag_1.png" alt="Crochet Shoulder bag">
+                    <div class="overlay-label">Favorites</div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- CLEAR PRODUCT PREVIEW SECTION -->
+        <section class="home-products-section" aria-labelledby="popular-products-title">
+            <div class="home-products-head">
+                <div>
+                    <h2 id="popular-products-title">Popular Products</h2>
+                    <p>Larger product photos and quick access to customer favorites.</p>
+                </div>
+                <button onclick="showPage('crochet-page')">Browse crochet</button>
+            </div>
+            <div class="home-products-grid">
+                <article class="home-product-card">
+                    <div class="home-product-image-wrap" onclick="openProduct('beauty-pouch')">
+                        <img loading="lazy" src="images/maroon_purse.png" alt="Crochet Beauty Pouch">
+                    </div>
+                    <div class="home-product-info">
+                        <span class="home-product-category">CROCHET</span>
+                        <h3>Beauty Pouch</h3>
+                        <p>Soft woven zipper pouch for makeup and everyday essentials.</p>
+                        <div class="home-product-bottom"><span class="home-product-price">৳1,200</span><button class="home-product-view" onclick="openProduct('beauty-pouch')">View Product</button></div>
+                    </div>
+                </article>
+                <article class="home-product-card">
+                    <div class="home-product-image-wrap" onclick="openProduct('crochet-purse')">
+                        <img loading="lazy" src="images/purse.jpeg" alt="Handcrafted Crochet Purse">
+                    </div>
+                    <div class="home-product-info">
+                        <span class="home-product-category">CROCHET</span>
+                        <h3>Handcrafted Crochet Purse</h3>
+                        <p>Stylish shoulder bag made with durable cotton yarn.</p>
+                        <div class="home-product-bottom"><span class="home-product-price">৳1,000</span><button class="home-product-view" onclick="openProduct('crochet-purse')">View Product</button></div>
+                    </div>
+                </article>
+                <article class="home-product-card">
+                    <div class="home-product-image-wrap" onclick="openProduct('cat-bow')">
+                        <img loading="lazy" src="images/cat_bow.jpeg" alt="Crochet Cat Bow Collar">
+                    </div>
+                    <div class="home-product-info">
+                        <span class="home-product-category">CROCHET</span>
+                        <h3>Crochet Cat Bow Collar</h3>
+                        <p>Cute handcrafted bow accessory for a neat pet look.</p>
+                        <div class="home-product-bottom"><span class="home-product-price">৳200</span><button class="home-product-view" onclick="openProduct('cat-bow')">View Product</button></div>
+                    </div>
+                </article>
+                <article class="home-product-card">
+                    <div class="home-product-image-wrap" onclick="openProduct('bird-fountain')">
+                        <img loading="lazy" src="images/bird_image/bathing-basin.png" alt="Automatic Water Fountain for Birds">
+                    </div>
+                    <div class="home-product-info">
+                        <span class="home-product-category">BIRD CARE</span>
+                        <h3>Automatic Water Fountain</h3>
+                        <p>Convenient water and bathing accessory for pet birds.</p>
+                        <div class="home-product-bottom"><span class="home-product-price">৳800</span><button class="home-product-view" onclick="openProduct('bird-fountain')">View Product</button></div>
+                    </div>
+                </article>
+                <article class="home-product-card">
+                    <div class="home-product-image-wrap" onclick="openProduct('apple-wood-toy')">
+                        <img loading="lazy" src="images/bird_image/apple_wood_hanging.png" alt="Apple Wooden Bird Chewing Toy">
+                    </div>
+                    <div class="home-product-info">
+                        <span class="home-product-category">BIRD CARE</span>
+                        <h3>Apple Wooden Chewing Toy</h3>
+                        <p>Wooden enrichment toy designed for chewing and activity.</p>
+                        <div class="home-product-bottom"><span class="home-product-price">৳100</span><button class="home-product-view" onclick="openProduct('apple-wood-toy')">View Product</button></div>
+                    </div>
+                </article>
+                <article class="home-product-card">
+                    <div class="home-product-image-wrap" onclick="openProduct('bird-swing')">
+                        <img loading="lazy" src="images/bird_image/swing.webp" alt="Wood Hanging Swing Toy for Bird">
+                    </div>
+                    <div class="home-product-info">
+                        <span class="home-product-category">BIRD CARE</span>
+                        <h3>Wood Hanging Bird Swing</h3>
+                        <p>Natural-style swing accessory for resting and play.</p>
+                        <div class="home-product-bottom"><span class="home-product-price">৳100</span><button class="home-product-view" onclick="openProduct('bird-swing')">View Product</button></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </div>
+
+    <!-- ABOUT US PAGE -->
+    <div id="about-page" class="page-view">
+        <div class="info-page">
+            <button class="detail-back" onclick="showPage('home-page')">← Back to Home</button>
+            <div class="info-card">
+                <h2>About CROCHETIA</h2>
+                <p>Welcome to <strong>CROCHETIA</strong> — a cozy shop bringing together handcrafted crochet pieces and useful bird-care accessories.</p>
+                <p>Our crochet collection focuses on practical, cute handmade products, while our bird accessories help with everyday feeding, resting and enrichment for pet birds.</p>
+                <h3>What We Offer</h3>
+                <ul>
+                    <li>Handcrafted crochet products and accessories</li>
+                    <li>Bird feeding, resting and enrichment accessories</li>
+                    <li>Product detail pages with image galleries</li>
+                    <li>Add-to-cart and pre-order options</li>
+                </ul>
+                <h3>Our Goal</h3>
+                <p>We want shopping at CROCHETIA to feel simple, friendly and personal, with clear product information and an easy way to discover something special.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT US PAGE -->
+    <div id="contact-page" class="page-view">
+        <div class="info-page">
+            <button class="detail-back" onclick="showPage('home-page')">← Back to Home</button>
+            <div class="info-card">
+                <h2>Contact Us</h2>
+                <p>Have a question about a product, order or pre-order? We'd love to hear from you.</p>
+                <div class="contact-grid">
+                    <div class="contact-box"><strong>📞 Phone</strong><span>+880 1817099416</span></div>
+                    <div class="contact-box"><strong>✉️ Email</strong><span>Homayramim1710@gmail.com</span></div>
+                    <div class="contact-box"><strong>📍 Location</strong><span>Bangladesh</span></div>
+                </div>
+                <h3>Send Us a Message</h3>
+                <div class="form-group"><label for="contact-name">Your Name</label><input id="contact-name" type="text" placeholder="Enter your name"></div>
+                <div class="form-group"><label for="contact-email">Email</label><input id="contact-email" type="email" placeholder="Enter your email"></div>
+                <div class="form-group"><label for="contact-message">Message</label><textarea id="contact-message" placeholder="Write your message"></textarea></div>
+                <button class="btn" onclick="submitContactMessage()">Send via WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 2: CROCHET PRODUCTS CATALOG -->
+    <div id="crochet-page" class="page-view">
+        <div class="catalog-container">
+            <button class="back-btn" onclick="showPage('home-page')">← Back to Collections</button>
+            <h2>🧶 Handmade Crochet Products</h2>
+            
+            
+            <div class="grid">
+                <div class="product-card card-crochet-1" data-product-id="beauty-pouch">
+                    <img loading="lazy" src="images/maroon_purse.png" alt="Crochet Beauty Pouch" onclick="openProduct('beauty-pouch')">
+                    <h4>Beauty Pouch</h4>
+                    <p>Soft woven zipper pouch for makeup and cosmetics.</p>
+                    <div class="price">1200.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-c1', -1)">-</button>
+                        <span id="qty-c1" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-c1', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('beauty-pouch', 'qty-c1')">Add to Cart</button>
+                </div>
+
+                <div class="product-card card-crochet-2" data-product-id="cat-bow">
+                    <img loading="lazy" src="images/cat_bow.jpeg" alt="Crochet Cat Bow" onclick="openProduct('cat-bow')">
+                    <h4>Crochet Cat Bow Collar</h4>
+                    <p>Cute handcrafted necktie bow for your cat.</p>
+                    <div class="price">200.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-c2', -1)">-</button>
+                        <span id="qty-c2" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-c2', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('cat-bow', 'qty-c2')">Add to Cart</button>
+                </div>
+
+                <div class="product-card card-crochet-3" data-product-id="crochet-purse">
+                    <img loading="lazy" src="images/purse.jpeg" alt="Crochet Purse" onclick="openProduct('crochet-purse')">
+                    <h4>Handcrafted Crochet Purse</h4>
+                    <p>Stylish shoulder bag made with durable cotton yarn.</p>
+                    <div class="price">1000.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-c3', -1)">-</button>
+                        <span id="qty-c3" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-c3', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('crochet-purse', 'qty-c3')">Add to Cart</button>
+                </div>
+
+                <div class="product-card card-crochet-4" data-product-id="crochet-hat">
+                    <img loading="lazy" src="images/hat.jpeg" alt="Crochet Hat" onclick="openProduct('crochet-hat')">
+                    <h4>Cozy Crochet Hat</h4>
+                    <p>Warm winter beanie woven with super-soft wool.</p>
+                    <div class="price">1000.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-c4', -1)">-</button>
+                        <span id="qty-c4" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-c4', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('crochet-hat', 'qty-c4')">Add to Cart</button>
+                </div>
+
+                <div class="product-card card-crochet-5" data-product-id="square-cushion">
+                    <img loading="lazy" src="images/cushion_maroon.png" alt="Crochet Square Cushion" onclick="openProduct('square-cushion')">
+                    <h4>Cozy Crochet Square Cushion</h4>
+                    <p>Soft handmade cushion with a cozy textured crochet finish.</p>
+                    <div class="price">1000.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-c5', -1)">-</button>
+                        <span id="qty-c5" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-c5', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('square-cushion', 'qty-c5')">Add to Cart</button>
+                </div>
+
+                <div class="product-card card-crochet-6" data-product-id="triangle-cushion">
+                    <img loading="lazy" src="images/triangle_cushion.jpeg" alt="Crochet Triangle Cushion" onclick="openProduct('triangle-cushion')">
+                    <h4>Crochet Triangle Cushion</h4>
+                    <p>Decorative triangle cushion with a handcrafted crochet look.</p>
+                    <div class="price">1000.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-c6', -1)">-</button>
+                        <span id="qty-c6" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-c6', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('triangle-cushion', 'qty-c6')">Add to Cart</button>
+                </div>
+
+
+                <div class="product-card card-crochet-7" data-product-id="plastic-sheet">
+                    <img loading="lazy" src="images/plastic_sheet.jpg" alt="Crochet Plastic Sheet" onclick="openProduct('plastic-sheet')">
+                    <h4>Crochet Plastic Sheet</h4>
+                    <p>Useful plastic canvas sheet for structured crochet craft projects.</p>
+                    <div class="price">700.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-c7', -1)">-</button>
+                        <span id="qty-c7" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-c7', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('plastic-sheet', 'qty-c7')">Add to Cart</button>
+                </div>
+
+                <div class="product-card card-crochet-8" data-product-id="table-cloth-sheet">
+                    <img loading="lazy" src="images/Table_cloth_sheet.webp" alt="Designable Table cloth sheet" onclick="openProduct('table-cloth-sheet')">
+                    <h4>Designable Table Cloth Sheet</h4>
+                    <p>Handmade crochet table cloth with a cheerful flower design.</p>
+                    <div class="price">250.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-cnew1', -1)">-</button>
+                        <span id="qty-cnew1" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-cnew1', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('table-cloth-sheet', 'qty-cnew1')">Add to Cart</button>
+                </div>
+
+
+                <div class="product-card card-cnew-new" data-product-id="crochet-shoulder-bag">
+                    <img loading="lazy" src="images/Crochet_bag/shoulder_bag_1.png" alt="Crochet Shoulder Bag" onclick="openProduct('crochet-shoulder-bag')">
+                    <h4>Crochet Shoulder Bag</h4>
+                    <p>Roomy handmade shoulder bag inspired by classic granny-square designs.</p>
+                    <div class="price">1500.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-cnew3', -1)">-</button>
+                        <span id="qty-cnew3" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-cnew3', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('crochet-shoulder-bag', 'qty-cnew3')">Add to Cart</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: BIRD ACCESSORIES CATALOG -->
+    <div id="birds-page" class="page-view">
+        <div class="catalog-container">
+            <button class="back-btn" onclick="showPage('home-page')">← Back to Collections</button>
+            <h2>🦜 Bird Accessories & Care</h2>
+            
+            
+            <div class="grid">
+                <div class="product-card card-bird-1" data-product-id="bird-platform">
+                    <img loading="lazy" src="images/bird_image/platform.png" alt="Bird Wooden Platform" onclick="openProduct('bird-platform')">
+                    <h4>Wooden Platform</h4>
+                    <p>Wooden platform for birds to sit on inside the cage.</p>
+                    <div class="price">80.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-b1', -1)">-</button>
+                        <span id="qty-b1" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-b1', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('bird-platform', 'qty-b1')">Add to Cart</button>
+                </div>
+
+                <div class="product-card card-bird-2" data-product-id="bird-fountain">
+                    <img loading="lazy" src="images/bird_image/bathing-basin.png" alt="Bird Fountain Bathing Basin" onclick="openProduct('bird-fountain')">
+                    <h4>Automatic Water Fountain</h4>
+                    <p>Gravity-fed clean water dispenser for bathing pet birds.</p>
+                    <div class="price">800.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-b2', -1)">-</button>
+                        <span id="qty-b2" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-b2', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('bird-fountain', 'qty-b2')">Add to Cart</button>
+                </div>
+
+                <div class="product-card card-bird-3" data-product-id="apple-wood-toy">
+                    <img loading="lazy" src="images/bird_image/apple_wood_hanging.png" alt="Bird Chewing Toy" onclick="openProduct('apple-wood-toy')">
+                    <h4>Apple Wooden Bird Chewing Toy</h4>
+                    <p>Natural wooden chew toy for training and healthy beak wear.</p>
+                    <div class="price">100.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-b3', -1)">-</button>
+                        <span id="qty-b3" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-b3', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('apple-wood-toy', 'qty-b3')">Add to Cart</button>
+                </div>
+
+                 <div class="product-card card-bird-4" data-product-id="takraw-toy">
+                    <img loading="lazy" src="images/bird_image/small-ball.jpg" alt="Bird Chewing Toy" onclick="openProduct('takraw-toy')">
+                    <h4>Takraw Wooden Bird Chewing Toy</h4>
+                    <p>Rattan ball chew toy that keeps birds busy and active.</p>
+                    <div class="price">150.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-b4', -1)">-</button>
+                        <span id="qty-b4" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-b4', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('takraw-toy', 'qty-b4')">Add to Cart</button>
+                </div>
+
+                <div class="product-card card-bird-5" data-product-id="fruit-fork">
+                    <img loading="lazy" src="images/bird_image/fruit_fork.png" alt="Bird Eating Fruit Fork" onclick="openProduct('fruit-fork')">
+                    <h4>Bird Eating Fruit Fork</h4>
+                    <p>Holds fresh fruit and vegetables inside the cage.</p>
+                    <div class="price">150.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-b5', -1)">-</button>
+                        <span id="qty-b5" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-b5', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('fruit-fork', 'qty-b5')">Add to Cart</button>
+                </div>
+
+                <div class="product-card card-bird-6" data-product-id="sink-kettle">
+                    <img loading="lazy" src="images/bird_image/water-cap.png" alt="Bird Thickened Sink Kettle" onclick="openProduct('sink-kettle')">
+                    <h4>Bird Thickened Sink Kettle</h4>
+                    <p>Thickened drinking-water container for pet birds.</p>
+                    <div class="price">150.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-b6', -1)">-</button>
+                        <span id="qty-b6" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-b6', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('sink-kettle', 'qty-b6')">Add to Cart</button>
+                </div>
+
+                <div class="product-card card-bird-7" data-product-id="bird-swing">
+                    <img loading="lazy" src="images/bird_image/swing.webp" alt="Wood Hanging Swing Toy for Bird" onclick="openProduct('bird-swing')">
+                    <h4>Wood Hanging Swing Toy for Bird</h4>
+                    <p>Natural wood, wicker, and bell toy.</p>
+                    <div class="price">100.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-b7', -1)">-</button>
+                        <span id="qty-b7" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-b7', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('bird-swing', 'qty-b7')">Add to Cart</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- PAGE 4: PRODUCT DETAIL -->
+    <div id="product-detail-page" class="page-view">
+        <div class="detail-container">
+            <button class="detail-back" onclick="goBackToCatalog()">← Back to Products</button>
+
+            <div class="detail-card">
+                <div class="detail-gallery">
+                    <img id="detail-main-image" class="detail-main-image" src="" alt="" onclick="openLightbox(this.src)">
+                    <div id="detail-thumbnails" class="thumbnail-row"></div>
+                </div>
+
+                <div class="detail-info">
+                    <h2 id="detail-name"></h2>
+                    <div id="detail-price" class="detail-price"></div>
+                    <p id="detail-description" class="detail-description"></p>
+
+                    <div class="detail-features">
+                        <h3>Product Details</h3>
+                        <ul id="detail-features-list"></ul>
+                    </div>
+
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="changeDetailQty(-1)">-</button>
+                        <span id="detail-qty" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="changeDetailQty(1)">+</button>
+                    </div>
+
+                    <div class="detail-actions">
+                        <button class="btn" onclick="addDetailToCart()">🛒 Add to Cart</button>
+                        <button class="btn preorder-btn" onclick="openPreorder()">📋 Pre-Order This Product</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGIN / SIGN UP MODAL -->
+    <div class="modal" id="account-modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeAccountModal()">X</button>
+            <h2 id="account-modal-title">Welcome Back</h2>
+            <div class="auth-tabs">
+                <button id="login-tab" class="auth-tab active" onclick="switchAuth('login')">Login</button>
+                <button id="signup-tab" class="auth-tab" onclick="switchAuth('signup')">Sign Up</button>
+            </div>
+
+            <div id="login-form">
+                <div class="form-group"><label for="login-email">Email</label><input id="login-email" type="email" placeholder="Enter your email"></div>
+                <div class="form-group"><label for="login-password">Password</label><input id="login-password" type="password" placeholder="Enter your password"></div>
+                <button class="btn" style="width:100%;" onclick="loginUser()">Login</button>
+            </div>
+
+            <div id="signup-form" style="display:none;">
+                <div class="form-group"><label for="signup-name">Full Name</label><input id="signup-name" type="text" placeholder="Enter your name"></div>
+                <div class="form-group"><label for="signup-email">Email</label><input id="signup-email" type="email" placeholder="Enter your email"></div>
+                <div class="form-group"><label for="signup-password">Password</label><input id="signup-password" type="password" placeholder="Create a password"></div>
+                <button class="btn" style="width:100%;" onclick="signupUser()">Create Account</button>
+            </div>
+
+            <p class="auth-note">This is a front-end demo account system. Account data is stored in this browser only. A real online account system needs a secure backend/database.</p>
+        </div>
+    </div>
+
+    <!-- PRE-ORDER MODAL -->
+    <div class="modal" id="preorder-modal">
+        <div class="modal-content large-modal">
+            <button class="close-btn" onclick="closePreorder()">X</button>
+            <h2>Pre-Order Product</h2>
+            <p id="preorder-product-label"></p>
+
+            <div class="form-group">
+                <label for="preorder-name">Your Name</label>
+                <input id="preorder-name" type="text" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="preorder-phone">Phone Number</label>
+                <input id="preorder-phone" type="tel" placeholder="Enter your phone number" required>
+            </div>
+
+            <div class="form-group">
+                <label for="preorder-qty">Quantity</label>
+                <input id="preorder-qty" type="number" min="1" value="1">
+            </div>
+
+            <div class="form-group">
+                <label for="preorder-address">Delivery Address</label>
+                <textarea id="preorder-address" placeholder="Enter your delivery address"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="preorder-note">Note (optional)</label>
+                <textarea id="preorder-note" placeholder="Any special request?"></textarea>
+            </div>
+
+            <button class="btn preorder-btn" style="width:100%;" onclick="submitPreorder()">Send Pre-Order via WhatsApp</button>
+        </div>
+    </div>
+
+
+    <!-- WISHLIST MODAL -->
+    <div class="modal" id="wishlist-modal">
+        <div class="modal-content wishlist-panel">
+            <button class="close-btn" onclick="closeWishlist()">×</button>
+            <span class="mini-label">SAVED ITEMS</span>
+            <h2>My Wishlist</h2>
+            <div id="wishlist-items"></div>
+        </div>
+    </div>
+
+    <!-- CHECKOUT MODAL -->
+    <div class="modal" id="checkout-modal">
+        <div class="modal-content checkout-panel">
+            <button class="close-btn" onclick="closeCheckout()">×</button>
+            <span class="mini-label">CHECKOUT</span>
+            <h2>Complete Your Order</h2>
+            <div class="checkout-layout">
+                <div>
+                    <div class="form-group"><label for="checkout-name">Full Name</label><input id="checkout-name" type="text" placeholder="Your full name"></div>
+                    <div class="form-group"><label for="checkout-phone">Phone</label><input id="checkout-phone" type="tel" placeholder="01XXXXXXXXX"></div>
+                    <div class="form-group"><label for="checkout-address">Delivery Address</label><textarea id="checkout-address" placeholder="House, road, area, city"></textarea></div>
+                    <div class="form-group"><label for="checkout-payment">Payment Method</label>
+                        <select id="checkout-payment">
+                            <option value="Cash on Delivery">Cash on Delivery</option>
+                            <option value="Mobile Payment - Manual Confirmation">Mobile Payment (manual confirmation)</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label for="checkout-note">Order Note (optional)</label><textarea id="checkout-note" placeholder="Special request, color preference, etc."></textarea></div>
+                </div>
+                <div class="checkout-summary-card">
+                    <h3>Order Summary</h3>
+                    <div id="checkout-items"></div>
+                    
+                    <div class="checkout-total"><span>Total</span><strong><span id="checkout-total">0.00</span> BDT</strong></div>
+                    <button class="btn checkout-btn" style="width:100%;" onclick="placeDemoOrder()">Place Order via WhatsApp</button>
+                    <p class="auth-note">Placing your order opens WhatsApp with your order details. Send that message to confirm your order.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ORDER SUCCESS MODAL -->
+    <div class="modal" id="order-success-modal">
+        <div class="modal-content order-success-card">
+            <div class="success-icon">✓</div>
+            <h2>Order Received</h2>
+            <p id="order-success-message"></p>
+            <button class="btn" onclick="closeOrderSuccess()">Continue Shopping</button>
+        </div>
+    </div>
+
+    <!-- IMAGE LIGHTBOX -->
+    <div class="image-lightbox" id="image-lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="event.stopPropagation(); closeLightbox()">×</button>
+        <img id="lightbox-image" src="" alt="Product image" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- CART MODAL -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content cart-panel">
+            <button class="close-btn" onclick="toggleCart()">×</button>
+            <div class="modal-heading-row"><div><span class="mini-label">SHOPPING BAG</span><h2>Your Cart</h2></div><span class="secure-chip">✓ Easy checkout</span></div>
+            <div id="cart-items"></div>
+            <div class="cart-summary">
+                <div><span>Subtotal</span><strong><span id="cart-subtotal">0.00</span> BDT</strong></div>
+                <div class="cart-total-row"><span>Total</span><strong><span id="cart-total">0.00</span> BDT</strong></div>
+            </div>
+            <button class="btn checkout-btn" style="width:100%;" onclick="openCheckout()">Proceed to Checkout →</button>
+            <p class="checkout-note">Delivery details and any applicable delivery charge can be confirmed at checkout.</p>
+        </div>
+    </div>
+
+    <footer class="pro-footer">
+        <div class="footer-grid">
+            <div><h3>🧶 CROCHETIA</h3><p>Handmade crochet pieces and practical bird-care accessories in one friendly storefront.</p></div>
+            <div><h4>Shop</h4><button onclick="showPage('crochet-page')">Crochet</button><button onclick="showPage('birds-page')">Bird Care</button></div>
+            <div><h4>Customer Care</h4><button onclick="showPage('contact-page')">Contact Us</button><button onclick="showPage('about-page')">About Us</button><span>Order support via phone/email</span></div>
+            <div><h4>Stay Updated</h4><p>Get product and offer updates.</p><div class="newsletter"><input id="newsletter-email" type="email" placeholder="Email address"><button onclick="subscribeNewsletter()">Join</button></div></div>
+        </div>
+        <div class="footer-bottom"><span>&copy; 2026 CROCHETIA. All rights reserved.</span></div>
+    </footer>
+
+    <div id="toast-stack" class="toast-stack" aria-live="polite"></div>
+    <nav class="mobile-bottom-nav" aria-label="Mobile navigation">
+        <button onclick="showPage('home-page')"><span>⌂</span>Home</button>
+        <button onclick="showPage('crochet-page')"><span>🧶</span>Crochet</button>
+        <button onclick="showPage('birds-page')"><span>🦜</span>Bird Care</button>
+        <button onclick="openWishlist()"><span>♡</span>Wishlist</button>
+    </nav>
+
+<script>
+/* =====================================================================
+   CROCHETIA — store script
+   - `products` is the single source of truth for name, price, image,
+     description and category. Cards on the page are synced from it.
+   - Orders, pre-orders and messages are sent to the shop's WhatsApp.
+   ===================================================================== */
+
+const SHOP_WHATSAPP = '+8801817099416';   // country code + number, digits only
+
+/*
+ * Add more pictures for a product by adding paths to its gallery array.
+ * Example:
+ * gallery: ['images/bird_image/platform.png',
+ *           'images/bird_image/platform-side.png']
+ */
+const products = {
+    'beauty-pouch': {
+        name: 'Beauty Pouch', price: 1200, category: 'crochet',
+        image: 'images/maroon_purse.png',
+        gallery: ['images/maroon_purse.png', 'images/beauty-pouch.jpeg'],
+        description: 'Soft woven zipper pouch for makeup and cosmetics.',
+        features: ['Handcrafted crochet design', 'Zipper closure', 'Suitable for cosmetics and small accessories']
+    },
+    'cat-bow': {
+        name: 'Crochet Cat Bow Collar', price: 200, category: 'crochet',
+        image: 'images/cat_bow.jpeg',
+        gallery: ['images/cat_bow.jpeg'],
+        description: 'Cute handcrafted necktie bow for your cat.',
+        features: ['Handmade crochet piece', 'Lightweight design', 'Designed for stylish pet wear']
+    },
+    'crochet-purse': {
+        name: 'Handcrafted Crochet Purse', price: 1000, category: 'crochet',
+        image: 'images/purse.jpeg',
+        gallery: ['images/purse.jpeg'],
+        description: 'Stylish shoulder bag made with durable cotton yarn.',
+        features: ['Handcrafted crochet', 'Shoulder-carry design', 'Durable cotton yarn']
+    },
+    'crochet-hat': {
+        name: 'Cozy Crochet Hat', price: 1000, category: 'crochet',
+        image: 'images/hat.jpeg',
+        gallery: ['images/hat.jpeg'],
+        description: 'Warm winter beanie woven with super-soft wool.',
+        features: ['Soft yarn', 'Warm and comfortable', 'Handcrafted finish']
+    },
+    'square-cushion': {
+        name: 'Cozy Crochet Square Cushion', price: 1000, category: 'crochet',
+        image: 'images/cushion_maroon.png',
+        gallery: ['images/cushion_maroon.png'],
+        description: 'Soft handmade cushion with a cozy textured crochet finish.',
+        features: ['Handcrafted crochet', 'Soft cushion design', 'Decorative home accessory']
+    },
+    'triangle-cushion': {
+        name: 'Crochet Triangle Cushion', price: 1000, category: 'crochet',
+        image: 'images/triangle_cushion.jpeg',
+        gallery: ['images/triangle_cushion.jpeg'],
+        description: 'Decorative triangle cushion with a handcrafted crochet look.',
+        features: ['Handcrafted crochet', 'Comfortable cushion', 'Decorative design']
+    },
+    'plastic-sheet': {
+        name: 'Crochet Plastic Sheet', price: 700, category: 'crochet',
+        image: 'images/plastic_sheet.jpg',
+        gallery: ['images/plastic_sheet.jpg'],
+        description: 'Plastic canvas sheet for structured crochet craft projects.',
+        features: ['Lightweight', 'Practical design', 'Easy to use']
+    },
+    'table-cloth-sheet': {
+        name: 'Designable Table Cloth Sheet', price: 250, category: 'crochet',
+        image: 'images/Table_cloth_sheet.webp',
+        gallery: ['images/Table_cloth_sheet.webp'],
+        description: 'Handmade crochet table cloth with a cheerful flower design.',
+        features: ['Handmade crochet style', 'Compact table cloth design', 'Home decor accessory']
+    },
+    'crochet-shoulder-bag': {
+        name: 'Crochet Shoulder Bag', price: 1500, category: 'crochet',
+        image: 'images/Crochet_bag/shoulder_bag_1.png',
+        gallery: ['images/Crochet_bag/shoulder_bag_1.png', 'images/Crochet_bag/shoulder_bag_2.png'],
+        description: 'Roomy handmade shoulder bag inspired by classic granny-square designs.',
+        features: ['Reusable everyday bag', 'Spacious carry design', 'Handcrafted crochet']
+    },
+    'bird-platform': {
+        name: 'Wooden Platform', price: 80, category: 'birds',
+        image: 'images/bird_image/platform.png',
+        gallery: ['images/bird_image/platform.png'],
+        description: 'Wooden platform for birds to sit on inside the cage.',
+        features: ['Natural wooden look', 'Mounts inside the cage as a perch/platform', 'Suitable for pet birds']
+    },
+    'bird-fountain': {
+        name: 'Automatic Water Fountain', price: 800, category: 'birds',
+        image: 'images/bird_image/bathing-basin.png',
+        gallery: ['images/bird_image/bathing-basin.png'],
+        description: 'Gravity-fed clean water dispenser for bathing pet birds.',
+        features: ['Gravity-fed design', 'Made for pet birds', 'Clean drinking/bathing water']
+    },
+    'apple-wood-toy': {
+        name: 'Apple Wooden Bird Chewing Toy', price: 100, category: 'birds',
+        image: 'images/bird_image/apple_wood_hanging.png',
+        gallery: ['images/bird_image/apple_wood_hanging.png'],
+        description: 'Natural wooden chew toy for training and healthy beak wear.',
+        features: ['Natural wood', 'Chewing and enrichment toy', 'Suitable for pet birds']
+    },
+    'takraw-toy': {
+        name: 'Takraw Wooden Bird Chewing Toy', price: 150, category: 'birds',
+        image: 'images/bird_image/small-ball.jpg',
+        gallery: ['images/bird_image/small-ball.jpg'],
+        description: 'Rattan ball chew toy that keeps birds busy and active.',
+        features: ['Bird enrichment toy', 'Chewing activity', 'Suitable for pet birds']
+    },
+    'fruit-fork': {
+        name: 'Bird Eating Fruit Fork', price: 150, category: 'birds',
+        image: 'images/bird_image/fruit_fork.png',
+        gallery: ['images/bird_image/fruit_fork.png'],
+        description: 'Holds fresh fruit and vegetables inside the cage.',
+        features: ['Holds fruit and vegetables', 'Easy to place in a bird cage', 'Useful feeding accessory']
+    },
+    'sink-kettle': {
+        name: 'Bird Thickened Sink Kettle', price: 150, category: 'birds',
+        image: 'images/bird_image/water-cap.png',
+        gallery: ['images/bird_image/water-cap.png'],
+        description: 'Thickened drinking-water container for pet birds.',
+        features: ['Thickened design', 'Suitable for pet birds', 'Convenient drinking-water container']
+    },
+    'bird-swing': {
+        name: 'Wood Hanging Swing Toy for Bird', price: 100, category: 'birds',
+        image: 'images/bird_image/swing.webp',
+        gallery: ['images/bird_image/swing.webp'],
+        description: 'Natural wood and wicker hanging swing toy with a bell.',
+        features: ['Hanging swing design', 'Natural wood and wicker', 'Includes bell toy']
+    }
+};
+
+/* ---------- helpers ---------- */
+const $ = id => document.getElementById(id);
+const money = n => Number(n).toFixed(2) + ' BDT';
+const categoryLabel = c => c === 'birds' ? 'Bird Care' : 'Crochet';
+function esc(str) {
+    return String(str ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function readJSON(key, fallback) {
+    try { const v = JSON.parse(localStorage.getItem(key)); return v ?? fallback; } catch (e) { return fallback; }
+}
+function writeJSON(key, value) {
+    try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { /* storage unavailable */ }
+}
+function toast(message) {
+    const stack = $('toast-stack');
+    if (!stack) return;
+    const item = document.createElement('div');
+    item.className = 'toast';
+    item.textContent = message;
+    stack.appendChild(item);
+    setTimeout(() => item.remove(), 2600);
+}
+function openWhatsApp(text) {
+    window.open(`https://wa.me/${SHOP_WHATSAPP}?text=${encodeURIComponent(text)}`, '_blank');
+}
+
+/* ---------- state ---------- */
+let cart = readJSON('featherThreadCart', []).filter(i => i && products[i.id]);
+let wishlist = readJSON('featherThreadWishlist', []).filter(id => products[id]);
+let currentProductId = null;
+
+/* ---------- navigation ---------- */
+function showPage(pageId) {
+    document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+    const page = $(pageId);
+    if (page) page.classList.add('active');
+    closeAccountModal();
+    window.scrollTo(0, 0);
+}
+
+/* ---------- modals ---------- */
+function setModal(id, open) { const m = $(id); if (m) m.style.display = open ? 'flex' : 'none'; }
+function closeAllModals() {
+    ['account-modal', 'preorder-modal', 'wishlist-modal', 'checkout-modal', 'cart-modal', 'order-success-modal']
+        .forEach(id => setModal(id, false));
+    closeLightbox();
+}
+document.querySelectorAll('.modal').forEach(m => m.addEventListener('click', e => { if (e.target === m) setModal(m.id, false); }));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAllModals(); });
+
+/* ---------- account (browser-only demo) ---------- */
+function openAccountModal() {
+    const user = readJSON('featherThreadUser', null);
+    if (user) {
+        if (confirm(`You are logged in as ${user.name || user.email}. Click OK to log out.`)) logoutUser();
+        return;
+    }
+    switchAuth('login');
+    setModal('account-modal', true);
+}
+function closeAccountModal() { setModal('account-modal', false); }
+function switchAuth(type) {
+    const login = type === 'login';
+    $('login-form').style.display = login ? 'block' : 'none';
+    $('signup-form').style.display = login ? 'none' : 'block';
+    $('login-tab').classList.toggle('active', login);
+    $('signup-tab').classList.toggle('active', !login);
+    $('account-modal-title').textContent = login ? 'Welcome Back' : 'Create Your Account';
+}
+function signupUser() {
+    const name = $('signup-name').value.trim();
+    const email = $('signup-email').value.trim();
+    const password = $('signup-password').value;
+    if (!name || !email || !password) return toast('Please fill in all sign-up fields.');
+    if (password.length < 6) return toast('Password must be at least 6 characters.');
+    writeJSON('featherThreadAccount', {name, email, password});
+    writeJSON('featherThreadUser', {name, email});
+    updateAccountUI();
+    closeAccountModal();
+    toast(`Welcome to CROCHETIA, ${name}!`);
+}
+function loginUser() {
+    const email = $('login-email').value.trim();
+    const password = $('login-password').value;
+    const account = readJSON('featherThreadAccount', null);
+    if (!email || !password) return toast('Please enter your email and password.');
+    if (!account) { toast('No account found in this browser. Please sign up first.'); switchAuth('signup'); return; }
+    if (account.email !== email || account.password !== password) return toast('Incorrect email or password.');
+    writeJSON('featherThreadUser', {name: account.name, email: account.email});
+    updateAccountUI();
+    closeAccountModal();
+    toast(`Welcome back, ${account.name}!`);
+}
+function logoutUser() {
+    localStorage.removeItem('featherThreadUser');
+    updateAccountUI();
+    toast('You have been logged out.');
+}
+function updateAccountUI() {
+    const user = readJSON('featherThreadUser', null);
+    const first = user ? (user.name || 'Account').split(' ')[0] : '';
+    const status = $('account-status');
+    const label = $('account-short-label');
+    if (status) status.textContent = user ? `Hi, ${first}` : '';
+    if (label) label.textContent = user ? first : 'Login';
+}
+
+/* ---------- contact & newsletter ---------- */
+function submitContactMessage() {
+    const name = $('contact-name').value.trim();
+    const email = $('contact-email').value.trim();
+    const message = $('contact-message').value.trim();
+    if (!name || !message) return toast('Please enter your name and message.');
+    openWhatsApp(`Hi CROCHETIA, this is ${name}${email ? ` (${email})` : ''}.\n\n${message}`);
+    $('contact-name').value = ''; $('contact-email').value = ''; $('contact-message').value = '';
+}
+function subscribeNewsletter() {
+    const email = $('newsletter-email').value.trim();
+    if (!email || !email.includes('@')) return toast('Enter a valid email address.');
+    openWhatsApp(`Hi CROCHETIA, please add ${email} to your product update list.`);
+    $('newsletter-email').value = '';
+}
+
+/* ---------- catalog cards ---------- */
+function syncCardsFromProducts() {
+    document.querySelectorAll('.product-card[data-product-id]').forEach(card => {
+        const p = products[card.dataset.productId];
+        if (!p) return;
+        const h = card.querySelector('h4'); if (h) h.textContent = p.name;
+        const d = card.querySelector(':scope > p'); if (d) d.textContent = p.description;
+        const pr = card.querySelector('.price'); if (pr) pr.textContent = money(p.price);
+        const img = card.querySelector('img'); if (img) { img.src = p.image; img.alt = p.name; }
+    });
+}
+function decorateProductCards() {
+    document.querySelectorAll('#crochet-page .product-card, #birds-page .product-card').forEach(card => {
+        if (card.dataset.decorated) return;
+        card.dataset.decorated = '1';
+        const id = card.dataset.productId;
+        const p = products[id];
+
+        const chip = document.createElement('span');
+        chip.className = 'category-chip';
+        chip.textContent = p && p.category === 'birds' ? 'Bird care' : 'Handmade';
+        card.appendChild(chip);
+
+        const wish = document.createElement('button');
+        wish.className = 'wish-btn';
+        wish.type = 'button';
+        wish.title = 'Save to wishlist';
+        wish.setAttribute('aria-label', 'Save to wishlist');
+        wish.textContent = '♡';
+        wish.onclick = e => { e.stopPropagation(); toggleWishlistItem(id); };
+        card.appendChild(wish);
+
+        const addBtn = card.querySelector('button.btn');
+        if (addBtn) {
+            addBtn.textContent = '🛒 Add to Cart';
+            const actions = document.createElement('div');
+            actions.className = 'product-card-actions';
+            actions.innerHTML = `<button class="buy-now" type="button">Buy Now</button><button class="buy-now" type="button">View Details</button>`;
+            actions.children[0].onclick = () => quickBuy(id);
+            actions.children[1].onclick = () => openProduct(id);
+            addBtn.insertAdjacentElement('afterend', actions);
+        }
+    });
+}
+function ensureCatalogToolbar(pageId) {
+    const container = document.querySelector(`#${pageId} .catalog-container`);
+    const grid = container && container.querySelector('.grid');
+    if (!grid || container.querySelector('.catalog-toolbar')) return;
+    const toolbar = document.createElement('div');
+    toolbar.className = 'catalog-toolbar';
+    toolbar.innerHTML = `
+        <input type="search" placeholder="Search within this collection" oninput="filterCatalog('${pageId}', this.value)">
+        <select onchange="sortCatalog('${pageId}', this.value)">
+            <option value="default">Sort: Recommended</option>
+            <option value="low">Price: Low to High</option>
+            <option value="high">Price: High to Low</option>
+            <option value="az">Name: A to Z</option>
+        </select>
+        <span class="catalog-result-count" id="${pageId}-count"></span>`;
+    grid.before(toolbar);
+    Array.from(grid.children).forEach((c, i) => c.dataset.order = i);
+    updateCatalogCount(pageId);
+}
+function updateCatalogCount(pageId) {
+    const visible = Array.from(document.querySelectorAll(`#${pageId} .product-card`)).filter(c => c.style.display !== 'none');
+    const el = $(`${pageId}-count`);
+    if (el) el.textContent = `${visible.length} products`;
+}
+function filterCatalog(pageId, query) {
+    const q = query.trim().toLowerCase();
+    document.querySelectorAll(`#${pageId} .product-card`).forEach(card => {
+        const p = products[card.dataset.productId];
+        const text = p ? `${p.name} ${p.description}` : card.textContent;
+        card.style.display = text.toLowerCase().includes(q) ? '' : 'none';
+    });
+    updateCatalogCount(pageId);
+}
+function sortCatalog(pageId, mode) {
+    const grid = document.querySelector(`#${pageId} .grid`);
+    if (!grid) return;
+    const price = c => products[c.dataset.productId]?.price ?? 0;
+    const name = c => products[c.dataset.productId]?.name ?? '';
+    const cards = Array.from(grid.querySelectorAll('.product-card'));
+    if (mode === 'low') cards.sort((a, b) => price(a) - price(b));
+    else if (mode === 'high') cards.sort((a, b) => price(b) - price(a));
+    else if (mode === 'az') cards.sort((a, b) => name(a).localeCompare(name(b)));
+    else cards.sort((a, b) => a.dataset.order - b.dataset.order);
+    cards.forEach(c => grid.appendChild(c));
+}
+function adjustQty(elementId, delta) {
+    const el = $(elementId);
+    el.textContent = Math.max(1, (parseInt(el.textContent) || 1) + delta);
+}
+
+/* ---------- product detail ---------- */
+function openProduct(productId) {
+    const p = products[productId];
+    if (!p) return;
+    currentProductId = productId;
+    $('detail-name').textContent = p.name;
+    $('detail-price').textContent = money(p.price);
+    $('detail-description').textContent = p.description;
+    $('detail-qty').textContent = '1';
+    $('detail-features-list').innerHTML = p.features.map(f => `<li>${esc(f)}</li>`).join('');
+    renderProductGallery(p);
+    showPage('product-detail-page');
+}
+function renderProductGallery(p) {
+    const main = $('detail-main-image');
+    const thumbs = $('detail-thumbnails');
+    const gallery = p.gallery && p.gallery.length ? p.gallery : [p.image];
+    thumbs.innerHTML = '';
+    main.src = gallery[0];
+    main.alt = p.name;
+    if (gallery.length < 2) return;
+    gallery.forEach((src, i) => {
+        const t = document.createElement('img');
+        t.src = src;
+        t.alt = `${p.name} photo ${i + 1}`;
+        t.className = 'product-thumb' + (i === 0 ? ' active' : '');
+        t.onclick = () => {
+            main.src = src;
+            thumbs.querySelectorAll('.product-thumb').forEach(x => x.classList.remove('active'));
+            t.classList.add('active');
+        };
+        t.onerror = () => t.remove();
+        thumbs.appendChild(t);
+    });
+}
+function changeDetailQty(delta) { adjustQty('detail-qty', delta); }
+function addDetailToCart() {
+    if (!currentProductId) return;
+    addCartProduct(currentProductId, parseInt($('detail-qty').textContent) || 1);
+    $('detail-qty').textContent = '1';
+}
+function goBackToCatalog() {
+    const p = products[currentProductId];
+    showPage(p ? (p.category === 'birds' ? 'birds-page' : 'crochet-page') : 'home-page');
+}
+function ensureDetailBuyNow() {
+    const actions = document.querySelector('.detail-actions');
+    if (!actions || actions.querySelector('.buy-now-detail')) return;
+    const btn = document.createElement('button');
+    btn.className = 'btn buy-now-detail';
+    btn.textContent = '⚡ Buy Now';
+    btn.onclick = () => {
+        if (!currentProductId) return;
+        quickBuy(currentProductId, parseInt($('detail-qty').textContent) || 1);
+    };
+    actions.prepend(btn);
+}
+
+/* ---------- lightbox ---------- */
+function openLightbox(src) { $('lightbox-image').src = src; $('image-lightbox').style.display = 'flex'; }
+function closeLightbox() { $('image-lightbox').style.display = 'none'; }
+
+/* ---------- pre-order ---------- */
+function openPreorder() {
+    const p = products[currentProductId];
+    if (!p) return;
+    $('preorder-product-label').textContent = `${p.name} — ${money(p.price)} each`;
+    $('preorder-qty').value = $('detail-qty').textContent;
+    setModal('preorder-modal', true);
+}
+function closePreorder() { setModal('preorder-modal', false); }
+function submitPreorder() {
+    const p = products[currentProductId];
+    const name = $('preorder-name').value.trim();
+    const phone = $('preorder-phone').value.trim();
+    const qty = parseInt($('preorder-qty').value);
+    const address = $('preorder-address').value.trim();
+    const note = $('preorder-note').value.trim();
+    if (!p || !name || !phone || !qty || qty < 1 || !address) {
+        return toast('Please enter your name, phone number, quantity and delivery address.');
+    }
+    openWhatsApp(
+        `PRE-ORDER\n` +
+        `Product: ${p.name}\n` +
+        `Quantity: ${qty} × ${p.price} BDT = ${(qty * p.price).toFixed(0)} BDT\n\n` +
+        `Name: ${name}\nPhone: ${phone}\nAddress: ${address}` +
+        (note ? `\nNote: ${note}` : '')
+    );
+    closePreorder();
+    toast('WhatsApp opened — send the message to confirm your pre-order.');
+}
+
+/* ---------- cart ---------- */
+function saveCart() { writeJSON('featherThreadCart', cart); }
+function addCartProduct(id, quantity = 1, silent = false) {
+    const p = products[id];
+    if (!p) return;
+    const existing = cart.find(i => i.id === id);
+    if (existing) existing.quantity += quantity;
+    else cart.push({id, quantity});
+    saveCart();
+    updateCartUI();
+    if (!silent) toast(`Added ${quantity} × ${p.name} to cart`);
+}
+function addToCart(id, qtyElementId) {
+    const el = $(qtyElementId);
+    addCartProduct(id, parseInt(el.textContent) || 1);
+    el.textContent = '1';
+}
+function changeCartQty(index, delta) {
+    if (!cart[index]) return;
+    cart[index].quantity += delta;
+    if (cart[index].quantity <= 0) cart.splice(index, 1);
+    saveCart(); updateCartUI();
+}
+function removeCartItem(index) { cart.splice(index, 1); saveCart(); updateCartUI(); }
+function cartTotal() { return cart.reduce((s, i) => s + products[i.id].price * i.quantity, 0); }
+function toggleCart() {
+    const m = $('cart-modal');
+    m.style.display = m.style.display === 'flex' ? 'none' : 'flex';
+}
+function updateCartUI() {
+    $('cart-count').textContent = cart.reduce((s, i) => s + i.quantity, 0);
+    const container = $('cart-items');
+    if (!cart.length) {
+        container.innerHTML = '<div class="search-empty" style="padding:30px 10px;">Your cart is empty.<br><small>Add something you love.</small></div>';
+    } else {
+        container.innerHTML = cart.map((item, i) => {
+            const p = products[item.id];
+            return `<div class="cart-item">
+                <div class="cart-item-main"><strong>${esc(p.name)}</strong><small>${money(p.price)} each</small></div>
+                <div class="cart-item-controls">
+                    <button class="qty-btn" onclick="changeCartQty(${i},-1)" aria-label="Decrease">−</button>
+                    <strong>${item.quantity}</strong>
+                    <button class="qty-btn" onclick="changeCartQty(${i},1)" aria-label="Increase">+</button>
+                    <strong>${money(p.price * item.quantity)}</strong>
+                    <button class="cart-remove" onclick="removeCartItem(${i})">Remove</button>
+                </div>
+            </div>`;
+        }).join('');
+    }
+    const total = cartTotal().toFixed(2);
+    $('cart-subtotal').textContent = total;
+    $('cart-total').textContent = total;
+}
+
+/* Buy Now adds the item to the existing cart (it no longer wipes the cart) and opens checkout. */
+function quickBuy(id, qty = 1) {
+    addCartProduct(id, qty, true);
+    openCheckout();
+}
+
+/* ---------- checkout ---------- */
+function openCheckout() {
+    if (!cart.length) return toast('Your cart is empty.');
+    const user = readJSON('featherThreadUser', null);
+    if (user && !$('checkout-name').value) $('checkout-name').value = user.name || '';
+    $('checkout-items').innerHTML = cart.map(i => {
+        const p = products[i.id];
+        return `<div class="checkout-mini-item"><span>${esc(p.name)} × ${i.quantity}</span><strong>${money(p.price * i.quantity)}</strong></div>`;
+    }).join('');
+    $('checkout-total').textContent = cartTotal().toFixed(2);
+    setModal('cart-modal', false);
+    setModal('checkout-modal', true);
+}
+function closeCheckout() { setModal('checkout-modal', false); }
+function placeDemoOrder() {
+    const name = $('checkout-name').value.trim();
+    const phone = $('checkout-phone').value.trim();
+    const address = $('checkout-address').value.trim();
+    const payment = $('checkout-payment').value;
+    const note = $('checkout-note').value.trim();
+    if (!name || !phone || !address) return toast('Please complete name, phone and delivery address.');
+
+    const orderNo = 'CR-' + Date.now().toString().slice(-8);
+    const lines = cart.map(i => {
+        const p = products[i.id];
+        return `• ${p.name} × ${i.quantity} = ${(p.price * i.quantity).toFixed(0)} BDT`;
+    }).join('\n');
+    openWhatsApp(
+        `NEW ORDER ${orderNo}\n\n${lines}\n\nTotal: ${cartTotal().toFixed(0)} BDT\n\n` +
+        `Name: ${name}\nPhone: ${phone}\nAddress: ${address}\nPayment: ${payment}` +
+        (note ? `\nNote: ${note}` : '')
+    );
+
+    cart = []; saveCart(); updateCartUI();
+    closeCheckout();
+    $('order-success-message').innerHTML =
+        `Thank you, <strong>${esc(name)}</strong>!<br>Your order reference is <strong>${orderNo}</strong>.<br>` +
+        `<small>WhatsApp has opened with your order. Please press send so we receive it.</small>`;
+    setModal('order-success-modal', true);
+}
+function closeOrderSuccess() { setModal('order-success-modal', false); showPage('home-page'); }
+
+/* ---------- wishlist ---------- */
+function toggleWishlistItem(id) {
+    if (!products[id]) return;
+    if (wishlist.includes(id)) { wishlist = wishlist.filter(x => x !== id); toast('Removed from wishlist'); }
+    else { wishlist.push(id); toast('Saved to wishlist ♡'); }
+    writeJSON('featherThreadWishlist', wishlist);
+    updateWishlistButtons();
+}
+function updateWishlistButtons() {
+    document.querySelectorAll('.product-card').forEach(card => {
+        const btn = card.querySelector('.wish-btn');
+        if (!btn) return;
+        const active = wishlist.includes(card.dataset.productId);
+        btn.classList.toggle('active', active);
+        btn.textContent = active ? '♥' : '♡';
+    });
+    $('wishlist-count').textContent = wishlist.length;
+}
+function openWishlist() { renderWishlist(); setModal('wishlist-modal', true); }
+function closeWishlist() { setModal('wishlist-modal', false); }
+function renderWishlist() {
+    const container = $('wishlist-items');
+    if (!wishlist.length) {
+        container.innerHTML = '<p>Your wishlist is empty. Tap the ♡ icon on a product to save it.</p>';
+        return;
+    }
+    container.innerHTML = wishlist.map(id => {
+        const p = products[id];
+        return `<div class="wishlist-row"><img src="${esc(p.image)}" alt="${esc(p.name)}"><div><strong>${esc(p.name)}</strong><br><small>${money(p.price)}</small></div><button onclick="closeWishlist(); openProduct('${id}')">View</button></div>`;
+    }).join('');
+}
+
+/* ---------- search ---------- */
+function searchProducts(q) {
+    q = q.trim().toLowerCase();
+    return Object.entries(products)
+        .filter(([, p]) => `${p.name} ${p.description} ${categoryLabel(p.category)}`.toLowerCase().includes(q))
+        .map(([id, p]) => ({id, ...p}));
+}
+function showSearchSuggestions() {
+    const q = $('global-search').value.trim();
+    const box = $('search-suggestions');
+    if (!q) { box.classList.remove('active'); box.innerHTML = ''; return; }
+    const matches = searchProducts(q).slice(0, 6);
+    box.innerHTML = matches.length
+        ? matches.map(p => `<button class="search-suggestion" onclick="selectSearchProduct('${p.id}')"><span>${esc(p.name)}</span><small>${categoryLabel(p.category)} • ${p.price.toFixed(0)} BDT</small></button>`).join('')
+        : '<div class="search-suggestion"><span>No matching products yet</span></div>';
+    box.classList.add('active');
+}
+function selectSearchProduct(id) {
+    $('search-suggestions').classList.remove('active');
+    $('global-search').value = '';
+    openProduct(id);
+}
+function ensureSearchPage() {
+    if ($('search-page')) return;
+    const div = document.createElement('div');
+    div.id = 'search-page';
+    div.className = 'page-view';
+    div.innerHTML = `<div class="search-results-page"><button class="back-btn" onclick="showPage('home-page')">← Back to Home</button><div class="search-results-head"><div><span class="mini-label">SEARCH</span><h2 id="search-results-title">Search results</h2></div><span id="search-results-count" class="catalog-result-count"></span></div><div id="search-results-grid" class="grid"></div><div id="search-empty" class="search-empty" style="display:none;">No products found. Try a different keyword.</div></div>`;
+    document.querySelector('footer').before(div);
+}
+function runGlobalSearch() {
+    const q = $('global-search').value.trim();
+    if (!q) return toast('Type a product name or category to search.');
+    $('search-suggestions').classList.remove('active');
+    ensureSearchPage();
+    const results = searchProducts(q);
+    $('search-results-grid').innerHTML = results.map(p => `
+        <div class="product-card" data-product-id="${p.id}">
+            <img loading="lazy" src="${esc(p.image)}" alt="${esc(p.name)}" onclick="openProduct('${p.id}')">
+            <h4>${esc(p.name)}</h4>
+            <p>${esc(p.description)}</p>
+            <div class="price">${money(p.price)}</div>
+            <button class="btn" onclick="addCartProduct('${p.id}', 1)">🛒 Add to Cart</button>
+            <div class="product-card-actions">
+                <button class="buy-now" onclick="quickBuy('${p.id}')">Buy Now</button>
+                <button class="buy-now" onclick="openProduct('${p.id}')">View Details</button>
+            </div>
+        </div>`).join('');
+    $('search-results-title').textContent = `Results for “${q}”`;
+    $('search-results-count').textContent = `${results.length} products`;
+    $('search-empty').style.display = results.length ? 'none' : 'block';
+    showPage('search-page');
+}
+document.addEventListener('click', e => {
+    if (!e.target.closest('.global-search-wrap')) $('search-suggestions').classList.remove('active');
+});
+
+/* ---------- slideshow ---------- */
+setInterval(() => {
+    document.querySelectorAll('[data-slideshow]').forEach(card => {
+        const images = card.querySelectorAll('img');
+        if (images.length < 2) return;
+        const active = Array.from(images).findIndex(img => img.classList.contains('active-slide'));
+        images[Math.max(active, 0)].classList.remove('active-slide');
+        images[(active + 1) % images.length].classList.add('active-slide');
+    });
+}, 2500);
+
+/* ---------- start ---------- */
+syncCardsFromProducts();
+decorateProductCards();
+ensureCatalogToolbar('crochet-page');
+ensureCatalogToolbar('birds-page');
+ensureDetailBuyNow();
+updateWishlistButtons();
+updateCartUI();
+updateAccountUI();
+</script>
+
+
+</body>
+</html>
