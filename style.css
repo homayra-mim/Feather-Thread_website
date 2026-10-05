@@ -1526,3 +1526,40 @@ header.market-header {
 .checkout-gate-card h2 { line-height: 1.25; padding: 0 36px; }
 /* Pop-ups sit above the sticky header and the phone bottom bar */
 .modal { z-index: 3000 !important; }
+
+/* ===== MOBILE PAYMENT (bKash / Nagad) SECTION ===== */
+.mobile-pay-section {
+    border: 1.5px solid #dbe8ff;
+    background: #f5f9ff;
+    border-radius: 12px;
+    padding: 14px;
+    margin: 4px 0 14px;
+}
+.pay-step { display: flex; align-items: flex-start; gap: 10px; margin: 4px 0 10px; font-size: .92rem; color: #1d2939; }
+.pay-step-no {
+    flex: 0 0 24px; height: 24px; border-radius: 50%;
+    background: #0b57d0; color: #fff; font-weight: 700; font-size: .8rem;
+    display: flex; align-items: center; justify-content: center;
+}
+.pay-accounts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+.pay-account {
+    display: flex; flex-direction: column; align-items: flex-start; gap: 4px;
+    background: #fff; border: 1px solid #e4e7ec; border-radius: 10px; padding: 10px 12px;
+}
+.pay-brand { font-size: .72rem; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; padding: 2px 8px; border-radius: 6px; color: #fff; }
+.pay-account.bkash .pay-brand { background: #e2136e; }
+.pay-account.nagad .pay-brand { background: #f6921e; }
+.pay-number { font-size: 1.05rem; font-weight: 700; letter-spacing: .5px; color: #101828; }
+.pay-copy {
+    border: 1px solid #d0d5dd; background: #fff; color: #0b57d0; font-weight: 600;
+    font-size: .75rem; padding: 4px 10px; border-radius: 6px; cursor: pointer;
+}
+.pay-copy:hover { background: #eef4ff; }
+.pay-ref { font-size: .85rem; color: #475467; margin: 0 0 14px; }
+.pay-ref strong { color: #101828; font-family: ui-monospace, Consolas, monospace; }
+.pay-wallet-choice { display: flex; gap: 18px; }
+.pay-wallet-choice label { display: flex; align-items: center; gap: 6px; font-weight: 600; cursor: pointer; }
+#pay-trxid { text-transform: uppercase; font-family: ui-monospace, Consolas, monospace; letter-spacing: 1px; }
+.pay-hint { font-size: .78rem; color: #667085; margin: -4px 0 0; }
+@media (max-width: 380px) { .pay-accounts { grid-template-columns: 1fr; } }
+#pay-trxid::placeholder { text-transform: none; letter-spacing: normal; font-family: inherit; }

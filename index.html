@@ -605,10 +605,48 @@
                     <div class="form-group"><label for="checkout-phone">Phone</label><input id="checkout-phone" type="tel" placeholder="01XXXXXXXXX"></div>
                     <div class="form-group"><label for="checkout-address">Delivery Address</label><textarea id="checkout-address" placeholder="House, road, area, city"></textarea></div>
                     <div class="form-group"><label for="checkout-payment">Payment Method</label>
-                        <select id="checkout-payment">
+                        <select id="checkout-payment" onchange="updatePaymentSection()">
                             <option value="Cash on Delivery">Cash on Delivery</option>
-                            <option value="Mobile Payment - Manual Confirmation">Mobile Payment (manual confirmation)</option>
+                            <option value="Mobile Payment">Mobile Payment (bKash / Nagad)</option>
                         </select>
+                    </div>
+
+                    <!-- Shown only when Mobile Payment is selected -->
+                    <div id="mobile-pay-section" class="mobile-pay-section" style="display:none;">
+                        <div class="pay-step">
+                            <span class="pay-step-no">1</span>
+                            <div>
+                                <strong>Send <span id="pay-amount">0</span> BDT</strong> to one of these numbers using <strong>Send Money</strong>:
+                            </div>
+                        </div>
+                        <div class="pay-accounts">
+                            <div class="pay-account bkash">
+                                <span class="pay-brand">bKash</span>
+                                <span class="pay-number" id="bkash-number"></span>
+                                <button type="button" class="pay-copy" onclick="copyPayNumber('bkash')">Copy</button>
+                            </div>
+                            <div class="pay-account nagad">
+                                <span class="pay-brand">Nagad</span>
+                                <span class="pay-number" id="nagad-number"></span>
+                                <button type="button" class="pay-copy" onclick="copyPayNumber('nagad')">Copy</button>
+                            </div>
+                        </div>
+                        <p class="pay-ref">Reference: <strong id="pay-reference"></strong> <small>(type this in the reference box)</small></p>
+
+                        <div class="pay-step">
+                            <span class="pay-step-no">2</span>
+                            <div><strong>Enter your payment details</strong></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Paid with</label>
+                            <div class="pay-wallet-choice">
+                                <label><input type="radio" name="pay-wallet" value="bKash" checked> bKash</label>
+                                <label><input type="radio" name="pay-wallet" value="Nagad"> Nagad</label>
+                            </div>
+                        </div>
+                        <div class="form-group"><label for="pay-sender">Number you paid from</label><input id="pay-sender" type="tel" inputmode="numeric" placeholder="01XXXXXXXXX" maxlength="11"></div>
+                        <div class="form-group"><label for="pay-trxid">Transaction ID (TrxID)</label><input id="pay-trxid" type="text" placeholder="e.g. 9BK7XY2Q1M" maxlength="20" autocapitalize="characters" autocomplete="off"></div>
+                        <p class="pay-hint">You'll find the TrxID in the confirmation SMS or in your bKash/Nagad app history. We confirm the order once the payment is verified.</p>
                     </div>
                     <div class="form-group"><label for="checkout-note">Order Note (optional)</label><textarea id="checkout-note" placeholder="Special request, color preference, etc."></textarea></div>
                 </div>
@@ -685,8 +723,15 @@ const SHOP_WHATSAPP = '+8801817099416';   // country code + number, digits only
 
 /* Google Sheet order log (Apps Script web app).
    Paste your /exec URL below. Leave '' to turn logging off. */
-const ORDER_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwYLu7yVogNQT4EbQpXsz4XfPDGoXr2lOe_UxQv1lv0X_4P2n-zMDe6JEZgMa_Qp7-i/exec';
-const SHEET_TOKEN = 'crochetia-2026';    // must match SHARED_TOKEN in Code.gs
+const ORDER_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwXmJBXZZwXhl9a6ML-QnpTsEHcgVgWqdCNsjn6dPSqbK_nh6uBLdp5Vflzu1Je8nxz/exec';
+const SHEET_TOKEN = 'crochetia-2026';
+
+/* Mobile payment numbers shown at checkout. Change these to your real
+   bKash / Nagad account numbers. */
+const PAYMENT_NUMBERS = {
+    bkash: '01817099416',
+    nagad: '01817099416'
+};    // must match SHARED_TOKEN in Code.gs
 
 /*
  * Add more pictures for a product by adding paths to its gallery array.
@@ -855,6 +900,7 @@ let wishlist = readJSON('featherThreadWishlist', []).filter(id => products[id]);
 let currentProductId = null;
 let checkoutAfterLogin = false;   // true while the login modal was opened from checkout
 let checkoutAsGuestMode = false;  // true once the customer picks 'Continue as guest'
+let pendingOrderNo = null;        // created when checkout opens, so it can be used as the payment reference
 
 /* ---------- navigation ---------- */
 function showPage(pageId) {
@@ -1227,6 +1273,7 @@ function checkoutAsGuest() {
 /* Step 2: the checkout form itself. */
 function showCheckoutForm() {
     if (!cart.length) return toast('Your cart is empty.');
+    if (!pendingOrderNo) pendingOrderNo = 'CR-' + Date.now().toString().slice(-8);
     const user = readJSON('featherThreadUser', null);
     if (user) checkoutAsGuestMode = false;
     const who = $('checkout-customer-type');
@@ -1239,19 +1286,72 @@ function showCheckoutForm() {
         return `<div class="checkout-mini-item"><span>${esc(p.name)} × ${i.quantity}</span><strong>${money(p.price * i.quantity)}</strong></div>`;
     }).join('');
     $('checkout-total').textContent = cartTotal().toFixed(2);
+    updatePaymentSection();
     setModal('cart-modal', false);
     setModal('checkout-modal', true);
 }
 function closeCheckout() { setModal('checkout-modal', false); }
+/* ---------- mobile payment ---------- */
+function isMobilePayment() { return $('checkout-payment').value === 'Mobile Payment'; }
+function updatePaymentSection() {
+    const box = $('mobile-pay-section');
+    if (!box) return;
+    box.style.display = isMobilePayment() ? 'block' : 'none';
+    $('pay-amount').textContent = cartTotal().toFixed(0);
+    $('bkash-number').textContent = PAYMENT_NUMBERS.bkash;
+    $('nagad-number').textContent = PAYMENT_NUMBERS.nagad;
+    $('pay-reference').textContent = pendingOrderNo || '';
+}
+function copyPayNumber(wallet) {
+    const num = PAYMENT_NUMBERS[wallet];
+    const done = () => toast(`${wallet === 'bkash' ? 'bKash' : 'Nagad'} number copied`);
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(num).then(done).catch(() => fallbackCopy(num, done));
+    } else fallbackCopy(num, done);
+}
+function fallbackCopy(text, done) {
+    const t = document.createElement('textarea');
+    t.value = text; t.style.position = 'fixed'; t.style.opacity = '0';
+    document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); done(); } catch (e) { toast('Number: ' + text); }
+    t.remove();
+}
+/* Returns payment details, or null (with a message) if something is missing. */
+function readMobilePayment() {
+    const wallet = (document.querySelector('input[name="pay-wallet"]:checked') || {}).value;
+    const sender = $('pay-sender').value.replace(/\D/g, '');
+    const trxId = $('pay-trxid').value.trim().toUpperCase().replace(/\s/g, '');
+    if (!wallet) { toast('Choose bKash or Nagad.'); return null; }
+    if (!/^01\d{9}$/.test(sender)) { toast('Enter the 11-digit number you paid from (01XXXXXXXXX).'); $('pay-sender').focus(); return null; }
+    if (!/^[A-Z0-9]{6,20}$/.test(trxId)) { toast('Enter a valid Transaction ID (letters and numbers only).'); $('pay-trxid').focus(); return null; }
+    return {wallet, sender, trxId};
+}
+function resetPaymentFields() {
+    $('checkout-payment').value = 'Cash on Delivery';
+    $('pay-sender').value = '';
+    $('pay-trxid').value = '';
+    const b = document.querySelector('input[name="pay-wallet"][value="bKash"]'); if (b) b.checked = true;
+    updatePaymentSection();
+}
+
 function placeDemoOrder() {
     const name = $('checkout-name').value.trim();
     const phone = $('checkout-phone').value.trim();
     const address = $('checkout-address').value.trim();
-    const payment = $('checkout-payment').value;
     const note = $('checkout-note').value.trim();
     if (!name || !phone || !address) return toast('Please complete name, phone and delivery address.');
 
-    const orderNo = 'CR-' + Date.now().toString().slice(-8);
+    let pay = null;
+    if (isMobilePayment()) {
+        pay = readMobilePayment();
+        if (!pay) return;
+    }
+    const payment = pay ? pay.wallet : 'Cash on Delivery';
+    const paymentLine = pay
+        ? `${pay.wallet} (paid ${cartTotal().toFixed(0)} BDT)\nTrxID: ${pay.trxId}\nPaid from: ${pay.sender}`
+        : 'Cash on Delivery';
+
+    const orderNo = pendingOrderNo || ('CR-' + Date.now().toString().slice(-8));
     const lines = cart.map(i => {
         const p = products[i.id];
         return `• ${p.name} × ${i.quantity} = ${(p.price * i.quantity).toFixed(0)} BDT`;
@@ -1260,19 +1360,24 @@ function placeDemoOrder() {
     const customer = account ? `Account (${account.email})` : 'Guest';
     logToSheet('order', {
         orderNo, name, phone, address, payment, customer,
+        trxId: pay ? pay.trxId : '',
+        senderNo: pay ? pay.sender : '',
         note: (note ? note + ' | ' : '') + 'Customer: ' + customer,
         items: cart.map(i => ({name: products[i.id].name, qty: i.quantity, price: products[i.id].price}))
     });
     openWhatsApp(
         `NEW ORDER ${orderNo}\n\n${lines}\n\nTotal: ${cartTotal().toFixed(0)} BDT\n\n` +
-        `Name: ${name}\nPhone: ${phone}\nAddress: ${address}\nPayment: ${payment}\nCustomer: ${customer}` +
+        `Name: ${name}\nPhone: ${phone}\nAddress: ${address}\nPayment: ${paymentLine}\nCustomer: ${customer}` +
         (note ? `\nNote: ${note}` : '')
     );
 
     cart = []; saveCart(); updateCartUI();
+    pendingOrderNo = null;
+    resetPaymentFields();
     closeCheckout();
     $('order-success-message').innerHTML =
         `Thank you, <strong>${esc(name)}</strong>!<br>Your order reference is <strong>${orderNo}</strong>.<br>` +
+        (pay ? `<small>We'll confirm your order once your ${esc(pay.wallet)} payment (TrxID ${esc(pay.trxId)}) is verified.</small><br>` : '') +
         `<small>WhatsApp has opened with your order. Please press send so we receive it.</small>`;
     setModal('order-success-modal', true);
 }
