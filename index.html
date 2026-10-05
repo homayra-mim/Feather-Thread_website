@@ -663,7 +663,12 @@
    - Orders, pre-orders and messages are sent to the shop's WhatsApp.
    ===================================================================== */
 
-const SHOP_WHATSAPP = '8801817099416';   // country code + number, digits only
+const SHOP_WHATSAPP = '+8801817099416';   // country code + number, digits only
+
+/* Google Sheet order log (Apps Script web app).
+   Paste your /exec URL below. Leave '' to turn logging off. */
+const ORDER_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwYLu7yVogNQT4EbQpXsz4XfPDGoXr2lOe_UxQv1lv0X_4P2n-zMDe6JEZgMa_Qp7-i/exec';
+const SHEET_TOKEN = 'crochetia-2026';    // must match SHARED_TOKEN in Code.gs
 
 /*
  * Add more pictures for a product by adding paths to its gallery array.
@@ -808,6 +813,20 @@ function toast(message) {
     stack.appendChild(item);
     setTimeout(() => item.remove(), 2600);
 }
+/* Sends a copy to the Google Sheet in the background.
+   It never blocks or breaks WhatsApp ordering if the sheet is unreachable. */
+function logToSheet(type, data) {
+    if (!ORDER_SHEET_URL) return;
+    try {
+        fetch(ORDER_SHEET_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            keepalive: true,
+            headers: {'Content-Type': 'text/plain;charset=utf-8'},
+            body: JSON.stringify({type, token: SHEET_TOKEN, ...data})
+        }).catch(() => {});
+    } catch (e) { /* ignore */ }
+}
 function openWhatsApp(text) {
     window.open(`https://wa.me/${SHOP_WHATSAPP}?text=${encodeURIComponent(text)}`, '_blank');
 }
@@ -899,12 +918,14 @@ function submitContactMessage() {
     const email = $('contact-email').value.trim();
     const message = $('contact-message').value.trim();
     if (!name || !message) return toast('Please enter your name and message.');
+    logToSheet('message', {name, email, message});
     openWhatsApp(`Hi CROCHETIA, this is ${name}${email ? ` (${email})` : ''}.\n\n${message}`);
     $('contact-name').value = ''; $('contact-email').value = ''; $('contact-message').value = '';
 }
 function subscribeNewsletter() {
     const email = $('newsletter-email').value.trim();
     if (!email || !email.includes('@')) return toast('Enter a valid email address.');
+    logToSheet('newsletter', {email});
     openWhatsApp(`Hi CROCHETIA, please add ${email} to your product update list.`);
     $('newsletter-email').value = '';
 }
@@ -1084,8 +1105,10 @@ function submitPreorder() {
     if (!p || !name || !phone || !qty || qty < 1 || !address) {
         return toast('Please enter your name, phone number, quantity and delivery address.');
     }
+    const ref = 'PO-' + Date.now().toString().slice(-8);
+    logToSheet('preorder', {ref, name, phone, address, note, product: p.name, qty, price: p.price});
     openWhatsApp(
-        `PRE-ORDER\n` +
+        `PRE-ORDER ${ref}\n` +
         `Product: ${p.name}\n` +
         `Quantity: ${qty} × ${p.price} BDT = ${(qty * p.price).toFixed(0)} BDT\n\n` +
         `Name: ${name}\nPhone: ${phone}\nAddress: ${address}` +
@@ -1182,6 +1205,10 @@ function placeDemoOrder() {
         const p = products[i.id];
         return `• ${p.name} × ${i.quantity} = ${(p.price * i.quantity).toFixed(0)} BDT`;
     }).join('\n');
+    logToSheet('order', {
+        orderNo, name, phone, address, payment, note,
+        items: cart.map(i => ({name: products[i.id].name, qty: i.quantity, price: products[i.id].price}))
+    });
     openWhatsApp(
         `NEW ORDER ${orderNo}\n\n${lines}\n\nTotal: ${cartTotal().toFixed(0)} BDT\n\n` +
         `Name: ${name}\nPhone: ${phone}\nAddress: ${address}\nPayment: ${payment}` +
