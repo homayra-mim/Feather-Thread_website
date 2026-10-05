@@ -528,6 +528,23 @@
         </div>
     </div>
 
+    <!-- CHECKOUT GATE: login or guest -->
+    <div class="modal" id="checkout-gate-modal">
+        <div class="modal-content checkout-gate-card">
+            <button class="close-btn" onclick="closeCheckoutGate()">X</button>
+            <h2>How would you like to check out?</h2>
+            <p class="checkout-gate-sub">Log in to fill in your details faster, or continue without an account.</p>
+            <button class="btn gate-option" onclick="checkoutWithLogin()">
+                <span class="gate-icon">👤</span>
+                <span class="gate-text"><strong>Log in</strong><small>Use your CROCHETIA account</small></span>
+            </button>
+            <button class="btn gate-option gate-guest" onclick="checkoutAsGuest()">
+                <span class="gate-icon">🛍️</span>
+                <span class="gate-text"><strong>Continue as guest</strong><small>No account needed</small></span>
+            </button>
+        </div>
+    </div>
+
     <!-- PRE-ORDER MODAL -->
     <div class="modal" id="preorder-modal">
         <div class="modal-content large-modal">
@@ -581,6 +598,7 @@
             <button class="close-btn" onclick="closeCheckout()">×</button>
             <span class="mini-label">CHECKOUT</span>
             <h2>Complete Your Order</h2>
+            <p id="checkout-customer-type" class="checkout-customer-type"></p>
             <div class="checkout-layout">
                 <div>
                     <div class="form-group"><label for="checkout-name">Full Name</label><input id="checkout-name" type="text" placeholder="Your full name"></div>
@@ -835,6 +853,8 @@ function openWhatsApp(text) {
 let cart = readJSON('featherThreadCart', []).filter(i => i && products[i.id]);
 let wishlist = readJSON('featherThreadWishlist', []).filter(id => products[id]);
 let currentProductId = null;
+let checkoutAfterLogin = false;   // true while the login modal was opened from checkout
+let checkoutAsGuestMode = false;  // true once the customer picks 'Continue as guest'
 
 /* ---------- navigation ---------- */
 function showPage(pageId) {
@@ -848,7 +868,7 @@ function showPage(pageId) {
 /* ---------- modals ---------- */
 function setModal(id, open) { const m = $(id); if (m) m.style.display = open ? 'flex' : 'none'; }
 function closeAllModals() {
-    ['account-modal', 'preorder-modal', 'wishlist-modal', 'checkout-modal', 'cart-modal', 'order-success-modal']
+    ['account-modal', 'checkout-gate-modal', 'preorder-modal', 'wishlist-modal', 'checkout-modal', 'cart-modal', 'order-success-modal']
         .forEach(id => setModal(id, false));
     closeLightbox();
 }
@@ -865,7 +885,7 @@ function openAccountModal() {
     switchAuth('login');
     setModal('account-modal', true);
 }
-function closeAccountModal() { setModal('account-modal', false); }
+function closeAccountModal() { setModal('account-modal', false); checkoutAfterLogin = false; }
 function switchAuth(type) {
     const login = type === 'login';
     $('login-form').style.display = login ? 'block' : 'none';
@@ -882,9 +902,11 @@ function signupUser() {
     if (password.length < 6) return toast('Password must be at least 6 characters.');
     writeJSON('featherThreadAccount', {name, email, password});
     writeJSON('featherThreadUser', {name, email});
+    const resume = checkoutAfterLogin;
     updateAccountUI();
     closeAccountModal();
     toast(`Welcome to CROCHETIA, ${name}!`);
+    if (resume) showCheckoutForm();
 }
 function loginUser() {
     const email = $('login-email').value.trim();
@@ -894,9 +916,11 @@ function loginUser() {
     if (!account) { toast('No account found in this browser. Please sign up first.'); switchAuth('signup'); return; }
     if (account.email !== email || account.password !== password) return toast('Incorrect email or password.');
     writeJSON('featherThreadUser', {name: account.name, email: account.email});
+    const resume = checkoutAfterLogin;
     updateAccountUI();
     closeAccountModal();
     toast(`Welcome back, ${account.name}!`);
+    if (resume) showCheckoutForm();
 }
 function logoutUser() {
     localStorage.removeItem('featherThreadUser');
@@ -1179,9 +1203,36 @@ function quickBuy(id, qty = 1) {
 }
 
 /* ---------- checkout ---------- */
+/* Step 1: check login. Logged-in customers go straight to the form;
+   everyone else chooses Log in or Continue as guest. */
 function openCheckout() {
     if (!cart.length) return toast('Your cart is empty.');
+    setModal('cart-modal', false);
+    if (readJSON('featherThreadUser', null)) return showCheckoutForm();
+    setModal('checkout-gate-modal', true);
+}
+function closeCheckoutGate() { setModal('checkout-gate-modal', false); }
+function checkoutWithLogin() {
+    closeCheckoutGate();
+    switchAuth('login');
+    setModal('account-modal', true);
+    checkoutAfterLogin = true;
+}
+function checkoutAsGuest() {
+    closeCheckoutGate();
+    checkoutAsGuestMode = true;
+    showCheckoutForm();
+}
+
+/* Step 2: the checkout form itself. */
+function showCheckoutForm() {
+    if (!cart.length) return toast('Your cart is empty.');
     const user = readJSON('featherThreadUser', null);
+    if (user) checkoutAsGuestMode = false;
+    const who = $('checkout-customer-type');
+    if (who) who.innerHTML = user
+        ? `Checking out as <strong>${esc(user.name || user.email)}</strong>`
+        : `Checking out as <strong>guest</strong> · <a href="#" onclick="event.preventDefault(); closeCheckout(); checkoutWithLogin();">Log in instead</a>`;
     if (user && !$('checkout-name').value) $('checkout-name').value = user.name || '';
     $('checkout-items').innerHTML = cart.map(i => {
         const p = products[i.id];
@@ -1205,13 +1256,16 @@ function placeDemoOrder() {
         const p = products[i.id];
         return `• ${p.name} × ${i.quantity} = ${(p.price * i.quantity).toFixed(0)} BDT`;
     }).join('\n');
+    const account = readJSON('featherThreadUser', null);
+    const customer = account ? `Account (${account.email})` : 'Guest';
     logToSheet('order', {
-        orderNo, name, phone, address, payment, note,
+        orderNo, name, phone, address, payment, customer,
+        note: (note ? note + ' | ' : '') + 'Customer: ' + customer,
         items: cart.map(i => ({name: products[i.id].name, qty: i.quantity, price: products[i.id].price}))
     });
     openWhatsApp(
         `NEW ORDER ${orderNo}\n\n${lines}\n\nTotal: ${cartTotal().toFixed(0)} BDT\n\n` +
-        `Name: ${name}\nPhone: ${phone}\nAddress: ${address}\nPayment: ${payment}` +
+        `Name: ${name}\nPhone: ${phone}\nAddress: ${address}\nPayment: ${payment}\nCustomer: ${customer}` +
         (note ? `\nNote: ${note}` : '')
     );
 

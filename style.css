@@ -1494,3 +1494,35 @@ header.market-header {
 @media (max-width: 380px) {
     .brand-button strong { font-size: .95rem !important; }
 }
+
+/* ===== CHECKOUT GATE: Log in / Continue as guest ===== */
+.checkout-gate-card { max-width: 420px; text-align: center; }
+.checkout-gate-card h2 { margin: 6px 0 6px; font-size: 1.3rem; }
+.checkout-gate-sub { color: #667085; font-size: .9rem; margin: 0 0 18px; }
+.gate-option {
+    display: flex !important;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    margin: 0 0 10px !important;
+    padding: 14px 16px !important;
+    text-align: left;
+    border-radius: 12px !important;
+}
+.gate-option.gate-guest {
+    background: #fff !important;
+    color: #1d2939 !important;
+    border: 1.5px solid #d0d5dd !important;
+}
+.gate-option.gate-guest:hover { border-color: #0b57d0 !important; }
+.gate-icon { font-size: 1.5rem; line-height: 1; }
+.gate-text { display: flex; flex-direction: column; gap: 2px; }
+.gate-text strong { font-size: 1rem; }
+.gate-text small { font-size: .78rem; opacity: .8; font-weight: 400; }
+.checkout-customer-type { margin: -4px 0 14px; color: #475467; font-size: .88rem; }
+.checkout-customer-type a { color: #0b57d0; font-weight: 600; }
+.gate-option:not(.gate-guest) { background: #0b57d0 !important; color: #fff !important; border: 0 !important; }
+.gate-option:not(.gate-guest):hover { background: #0846ad !important; }
+.checkout-gate-card h2 { line-height: 1.25; padding: 0 36px; }
+/* Pop-ups sit above the sticky header and the phone bottom bar */
+.modal { z-index: 3000 !important; }
