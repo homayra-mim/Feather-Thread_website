@@ -30,9 +30,7 @@
             <button onclick="showPage('birds-page')">🦜 Bird Care</button>
             <button onclick="showPage('about-page')">About Us</button>
             <button onclick="showPage('contact-page')">Contact</button>
-            <span id="account-status" class="desktop-account-status"></span>
             <div class="header-actions">
-                <button class="header-action" id="account-nav-btn" onclick="openAccountModal()"><span>👤</span><small>Account</small><strong id="account-short-label">Login</strong></button>
                 <button class="header-action" onclick="openWishlist()"><span>♡</span><small>Wishlist</small><strong><span id="wishlist-count">0</span> saved</strong></button>
                 <button class="header-action cart-action" onclick="toggleCart()"><span>🛒</span><small>Cart</small><strong><span id="cart-count">0</span> items</strong></button>
             </div>
@@ -112,15 +110,16 @@
         <section class="home-products-section" aria-labelledby="popular-products-title">
             <div class="home-products-head">
                 <div>
-                    <h2 id="popular-products-title">Popular Products</h2>
-                    <p>Larger product photos and quick access to customer favorites.</p>
+                    <h2 id="popular-products-title">Explore 14 Crochet Products</h2>
+                    <p>Browse our full handmade crochet collection.</p>
                 </div>
-                <button onclick="showPage('crochet-page')">Browse crochet</button>
+                <button onclick="showPage('crochet-page')">View Crochet Collection</button>
             </div>
             <div class="home-products-grid">
+
                 <article class="home-product-card">
                     <div class="home-product-image-wrap" onclick="openProduct('beauty-pouch')">
-                        <img loading="lazy" src="images/maroon_purse.png" alt="Crochet Beauty Pouch">
+                        <img loading="lazy" src="images/maroon_purse.png" alt="Beauty Pouch">
                     </div>
                     <div class="home-product-info">
                         <span class="home-product-category">CROCHET</span>
@@ -152,36 +151,124 @@
                     </div>
                 </article>
                 <article class="home-product-card">
-                    <div class="home-product-image-wrap" onclick="openProduct('bird-fountain')">
-                        <img loading="lazy" src="images/bird_image/bathing-basin.png" alt="Automatic Water Fountain for Birds">
+                    <div class="home-product-image-wrap" onclick="openProduct('crochet-hat')">
+                        <img loading="lazy" src="images/hat.jpeg" alt="Cozy Crochet Hat">
                     </div>
                     <div class="home-product-info">
-                        <span class="home-product-category">BIRD CARE</span>
-                        <h3>Automatic Water Fountain</h3>
-                        <p>Convenient water and bathing accessory for pet birds.</p>
-                        <div class="home-product-bottom"><span class="home-product-price">৳800</span><button class="home-product-view" onclick="openProduct('bird-fountain')">View Product</button></div>
+                        <span class="home-product-category">CROCHET</span>
+                        <h3>Cozy Crochet Hat</h3>
+                        <p>Warm winter beanie woven with soft yarn.</p>
+                        <div class="home-product-bottom"><span class="home-product-price">৳1,000</span><button class="home-product-view" onclick="openProduct('crochet-hat')">View Product</button></div>
                     </div>
                 </article>
                 <article class="home-product-card">
-                    <div class="home-product-image-wrap" onclick="openProduct('apple-wood-toy')">
-                        <img loading="lazy" src="images/bird_image/apple_wood_hanging.png" alt="Apple Wooden Bird Chewing Toy">
+                    <div class="home-product-image-wrap" onclick="openProduct('square-cushion')">
+                        <img loading="lazy" src="images/cushion_maroon.png" alt="Cozy Crochet Square Cushion">
                     </div>
                     <div class="home-product-info">
-                        <span class="home-product-category">BIRD CARE</span>
-                        <h3>Apple Wooden Chewing Toy</h3>
-                        <p>Wooden enrichment toy designed for chewing and activity.</p>
-                        <div class="home-product-bottom"><span class="home-product-price">৳100</span><button class="home-product-view" onclick="openProduct('apple-wood-toy')">View Product</button></div>
+                        <span class="home-product-category">CROCHET</span>
+                        <h3>Cozy Crochet Square Cushion</h3>
+                        <p>Soft handmade cushion with a cozy textured finish.</p>
+                        <div class="home-product-bottom"><span class="home-product-price">৳1,000</span><button class="home-product-view" onclick="openProduct('square-cushion')">View Product</button></div>
                     </div>
                 </article>
                 <article class="home-product-card">
-                    <div class="home-product-image-wrap" onclick="openProduct('bird-swing')">
-                        <img loading="lazy" src="images/bird_image/swing.webp" alt="Wood Hanging Swing Toy for Bird">
+                    <div class="home-product-image-wrap" onclick="openProduct('triangle-cushion')">
+                        <img loading="lazy" src="images/triangle_cushion.jpeg" alt="Crochet Triangle Cushion">
                     </div>
                     <div class="home-product-info">
-                        <span class="home-product-category">BIRD CARE</span>
-                        <h3>Wood Hanging Bird Swing</h3>
-                        <p>Natural-style swing accessory for resting and play.</p>
-                        <div class="home-product-bottom"><span class="home-product-price">৳100</span><button class="home-product-view" onclick="openProduct('bird-swing')">View Product</button></div>
+                        <span class="home-product-category">CROCHET</span>
+                        <h3>Crochet Triangle Cushion</h3>
+                        <p>Decorative triangle cushion with a handcrafted look.</p>
+                        <div class="home-product-bottom"><span class="home-product-price">৳1,000</span><button class="home-product-view" onclick="openProduct('triangle-cushion')">View Product</button></div>
+                    </div>
+                </article>
+                <article class="home-product-card">
+                    <div class="home-product-image-wrap" onclick="openProduct('plastic-sheet')">
+                        <img loading="lazy" src="images/plastic_sheet.jpg" alt="Crochet Plastic Sheet">
+                    </div>
+                    <div class="home-product-info">
+                        <span class="home-product-category">CROCHET</span>
+                        <h3>Crochet Plastic Sheet</h3>
+                        <p>Useful plastic canvas sheet for structured crochet projects.</p>
+                        <div class="home-product-bottom"><span class="home-product-price">৳700</span><button class="home-product-view" onclick="openProduct('plastic-sheet')">View Product</button></div>
+                    </div>
+                </article>
+                <article class="home-product-card">
+                    <div class="home-product-image-wrap" onclick="openProduct('table-cloth-sheet')">
+                        <img loading="lazy" src="images/Table_cloth_sheet.webp" alt="Designable Table Cloth Sheet">
+                    </div>
+                    <div class="home-product-info">
+                        <span class="home-product-category">CROCHET</span>
+                        <h3>Designable Table Cloth Sheet</h3>
+                        <p>Handmade crochet table cloth with a cheerful flower design.</p>
+                        <div class="home-product-bottom"><span class="home-product-price">৳250</span><button class="home-product-view" onclick="openProduct('table-cloth-sheet')">View Product</button></div>
+                    </div>
+                </article>
+                <article class="home-product-card">
+                    <div class="home-product-image-wrap" onclick="openProduct('crochet-shoulder-bag')">
+                        <img loading="lazy" src="images/Crochet_bag/shoulder_bag_1.png" alt="Crochet Shoulder Bag">
+                    </div>
+                    <div class="home-product-info">
+                        <span class="home-product-category">CROCHET</span>
+                        <h3>Crochet Shoulder Bag</h3>
+                        <p>Roomy handmade shoulder bag inspired by classic granny squares.</p>
+                        <div class="home-product-bottom"><span class="home-product-price">৳1,500</span><button class="home-product-view" onclick="openProduct('crochet-shoulder-bag')">View Product</button></div>
+                    </div>
+                </article>
+                <article class="home-product-card">
+                    <div class="home-product-image-wrap" onclick="openProduct('crochet-glasses-pouch')">
+                        <img loading="lazy" src="images/glasses_pouch.jpg" alt="Crochet Glasses Pouch">
+                    </div>
+                    <div class="home-product-info">
+                        <span class="home-product-category">CROCHET</span>
+                        <h3>Crochet Glasses Pouch</h3>
+                        <p>Handmade crochet pouch to keep your glasses protected and easy to carry.</p>
+                        <div class="home-product-bottom"><span class="home-product-price">৳350</span><button class="home-product-view" onclick="openProduct('crochet-glasses-pouch')">View Product</button></div>
+                    </div>
+                </article>
+                <article class="home-product-card">
+                    <div class="home-product-image-wrap" onclick="openProduct('3d-crochet-cushion')">
+                        <img loading="lazy" src="images/3d_craft_cushion.png" alt="3D Crochet Cushion Design">
+                    </div>
+                    <div class="home-product-info">
+                        <span class="home-product-category">CROCHET</span>
+                        <h3>3D Crochet Cushion Design</h3>
+                        <p>Decorative 3D crochet cushion design for a cozy handmade home.</p>
+                        <div class="home-product-bottom"><span class="home-product-price">৳1,200</span><button class="home-product-view" onclick="openProduct('3d-crochet-cushion')">View Product</button></div>
+                    </div>
+                </article>
+                <article class="home-product-card">
+                    <div class="home-product-image-wrap" onclick="openProduct('crochet-wall-art')">
+                        <img loading="lazy" src="images/wall_3d_art.png" alt="Crochet Wall Art">
+                    </div>
+                    <div class="home-product-info">
+                        <span class="home-product-category">CROCHET</span>
+                        <h3>Crochet Wall Art</h3>
+                        <p>Colorful crochet-inspired wall decor to brighten your living space.</p>
+                        <div class="home-product-bottom"><span class="home-product-price">৳950</span><button class="home-product-view" onclick="openProduct('crochet-wall-art')">View Product</button></div>
+                    </div>
+                </article>
+                <article class="home-product-card">
+                    <div class="home-product-image-wrap" onclick="openProduct('crochet-bag-base')">
+                        <img loading="lazy" src="images/round_plastic_ba.webp" alt="Crochet Bag Base Sheet">
+                    </div>
+                    <div class="home-product-info">
+                        <span class="home-product-category">CROCHET</span>
+                        <h3>Crochet Bag Base Sheet</h3>
+                        <p>Lightweight plastic canvas base to help shape structured crochet bags.</p>
+                        <div class="home-product-bottom"><span class="home-product-price">৳150</span><button class="home-product-view" onclick="openProduct('crochet-bag-base')">View Product</button></div>
+                    </div>
+                </article>
+                <article class="home-product-card">
+                    <div class="home-product-image-wrap" onclick="openProduct('maroon-crochet-shoulder-bag')">
+                        <img loading="lazy" src="images/Crochet_bag/shoulder_bag_3.jpeg" alt="Maroon Crochet Shoulder Bag">
+                    </div>
+                    <div class="home-product-info">
+                        <span class="home-product-category">CROCHET</span>
+                        <h3>Maroon Crochet Shoulder Bag</h3>
+                        <p>Handmade maroon shoulder bag with a classic textured crochet finish.</p>
+                        <div class="home-product-bottom"><span class="home-product-price">৳1,600</span><button class="home-product-view" onclick="openProduct('maroon-crochet-shoulder-bag')">View Product</button></div>
                     </div>
                 </article>
             </div>
@@ -225,7 +312,7 @@
                 <div class="form-group"><label for="contact-name">Your Name</label><input id="contact-name" type="text" placeholder="Enter your name"></div>
                 <div class="form-group"><label for="contact-email">Email</label><input id="contact-email" type="email" placeholder="Enter your email"></div>
                 <div class="form-group"><label for="contact-message">Message</label><textarea id="contact-message" placeholder="Write your message"></textarea></div>
-                <button class="btn" onclick="submitContactMessage()">Send via WhatsApp</button>
+                <button class="btn" onclick="submitContactMessage()">Send Message</button>
             </div>
         </div>
     </div>
@@ -357,6 +444,71 @@
                     <button class="btn" onclick="addToCart('crochet-shoulder-bag', 'qty-cnew3')">Add to Cart</button>
                 </div>
 
+
+                <div class="product-card card-crochet-10" data-product-id="crochet-glasses-pouch">
+                    <img loading="lazy" src="images/glasses_pouch.jpg" alt="Crochet Glasses Pouch" onclick="openProduct('crochet-glasses-pouch')">
+                    <h4>Crochet Glasses Pouch</h4>
+                    <p>Handmade crochet pouch to keep your glasses protected and easy to carry.</p>
+                    <div class="price">350.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-c10', -1)">-</button>
+                        <span id="qty-c10" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-c10', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('crochet-glasses-pouch', 'qty-c10')">Add to Cart</button>
+                </div>
+
+                <div class="product-card card-crochet-11" data-product-id="3d-crochet-cushion">
+                    <img loading="lazy" src="images/3d_craft_cushion.png" alt="3D Crochet Cushion Design" onclick="openProduct('3d-crochet-cushion')">
+                    <h4>3D Crochet Cushion Design</h4>
+                    <p>Decorative 3D crochet cushion design for a cozy handmade home.</p>
+                    <div class="price">1200.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-c11', -1)">-</button>
+                        <span id="qty-c11" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-c11', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('3d-crochet-cushion', 'qty-c11')">Add to Cart</button>
+                </div>
+
+                <div class="product-card card-crochet-12" data-product-id="crochet-wall-art">
+                    <img loading="lazy" src="images/wall_3d_art.png" alt="Crochet Wall Art" onclick="openProduct('crochet-wall-art')">
+                    <h4>Crochet Wall Art</h4>
+                    <p>Colorful crochet-inspired wall decor to brighten your living space.</p>
+                    <div class="price">950.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-c12', -1)">-</button>
+                        <span id="qty-c12" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-c12', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('crochet-wall-art', 'qty-c12')">Add to Cart</button>
+                </div>
+
+                <div class="product-card card-crochet-13" data-product-id="crochet-bag-base">
+                    <img loading="lazy" src="images/round_plastic_ba.webp" alt="Crochet Bag Base Sheet" onclick="openProduct('crochet-bag-base')">
+                    <h4>Crochet Bag Base Sheet</h4>
+                    <p>Lightweight plastic canvas base to help shape structured crochet bags.</p>
+                    <div class="price">150.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-c13', -1)">-</button>
+                        <span id="qty-c13" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-c13', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('crochet-bag-base', 'qty-c13')">Add to Cart</button>
+                </div>
+
+                <div class="product-card card-crochet-14" data-product-id="maroon-crochet-shoulder-bag">
+                    <img loading="lazy" src="images/Crochet_bag/shoulder_bag_3.jpeg" alt="Maroon Crochet Shoulder Bag" onclick="openProduct('maroon-crochet-shoulder-bag')">
+                    <h4>Maroon Crochet Shoulder Bag</h4>
+                    <p>Handmade maroon shoulder bag with a classic textured crochet finish.</p>
+                    <div class="price">1600.00 BDT</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="adjustQty('qty-c14', -1)">-</button>
+                        <span id="qty-c14" class="qty-val">1</span>
+                        <button class="qty-btn" onclick="adjustQty('qty-c14', 1)">+</button>
+                    </div>
+                    <button class="btn" onclick="addToCart('maroon-crochet-shoulder-bag', 'qty-c14')">Add to Cart</button>
+                </div>
             </div>
         </div>
     </div>
@@ -501,50 +653,6 @@
         </div>
     </div>
 
-    <!-- LOGIN / SIGN UP MODAL -->
-    <div class="modal" id="account-modal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeAccountModal()">X</button>
-            <h2 id="account-modal-title">Welcome Back</h2>
-            <div class="auth-tabs">
-                <button id="login-tab" class="auth-tab active" onclick="switchAuth('login')">Login</button>
-                <button id="signup-tab" class="auth-tab" onclick="switchAuth('signup')">Sign Up</button>
-            </div>
-
-            <div id="login-form">
-                <div class="form-group"><label for="login-email">Email</label><input id="login-email" type="email" placeholder="Enter your email"></div>
-                <div class="form-group"><label for="login-password">Password</label><input id="login-password" type="password" placeholder="Enter your password"></div>
-                <button class="btn" style="width:100%;" onclick="loginUser()">Login</button>
-            </div>
-
-            <div id="signup-form" style="display:none;">
-                <div class="form-group"><label for="signup-name">Full Name</label><input id="signup-name" type="text" placeholder="Enter your name"></div>
-                <div class="form-group"><label for="signup-email">Email</label><input id="signup-email" type="email" placeholder="Enter your email"></div>
-                <div class="form-group"><label for="signup-password">Password</label><input id="signup-password" type="password" placeholder="Create a password"></div>
-                <button class="btn" style="width:100%;" onclick="signupUser()">Create Account</button>
-            </div>
-
-            <p class="auth-note">This is a front-end demo account system. Account data is stored in this browser only. A real online account system needs a secure backend/database.</p>
-        </div>
-    </div>
-
-    <!-- CHECKOUT GATE: login or guest -->
-    <div class="modal" id="checkout-gate-modal">
-        <div class="modal-content checkout-gate-card">
-            <button class="close-btn" onclick="closeCheckoutGate()">X</button>
-            <h2>How would you like to check out?</h2>
-            <p class="checkout-gate-sub">Log in to fill in your details faster, or continue without an account.</p>
-            <button class="btn gate-option" onclick="checkoutWithLogin()">
-                <span class="gate-icon">👤</span>
-                <span class="gate-text"><strong>Log in</strong><small>Use your CROCHETIA account</small></span>
-            </button>
-            <button class="btn gate-option gate-guest" onclick="checkoutAsGuest()">
-                <span class="gate-icon">🛍️</span>
-                <span class="gate-text"><strong>Continue as guest</strong><small>No account needed</small></span>
-            </button>
-        </div>
-    </div>
-
     <!-- PRE-ORDER MODAL -->
     <div class="modal" id="preorder-modal">
         <div class="modal-content large-modal">
@@ -577,7 +685,7 @@
                 <textarea id="preorder-note" placeholder="Any special request?"></textarea>
             </div>
 
-            <button class="btn preorder-btn" style="width:100%;" onclick="submitPreorder()">Send Pre-Order via WhatsApp</button>
+            <button class="btn preorder-btn" style="width:100%;" onclick="submitPreorder()">Send Pre-Order</button>
         </div>
     </div>
 
@@ -598,7 +706,6 @@
             <button class="close-btn" onclick="closeCheckout()">×</button>
             <span class="mini-label">CHECKOUT</span>
             <h2>Complete Your Order</h2>
-            <p id="checkout-customer-type" class="checkout-customer-type"></p>
             <div class="checkout-layout">
                 <div>
                     <div class="form-group"><label for="checkout-name">Full Name</label><input id="checkout-name" type="text" placeholder="Your full name"></div>
@@ -655,8 +762,8 @@
                     <div id="checkout-items"></div>
                     
                     <div class="checkout-total"><span>Total</span><strong><span id="checkout-total">0.00</span> BDT</strong></div>
-                    <button class="btn checkout-btn" style="width:100%;" onclick="placeDemoOrder()">Place Order via WhatsApp</button>
-                    <p class="auth-note">Placing your order opens WhatsApp with your order details. Send that message to confirm your order.</p>
+                    <button class="btn checkout-btn" style="width:100%;" onclick="placeDemoOrder()" id="place-order-btn">Place Order</button>
+                    <p class="auth-note">We'll call or message you on the phone number above to confirm your order before delivery.</p>
                 </div>
             </div>
         </div>
@@ -716,13 +823,13 @@
    CROCHETIA — store script
    - `products` is the single source of truth for name, price, image,
      description and category. Cards on the page are synced from it.
-   - Orders, pre-orders and messages are sent to the shop's WhatsApp.
+   - Orders, pre-orders and messages are saved to the shop's Google Sheet
+     (Apps Script), which also emails the shop.
    ===================================================================== */
 
-const SHOP_WHATSAPP = '+8801817099416';   // country code + number, digits only
+const SHOP_PHONE = '01817099416';   // shown to customers if an order can't be sent
 
-/* Google Sheet order log (Apps Script web app).
-   Paste your /exec URL below. Leave '' to turn logging off. */
+/* Google Sheet order system (Apps Script web app). Orders depend on this URL. */
 const ORDER_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwXmJBXZZwXhl9a6ML-QnpTsEHcgVgWqdCNsjn6dPSqbK_nh6uBLdp5Vflzu1Je8nxz/exec';
 const SHEET_TOKEN = 'crochetia-2026';
 
@@ -851,6 +958,41 @@ const products = {
         gallery: ['images/bird_image/swing.webp'],
         description: 'Natural wood and wicker hanging swing toy with a bell.',
         features: ['Hanging swing design', 'Natural wood and wicker', 'Includes bell toy']
+    },
+    'crochet-glasses-pouch': {
+        name: 'Crochet Glasses Pouch', price: 350, category: 'crochet',
+        image: 'images/glasses_pouch.jpg',
+        gallery: ['images/glasses_pouch.jpg'],
+        description: 'Handmade crochet pouch to keep your glasses protected and easy to carry.',
+        features: ["Handcrafted crochet design", "Protective pouch for glasses", "Lightweight everyday accessory"]
+    },
+    '3d-crochet-cushion': {
+        name: '3D Crochet Cushion Design', price: 1200, category: 'crochet',
+        image: 'images/3d_craft_cushion.png',
+        gallery: ['images/3d_craft_cushion.png'],
+        description: 'Decorative 3D crochet cushion design for a cozy handmade home.',
+        features: ["Textured 3D crochet style", "Decorative home accessory", "Handmade-inspired design"]
+    },
+    'crochet-wall-art': {
+        name: 'Crochet Wall Art', price: 950, category: 'crochet',
+        image: 'images/wall_3d_art.png',
+        gallery: ['images/wall_3d_art.png'],
+        description: 'Colorful crochet-inspired wall decor to brighten your living space.',
+        features: ["Decorative wall art", "Colorful handmade look", "Home styling accent"]
+    },
+    'crochet-bag-base': {
+        name: 'Crochet Bag Base Sheet', price: 150, category: 'crochet',
+        image: 'images/round_plastic_ba.webp',
+        gallery: ['images/round_plastic_ba.webp'],
+        description: 'Lightweight plastic canvas base to help shape structured crochet bags.',
+        features: ["Lightweight plastic canvas", "Helps support bag shape", "Useful for crochet projects"]
+    },
+    'maroon-crochet-shoulder-bag': {
+        name: 'Maroon Crochet Shoulder Bag', price: 1600, category: 'crochet',
+        image: 'images/Crochet_bag/shoulder_bag_3.jpeg',
+        gallery: ['images/Crochet_bag/shoulder_bag_3.jpeg'],
+        description: 'Handmade maroon shoulder bag with a classic textured crochet finish.',
+        features: ["Handcrafted shoulder bag", "Reusable everyday accessory", "Rich maroon color"]
     }
 };
 
@@ -876,30 +1018,36 @@ function toast(message) {
     stack.appendChild(item);
     setTimeout(() => item.remove(), 2600);
 }
-/* Sends a copy to the Google Sheet in the background.
-   It never blocks or breaks WhatsApp ordering if the sheet is unreachable. */
-function logToSheet(type, data) {
-    if (!ORDER_SHEET_URL) return;
+/* Sends data to the Google Sheet and waits for the reply.
+   Resolves true only when the script confirms it was saved. */
+async function sendToSheet(type, data) {
+    if (!ORDER_SHEET_URL) return false;
     try {
-        fetch(ORDER_SHEET_URL, {
+        const res = await fetch(ORDER_SHEET_URL, {
             method: 'POST',
-            mode: 'no-cors',
-            keepalive: true,
             headers: {'Content-Type': 'text/plain;charset=utf-8'},
             body: JSON.stringify({type, token: SHEET_TOKEN, ...data})
-        }).catch(() => {});
-    } catch (e) { /* ignore */ }
+        });
+        const reply = await res.json();
+        if (!reply.ok) console.error('Sheet error:', reply.error);
+        return !!reply.ok;
+    } catch (e) {
+        console.error('Could not reach the order sheet', e);
+        return false;
+    }
 }
-function openWhatsApp(text) {
-    window.open(`https://wa.me/${SHOP_WHATSAPP}?text=${encodeURIComponent(text)}`, '_blank');
+/* Disables a button and shows a "sending" label while a request runs. */
+async function withBusyButton(btn, label, task) {
+    const old = btn ? btn.textContent : '';
+    if (btn) { btn.disabled = true; btn.textContent = label; btn.style.opacity = .7; }
+    try { return await task(); }
+    finally { if (btn) { btn.disabled = false; btn.textContent = old; btn.style.opacity = 1; } }
 }
 
 /* ---------- state ---------- */
 let cart = readJSON('featherThreadCart', []).filter(i => i && products[i.id]);
 let wishlist = readJSON('featherThreadWishlist', []).filter(id => products[id]);
 let currentProductId = null;
-let checkoutAfterLogin = false;   // true while the login modal was opened from checkout
-let checkoutAsGuestMode = false;  // true once the customer picks 'Continue as guest'
 let pendingOrderNo = null;        // created when checkout opens, so it can be used as the payment reference
 
 /* ---------- navigation ---------- */
@@ -907,97 +1055,39 @@ function showPage(pageId) {
     document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
     const page = $(pageId);
     if (page) page.classList.add('active');
-    closeAccountModal();
     window.scrollTo(0, 0);
 }
 
 /* ---------- modals ---------- */
 function setModal(id, open) { const m = $(id); if (m) m.style.display = open ? 'flex' : 'none'; }
 function closeAllModals() {
-    ['account-modal', 'checkout-gate-modal', 'preorder-modal', 'wishlist-modal', 'checkout-modal', 'cart-modal', 'order-success-modal']
+    ['preorder-modal', 'wishlist-modal', 'checkout-modal', 'cart-modal', 'order-success-modal']
         .forEach(id => setModal(id, false));
     closeLightbox();
 }
 document.querySelectorAll('.modal').forEach(m => m.addEventListener('click', e => { if (e.target === m) setModal(m.id, false); }));
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAllModals(); });
 
-/* ---------- account (browser-only demo) ---------- */
-function openAccountModal() {
-    const user = readJSON('featherThreadUser', null);
-    if (user) {
-        if (confirm(`You are logged in as ${user.name || user.email}. Click OK to log out.`)) logoutUser();
-        return;
-    }
-    switchAuth('login');
-    setModal('account-modal', true);
-}
-function closeAccountModal() { setModal('account-modal', false); checkoutAfterLogin = false; }
-function switchAuth(type) {
-    const login = type === 'login';
-    $('login-form').style.display = login ? 'block' : 'none';
-    $('signup-form').style.display = login ? 'none' : 'block';
-    $('login-tab').classList.toggle('active', login);
-    $('signup-tab').classList.toggle('active', !login);
-    $('account-modal-title').textContent = login ? 'Welcome Back' : 'Create Your Account';
-}
-function signupUser() {
-    const name = $('signup-name').value.trim();
-    const email = $('signup-email').value.trim();
-    const password = $('signup-password').value;
-    if (!name || !email || !password) return toast('Please fill in all sign-up fields.');
-    if (password.length < 6) return toast('Password must be at least 6 characters.');
-    writeJSON('featherThreadAccount', {name, email, password});
-    writeJSON('featherThreadUser', {name, email});
-    const resume = checkoutAfterLogin;
-    updateAccountUI();
-    closeAccountModal();
-    toast(`Welcome to CROCHETIA, ${name}!`);
-    if (resume) showCheckoutForm();
-}
-function loginUser() {
-    const email = $('login-email').value.trim();
-    const password = $('login-password').value;
-    const account = readJSON('featherThreadAccount', null);
-    if (!email || !password) return toast('Please enter your email and password.');
-    if (!account) { toast('No account found in this browser. Please sign up first.'); switchAuth('signup'); return; }
-    if (account.email !== email || account.password !== password) return toast('Incorrect email or password.');
-    writeJSON('featherThreadUser', {name: account.name, email: account.email});
-    const resume = checkoutAfterLogin;
-    updateAccountUI();
-    closeAccountModal();
-    toast(`Welcome back, ${account.name}!`);
-    if (resume) showCheckoutForm();
-}
-function logoutUser() {
-    localStorage.removeItem('featherThreadUser');
-    updateAccountUI();
-    toast('You have been logged out.');
-}
-function updateAccountUI() {
-    const user = readJSON('featherThreadUser', null);
-    const first = user ? (user.name || 'Account').split(' ')[0] : '';
-    const status = $('account-status');
-    const label = $('account-short-label');
-    if (status) status.textContent = user ? `Hi, ${first}` : '';
-    if (label) label.textContent = user ? first : 'Login';
-}
-
 /* ---------- contact & newsletter ---------- */
-function submitContactMessage() {
+async function submitContactMessage() {
     const name = $('contact-name').value.trim();
     const email = $('contact-email').value.trim();
     const message = $('contact-message').value.trim();
     if (!name || !message) return toast('Please enter your name and message.');
-    logToSheet('message', {name, email, message});
-    openWhatsApp(`Hi CROCHETIA, this is ${name}${email ? ` (${email})` : ''}.\n\n${message}`);
+    const btn = document.querySelector('[onclick="submitContactMessage()"]');
+    const ok = await withBusyButton(btn, 'Sending…', () => sendToSheet('message', {name, email, message}));
+    if (!ok) return toast(`Message not sent. Please try again or call us at ${SHOP_PHONE}.`);
     $('contact-name').value = ''; $('contact-email').value = ''; $('contact-message').value = '';
+    toast('Thank you! Your message has been sent.');
 }
-function subscribeNewsletter() {
+async function subscribeNewsletter() {
     const email = $('newsletter-email').value.trim();
     if (!email || !email.includes('@')) return toast('Enter a valid email address.');
-    logToSheet('newsletter', {email});
-    openWhatsApp(`Hi CROCHETIA, please add ${email} to your product update list.`);
+    const btn = document.querySelector('[onclick="subscribeNewsletter()"]');
+    const ok = await withBusyButton(btn, '…', () => sendToSheet('newsletter', {email}));
+    if (!ok) return toast('Could not subscribe right now. Please try again.');
     $('newsletter-email').value = '';
+    toast('Subscribed! We\'ll send you product updates.');
 }
 
 /* ---------- catalog cards ---------- */
@@ -1165,7 +1255,7 @@ function openPreorder() {
     setModal('preorder-modal', true);
 }
 function closePreorder() { setModal('preorder-modal', false); }
-function submitPreorder() {
+async function submitPreorder() {
     const p = products[currentProductId];
     const name = $('preorder-name').value.trim();
     const phone = $('preorder-phone').value.trim();
@@ -1176,16 +1266,13 @@ function submitPreorder() {
         return toast('Please enter your name, phone number, quantity and delivery address.');
     }
     const ref = 'PO-' + Date.now().toString().slice(-8);
-    logToSheet('preorder', {ref, name, phone, address, note, product: p.name, qty, price: p.price});
-    openWhatsApp(
-        `PRE-ORDER ${ref}\n` +
-        `Product: ${p.name}\n` +
-        `Quantity: ${qty} × ${p.price} BDT = ${(qty * p.price).toFixed(0)} BDT\n\n` +
-        `Name: ${name}\nPhone: ${phone}\nAddress: ${address}` +
-        (note ? `\nNote: ${note}` : '')
-    );
+    const btn = document.querySelector('[onclick="submitPreorder()"]');
+    const ok = await withBusyButton(btn, 'Sending…', () =>
+        sendToSheet('preorder', {ref, name, phone, address, note, product: p.name, qty, price: p.price}));
+    if (!ok) return toast(`Pre-order not sent. Please try again or call us at ${SHOP_PHONE}.`);
+    ['preorder-name', 'preorder-phone', 'preorder-address', 'preorder-note'].forEach(id => $(id).value = '');
     closePreorder();
-    toast('WhatsApp opened — send the message to confirm your pre-order.');
+    toast(`Pre-order ${ref} received! We'll contact you on ${phone}.`);
 }
 
 /* ---------- cart ---------- */
@@ -1249,38 +1336,15 @@ function quickBuy(id, qty = 1) {
 }
 
 /* ---------- checkout ---------- */
-/* Step 1: check login. Logged-in customers go straight to the form;
-   everyone else chooses Log in or Continue as guest. */
 function openCheckout() {
     if (!cart.length) return toast('Your cart is empty.');
     setModal('cart-modal', false);
-    if (readJSON('featherThreadUser', null)) return showCheckoutForm();
-    setModal('checkout-gate-modal', true);
-}
-function closeCheckoutGate() { setModal('checkout-gate-modal', false); }
-function checkoutWithLogin() {
-    closeCheckoutGate();
-    switchAuth('login');
-    setModal('account-modal', true);
-    checkoutAfterLogin = true;
-}
-function checkoutAsGuest() {
-    closeCheckoutGate();
-    checkoutAsGuestMode = true;
     showCheckoutForm();
 }
 
-/* Step 2: the checkout form itself. */
 function showCheckoutForm() {
     if (!cart.length) return toast('Your cart is empty.');
     if (!pendingOrderNo) pendingOrderNo = 'CR-' + Date.now().toString().slice(-8);
-    const user = readJSON('featherThreadUser', null);
-    if (user) checkoutAsGuestMode = false;
-    const who = $('checkout-customer-type');
-    if (who) who.innerHTML = user
-        ? `Checking out as <strong>${esc(user.name || user.email)}</strong>`
-        : `Checking out as <strong>guest</strong> · <a href="#" onclick="event.preventDefault(); closeCheckout(); checkoutWithLogin();">Log in instead</a>`;
-    if (user && !$('checkout-name').value) $('checkout-name').value = user.name || '';
     $('checkout-items').innerHTML = cart.map(i => {
         const p = products[i.id];
         return `<div class="checkout-mini-item"><span>${esc(p.name)} × ${i.quantity}</span><strong>${money(p.price * i.quantity)}</strong></div>`;
@@ -1334,7 +1398,7 @@ function resetPaymentFields() {
     updatePaymentSection();
 }
 
-function placeDemoOrder() {
+async function placeDemoOrder() {
     const name = $('checkout-name').value.trim();
     const phone = $('checkout-phone').value.trim();
     const address = $('checkout-address').value.trim();
@@ -1347,38 +1411,30 @@ function placeDemoOrder() {
         if (!pay) return;
     }
     const payment = pay ? pay.wallet : 'Cash on Delivery';
-    const paymentLine = pay
-        ? `${pay.wallet} (paid ${cartTotal().toFixed(0)} BDT)\nTrxID: ${pay.trxId}\nPaid from: ${pay.sender}`
-        : 'Cash on Delivery';
-
     const orderNo = pendingOrderNo || ('CR-' + Date.now().toString().slice(-8));
-    const lines = cart.map(i => {
-        const p = products[i.id];
-        return `• ${p.name} × ${i.quantity} = ${(p.price * i.quantity).toFixed(0)} BDT`;
-    }).join('\n');
-    const account = readJSON('featherThreadUser', null);
-    const customer = account ? `Account (${account.email})` : 'Guest';
-    logToSheet('order', {
-        orderNo, name, phone, address, payment, customer,
+    const total = cartTotal();
+
+    const ok = await withBusyButton($('place-order-btn'), 'Placing order…', () => sendToSheet('order', {
+        orderNo, name, phone, address, payment, note,
         trxId: pay ? pay.trxId : '',
         senderNo: pay ? pay.sender : '',
-        note: (note ? note + ' | ' : '') + 'Customer: ' + customer,
         items: cart.map(i => ({name: products[i.id].name, qty: i.quantity, price: products[i.id].price}))
-    });
-    openWhatsApp(
-        `NEW ORDER ${orderNo}\n\n${lines}\n\nTotal: ${cartTotal().toFixed(0)} BDT\n\n` +
-        `Name: ${name}\nPhone: ${phone}\nAddress: ${address}\nPayment: ${paymentLine}\nCustomer: ${customer}` +
-        (note ? `\nNote: ${note}` : '')
-    );
+    }));
+    if (!ok) {
+        return toast(`Your order could not be sent. Please try again, or call us at ${SHOP_PHONE} with reference ${orderNo}.`);
+    }
 
     cart = []; saveCart(); updateCartUI();
     pendingOrderNo = null;
     resetPaymentFields();
     closeCheckout();
     $('order-success-message').innerHTML =
-        `Thank you, <strong>${esc(name)}</strong>!<br>Your order reference is <strong>${orderNo}</strong>.<br>` +
-        (pay ? `<small>We'll confirm your order once your ${esc(pay.wallet)} payment (TrxID ${esc(pay.trxId)}) is verified.</small><br>` : '') +
-        `<small>WhatsApp has opened with your order. Please press send so we receive it.</small>`;
+        `Thank you, <strong>${esc(name)}</strong>!<br>Your order <strong>${orderNo}</strong> has been received ` +
+        `(${total.toFixed(0)} BDT).<br>` +
+        (pay
+            ? `<small>We'll confirm your order once your ${esc(pay.wallet)} payment (TrxID ${esc(pay.trxId)}) is verified.</small><br>`
+            : `<small>Please keep ${total.toFixed(0)} BDT ready for cash on delivery.</small><br>`) +
+        `<small>We'll contact you on <strong>${esc(phone)}</strong> to confirm delivery.</small>`;
     setModal('order-success-modal', true);
 }
 function closeOrderSuccess() { setModal('order-success-modal', false); showPage('home-page'); }
@@ -1491,7 +1547,6 @@ ensureCatalogToolbar('birds-page');
 ensureDetailBuyNow();
 updateWishlistButtons();
 updateCartUI();
-updateAccountUI();
 </script>
 
 
