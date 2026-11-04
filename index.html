@@ -239,17 +239,6 @@
                     </div>
                 </article>
                 <article class="home-product-card">
-                    <div class="home-product-image-wrap" onclick="openProduct('crochet-wall-art')">
-                        <img loading="lazy" src="images/wall_3d_art.png" alt="Crochet Wall Art">
-                    </div>
-                    <div class="home-product-info">
-                        <span class="home-product-category">CROCHET</span>
-                        <h3>Crochet Wall Art</h3>
-                        <p>Colorful crochet-inspired wall decor to brighten your living space.</p>
-                        <div class="home-product-bottom"><span class="home-product-price">৳950</span><button class="home-product-view" onclick="openProduct('crochet-wall-art')">View Product</button></div>
-                    </div>
-                </article>
-                <article class="home-product-card">
                     <div class="home-product-image-wrap" onclick="openProduct('crochet-bag-base')">
                         <img loading="lazy" src="images/round_plastic_ba.webp" alt="Crochet Bag Base Sheet">
                     </div>
@@ -469,19 +458,6 @@
                         <button class="qty-btn" onclick="adjustQty('qty-c11', 1)">+</button>
                     </div>
                     <button class="btn" onclick="addToCart('Yellow-Shoulder-bag', 'qty-c11')">Add to Cart</button>
-                </div>
-
-                <div class="product-card card-crochet-12" data-product-id="crochet-red-wine-purse">
-                    <img loading="lazy" src="images/red_wine_purse.jpeg" alt="Crochet Wall Art" onclick="openProduct('crochet-red-wine-purse')">
-                    <h4>Crochet Wall Art</h4>
-                    <p>Colorful crochet-inspired wall decor to brighten your living space.</p>
-                    <div class="price">950.00 BDT</div>
-                    <div class="quantity-control">
-                        <button class="qty-btn" onclick="adjustQty('qty-c12', -1)">-</button>
-                        <span id="qty-c12" class="qty-val">1</span>
-                        <button class="qty-btn" onclick="adjustQty('qty-c12', 1)">+</button>
-                    </div>
-                    <button class="btn" onclick="addToCart('crochet-red-wine-purse', 'qty-c12')">Add to Cart</button>
                 </div>
 
                 <div class="product-card card-crochet-13" data-product-id="crochet-bag-base">
@@ -972,13 +948,6 @@ const products = {
         gallery: ['images/3d_craft_cushion.png'],
         description: 'Decorative 3D crochet cushion design for a cozy handmade home.',
         features: ["Textured 3D crochet style", "Decorative home accessory", "Handmade-inspired design"]
-    },
-    'crochet-wall-art': {
-        name: 'Crochet Wall Art', price: 950, category: 'crochet',
-        image: 'images/wall_3d_art.png',
-        gallery: ['images/wall_3d_art.png'],
-        description: 'Colorful crochet-inspired wall decor to brighten your living space.',
-        features: ["Decorative wall art", "Colorful handmade look", "Home styling accent"]
     },
     'crochet-bag-base': {
         name: 'Crochet Bag Base Sheet', price: 150, category: 'crochet',
