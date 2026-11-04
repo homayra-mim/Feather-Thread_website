@@ -3,12 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CROCHETIA</title>
+    <title>CROCHETIA | Handmade Crochet Bags, Cushions &amp; Bird Care Accessories</title>
+    <meta name="description" content="Shop handmade crochet bags, purses, cushions and pouches, plus practical bird care accessories. Cash on delivery and bKash/Nagad payment available.">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="CROCHETIA">
+    <meta property="og:title" content="CROCHETIA | Handmade Crochet &amp; Bird Care">
+    <meta property="og:description" content="Handmade crochet bags, purses, cushions and pouches, plus bird care accessories.">
+    <meta property="og:image" content="images/yellow_bag.jpeg">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
     <link rel="icon" type="image/png" sizes="192x192" href="images/favicon.png">
     <link rel="icon" href="images/favicon.ico" sizes="any">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     <link rel="stylesheet" href="style.css">
+    <style>
+/* ---------- trust strip ---------- */
+.trust-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;max-width:1200px;margin:32px auto;padding:20px 16px;border-top:1px solid #eee;border-bottom:1px solid #eee}
+.trust-strip div{display:flex;flex-direction:column;gap:4px;text-align:center}
+.trust-strip strong{font-size:1rem}
+.trust-strip span{font-size:.85rem;opacity:.75}
+    </style>
 </head>
 <body>
 <header class="market-header">
@@ -91,7 +106,7 @@
                 <div class="slideshow-card" data-slideshow>
                     <img src="images/bird_image/bathing-basin.png" class="active-slide" alt="Bird Fountain">
                     <img src="images/cat_bow.jpeg" alt="Crochet Cat Bow" onclick="openProduct('cat-bow')">
-                    <img src="images/yellow_bag.jpeg" alt="Crochet Yellow Shoulder bag">
+                    <img src="images/yellow_bag.jpeg" alt="Crochet yellow shoulder bag">
                     <div class="overlay-label">Popular</div>
                 </div>
 
@@ -107,11 +122,10 @@
 
 
         <!-- CLEAR PRODUCT PREVIEW SECTION -->
-        <section class="home-products-section" aria-labelledby="popular-products-title">
+        <section class="home-products-section" aria-label="Featured crochet products">
             <div class="home-products-head">
                 <div>
-                    <h2 id="popular-products-title">Explore 14 Crochet Products</h2>
-                    <p>Browse our full handmade crochet collection.</p>
+                    <p>Browse our handmade crochet collection.</p>
                 </div>
                 <button onclick="showPage('crochet-page')">View Crochet Collection</button>
             </div>
@@ -125,7 +139,7 @@
                         <span class="home-product-category">CROCHET</span>
                         <h3>Beauty Pouch</h3>
                         <p>Soft woven zipper pouch for makeup and everyday essentials.</p>
-                        <div class="home-product-bottom"><span class="home-product-price">৳1,200</span><button class="home-product-view" onclick="openProduct('beauty-pouch')">View Product</button></div>
+                        <div class="home-product-bottom"><span class="home-product-price">1,200 BDT</span><button class="home-product-view" onclick="openProduct('beauty-pouch')">View Product</button></div>
                     </div>
                 </article>
                 <article class="home-product-card">
@@ -136,7 +150,7 @@
                         <span class="home-product-category">CROCHET</span>
                         <h3>Handcrafted Crochet Purse</h3>
                         <p>Stylish shoulder bag made with durable cotton yarn.</p>
-                        <div class="home-product-bottom"><span class="home-product-price">৳1,000</span><button class="home-product-view" onclick="openProduct('crochet-purse')">View Product</button></div>
+                        <div class="home-product-bottom"><span class="home-product-price">1,000 BDT</span><button class="home-product-view" onclick="openProduct('crochet-purse')">View Product</button></div>
                     </div>
                 </article>
                 <article class="home-product-card">
@@ -147,7 +161,7 @@
                         <span class="home-product-category">CROCHET</span>
                         <h3>Crochet Cat Bow Collar</h3>
                         <p>Cute handcrafted bow accessory for a neat pet look.</p>
-                        <div class="home-product-bottom"><span class="home-product-price">৳200</span><button class="home-product-view" onclick="openProduct('cat-bow')">View Product</button></div>
+                        <div class="home-product-bottom"><span class="home-product-price">200 BDT</span><button class="home-product-view" onclick="openProduct('cat-bow')">View Product</button></div>
                     </div>
                 </article>
                 <article class="home-product-card">
@@ -158,7 +172,7 @@
                         <span class="home-product-category">CROCHET</span>
                         <h3>Cozy Crochet Hat</h3>
                         <p>Warm winter beanie woven with soft yarn.</p>
-                        <div class="home-product-bottom"><span class="home-product-price">৳1,000</span><button class="home-product-view" onclick="openProduct('crochet-hat')">View Product</button></div>
+                        <div class="home-product-bottom"><span class="home-product-price">1,000 BDT</span><button class="home-product-view" onclick="openProduct('crochet-hat')">View Product</button></div>
                     </div>
                 </article>
                 <article class="home-product-card">
@@ -169,7 +183,7 @@
                         <span class="home-product-category">CROCHET</span>
                         <h3>Cozy Crochet Square Cushion</h3>
                         <p>Soft handmade cushion with a cozy textured finish.</p>
-                        <div class="home-product-bottom"><span class="home-product-price">৳1,000</span><button class="home-product-view" onclick="openProduct('square-cushion')">View Product</button></div>
+                        <div class="home-product-bottom"><span class="home-product-price">1,000 BDT</span><button class="home-product-view" onclick="openProduct('square-cushion')">View Product</button></div>
                     </div>
                 </article>
                 <article class="home-product-card">
@@ -180,7 +194,7 @@
                         <span class="home-product-category">CROCHET</span>
                         <h3>Crochet Triangle Cushion</h3>
                         <p>Decorative triangle cushion with a handcrafted look.</p>
-                        <div class="home-product-bottom"><span class="home-product-price">৳1,000</span><button class="home-product-view" onclick="openProduct('triangle-cushion')">View Product</button></div>
+                        <div class="home-product-bottom"><span class="home-product-price">1,000 BDT</span><button class="home-product-view" onclick="openProduct('triangle-cushion')">View Product</button></div>
                     </div>
                 </article>
                 <article class="home-product-card">
@@ -191,7 +205,7 @@
                         <span class="home-product-category">CROCHET</span>
                         <h3>Crochet Plastic Sheet</h3>
                         <p>Useful plastic canvas sheet for structured crochet projects.</p>
-                        <div class="home-product-bottom"><span class="home-product-price">৳200</span><button class="home-product-view" onclick="openProduct('plastic-sheet')">View Product</button></div>
+                        <div class="home-product-bottom"><span class="home-product-price">200 BDT</span><button class="home-product-view" onclick="openProduct('plastic-sheet')">View Product</button></div>
                     </div>
                 </article>
  
@@ -203,7 +217,7 @@
                         <span class="home-product-category">CROCHET</span>
                         <h3>Crochet Shoulder Bag</h3>
                         <p>Roomy handmade shoulder bag inspired by classic granny squares.</p>
-                        <div class="home-product-bottom"><span class="home-product-price">৳1,500</span><button class="home-product-view" onclick="openProduct('crochet-shoulder-bag')">View Product</button></div>
+                        <div class="home-product-bottom"><span class="home-product-price">1,500 BDT</span><button class="home-product-view" onclick="openProduct('crochet-shoulder-bag')">View Product</button></div>
                     </div>
                 </article>
                 <article class="home-product-card">
@@ -214,18 +228,18 @@
                         <span class="home-product-category">CROCHET</span>
                         <h3>Crochet Glasses Pouch</h3>
                         <p>Handmade crochet pouch to keep your glasses protected and easy to carry.</p>
-                        <div class="home-product-bottom"><span class="home-product-price">৳550</span><button class="home-product-view" onclick="openProduct('crochet-glasses-pouch')">View Product</button></div>
+                        <div class="home-product-bottom"><span class="home-product-price">550 BDT</span><button class="home-product-view" onclick="openProduct('crochet-glasses-pouch')">View Product</button></div>
                     </div>
                 </article>
                 <article class="home-product-card">
-                    <div class="home-product-image-wrap" onclick="openProduct('Yellow Shoulder Bag')">
+                    <div class="home-product-image-wrap" onclick="openProduct('yellow-shoulder-bag')">
                         <img loading="lazy" src="images/yellow_bag.jpeg" alt="Yellow Shoulder Bag Design">
                     </div>
                     <div class="home-product-info">
                         <span class="home-product-category">CROCHET</span>
-                        <h3>Yellow Shoulder Bag Design</h3>
-                        <p>Decorative Yellow Shoulder Bag design for a cozy handmade home.</p>
-                        <div class="home-product-bottom"><span class="home-product-price">৳1,250</span><button class="home-product-view" onclick="openProduct('3d-crochet-cushion')">View Product</button></div>
+                        <h3>Yellow Crochet Shoulder Bag</h3>
+                        <p>Handmade yellow crochet shoulder bag, roomy and stylish for everyday use.</p>
+                        <div class="home-product-bottom"><span class="home-product-price">1,200 BDT</span><button class="home-product-view" onclick="openProduct('yellow-shoulder-bag')">View Product</button></div>
                     </div>
                 </article>
                 <article class="home-product-card">
@@ -236,7 +250,7 @@
                         <span class="home-product-category">CROCHET</span>
                         <h3>Crochet Bag Base Sheet</h3>
                         <p>Lightweight plastic canvas base to help shape structured crochet bags.</p>
-                        <div class="home-product-bottom"><span class="home-product-price">৳150</span><button class="home-product-view" onclick="openProduct('crochet-bag-base')">View Product</button></div>
+                        <div class="home-product-bottom"><span class="home-product-price">150 BDT</span><button class="home-product-view" onclick="openProduct('crochet-bag-base')">View Product</button></div>
                     </div>
                 </article>
                 <article class="home-product-card">
@@ -247,7 +261,7 @@
                         <span class="home-product-category">CROCHET</span>
                         <h3>Maroon Crochet Shoulder Bag</h3>
                         <p>Handmade maroon shoulder bag with a classic textured crochet finish.</p>
-                        <div class="home-product-bottom"><span class="home-product-price">৳1,200</span><button class="home-product-view" onclick="openProduct('red_wine-crochet-purse')">View Product</button></div>
+                        <div class="home-product-bottom"><span class="home-product-price">1,200 BDT</span><button class="home-product-view" onclick="openProduct('red_wine-crochet-purse')">View Product</button></div>
                     </div>
                 </article>
             </div>
@@ -308,7 +322,7 @@
                     <img loading="lazy" src="images/maroon_purse.png" alt="Crochet Beauty Pouch" onclick="openProduct('beauty-pouch')">
                     <h4>Beauty Pouch</h4>
                     <p>Soft woven zipper pouch for makeup and cosmetics.</p>
-                    <div class="price">1200.00 BDT</div>
+                    <div class="price">1,200 BDT</div>
                     <div class="quantity-control">
                         <button class="qty-btn" onclick="adjustQty('qty-c1', -1)">-</button>
                         <span id="qty-c1" class="qty-val">1</span>
@@ -321,7 +335,7 @@
                     <img loading="lazy" src="images/cat_bow.jpeg" alt="Crochet Cat Bow" onclick="openProduct('cat-bow')">
                     <h4>Crochet Cat Bow Collar</h4>
                     <p>Cute handcrafted necktie bow for your cat.</p>
-                    <div class="price">200.00 BDT</div>
+                    <div class="price">200 BDT</div>
                     <div class="quantity-control">
                         <button class="qty-btn" onclick="adjustQty('qty-c2', -1)">-</button>
                         <span id="qty-c2" class="qty-val">1</span>
@@ -334,7 +348,7 @@
                     <img loading="lazy" src="images/purse.jpeg" alt="Crochet Purse" onclick="openProduct('crochet-purse')">
                     <h4>Handcrafted Crochet Purse</h4>
                     <p>Stylish shoulder bag made with durable cotton yarn.</p>
-                    <div class="price">1000.00 BDT</div>
+                    <div class="price">1,000 BDT</div>
                     <div class="quantity-control">
                         <button class="qty-btn" onclick="adjustQty('qty-c3', -1)">-</button>
                         <span id="qty-c3" class="qty-val">1</span>
@@ -347,7 +361,7 @@
                     <img loading="lazy" src="images/hat.jpeg" alt="Crochet Hat" onclick="openProduct('crochet-hat')">
                     <h4>Cozy Crochet Hat</h4>
                     <p>Warm winter beanie woven with super-soft wool.</p>
-                    <div class="price">1000.00 BDT</div>
+                    <div class="price">1,000 BDT</div>
                     <div class="quantity-control">
                         <button class="qty-btn" onclick="adjustQty('qty-c4', -1)">-</button>
                         <span id="qty-c4" class="qty-val">1</span>
@@ -360,7 +374,7 @@
                     <img loading="lazy" src="images/cushion_maroon.png" alt="Crochet Square Cushion" onclick="openProduct('square-cushion')">
                     <h4>Cozy Crochet Square Cushion</h4>
                     <p>Soft handmade cushion with a cozy textured crochet finish.</p>
-                    <div class="price">1000.00 BDT</div>
+                    <div class="price">1,000 BDT</div>
                     <div class="quantity-control">
                         <button class="qty-btn" onclick="adjustQty('qty-c5', -1)">-</button>
                         <span id="qty-c5" class="qty-val">1</span>
@@ -373,7 +387,7 @@
                     <img loading="lazy" src="images/triangle_cushion.jpeg" alt="Crochet Triangle Cushion" onclick="openProduct('triangle-cushion')">
                     <h4>Crochet Triangle Cushion</h4>
                     <p>Decorative triangle cushion with a handcrafted crochet look.</p>
-                    <div class="price">1000.00 BDT</div>
+                    <div class="price">1,000 BDT</div>
                     <div class="quantity-control">
                         <button class="qty-btn" onclick="adjustQty('qty-c6', -1)">-</button>
                         <span id="qty-c6" class="qty-val">1</span>
@@ -387,7 +401,7 @@
                     <img loading="lazy" src="images/plastic_sheet.jpg" alt="Crochet Plastic Sheet" onclick="openProduct('plastic-sheet')">
                     <h4>Crochet Plastic Sheet</h4>
                     <p>Useful plastic canvas sheet for structured crochet craft projects.</p>
-                    <div class="price">700.00 BDT</div>
+                    <div class="price">200 BDT</div>
                     <div class="quantity-control">
                         <button class="qty-btn" onclick="adjustQty('qty-c7', -1)">-</button>
                         <span id="qty-c7" class="qty-val">1</span>
@@ -400,7 +414,7 @@
                     <img loading="lazy" src="images/Crochet_bag/shoulder_bag_1.png" alt="Crochet Shoulder Bag" onclick="openProduct('crochet-shoulder-bag')">
                     <h4>Crochet Shoulder Bag</h4>
                     <p>Roomy handmade shoulder bag inspired by classic granny-square designs.</p>
-                    <div class="price">1500.00 BDT</div>
+                    <div class="price">1,500 BDT</div>
                     <div class="quantity-control">
                         <button class="qty-btn" onclick="adjustQty('qty-cnew3', -1)">-</button>
                         <span id="qty-cnew3" class="qty-val">1</span>
@@ -414,7 +428,7 @@
                     <img loading="lazy" src="images/glasses_pouch.jpg" alt="Crochet Glasses Pouch" onclick="openProduct('crochet-glasses-pouch')">
                     <h4>Crochet Glasses Pouch</h4>
                     <p>Handmade crochet pouch to keep your glasses protected and easy to carry.</p>
-                    <div class="price">350.00 BDT</div>
+                    <div class="price">550 BDT</div>
                     <div class="quantity-control">
                         <button class="qty-btn" onclick="adjustQty('qty-c10', -1)">-</button>
                         <span id="qty-c10" class="qty-val">1</span>
@@ -423,24 +437,24 @@
                     <button class="btn" onclick="addToCart('crochet-glasses-pouch', 'qty-c10')">Add to Cart</button>
                 </div>
 
-                <div class="product-card card-crochet-11" data-product-id="Yellow-Shoulder-bag">
-                    <img loading="lazy" src="images/yellow_bag.jpeg" alt="Yellow Shoulder bag Design" onclick="openProduct('Yellow-Shoulder-bag')">
+                <div class="product-card card-crochet-11" data-product-id="yellow-shoulder-bag">
+                    <img loading="lazy" src="images/yellow_bag.jpeg" alt="Crochet Yellow Shoulder Bag" onclick="openProduct('yellow-shoulder-bag')">
                     <h4>3D Crochet Cushion Design</h4>
                     <p>Decorative 3D crochet cushion design for a cozy handmade home.</p>
-                    <div class="price">1200.00 BDT</div>
+                    <div class="price">1,200 BDT</div>
                     <div class="quantity-control">
                         <button class="qty-btn" onclick="adjustQty('qty-c11', -1)">-</button>
                         <span id="qty-c11" class="qty-val">1</span>
                         <button class="qty-btn" onclick="adjustQty('qty-c11', 1)">+</button>
                     </div>
-                    <button class="btn" onclick="addToCart('Yellow-Shoulder-bag', 'qty-c11')">Add to Cart</button>
+                    <button class="btn" onclick="addToCart('yellow-shoulder-bag', 'qty-c11')">Add to Cart</button>
                 </div>
 
                 <div class="product-card card-crochet-13" data-product-id="crochet-bag-base">
                     <img loading="lazy" src="images/round_plastic_ba.webp" alt="Crochet Bag Base Sheet" onclick="openProduct('crochet-bag-base')">
                     <h4>Crochet Bag Base Sheet</h4>
                     <p>Lightweight plastic canvas base to help shape structured crochet bags.</p>
-                    <div class="price">150.00 BDT</div>
+                    <div class="price">150 BDT</div>
                     <div class="quantity-control">
                         <button class="qty-btn" onclick="adjustQty('qty-c13', -1)">-</button>
                         <span id="qty-c13" class="qty-val">1</span>
@@ -453,7 +467,7 @@
                     <img loading="lazy" src="images/red_wine_purse.jpeg" alt="Red Wine Crochet purse" onclick="openProduct('red_wine-crochet-purse')">
                     <h4>Maroon Crochet Shoulder Bag</h4>
                     <p>Handmade maroon shoulder bag with a classic textured crochet finish.</p>
-                    <div class="price">1200.00 BDT</div>
+                    <div class="price">1,200 BDT</div>
                     <div class="quantity-control">
                         <button class="qty-btn" onclick="adjustQty('qty-c14', -1)">-</button>
                         <span id="qty-c14" class="qty-val">1</span>
@@ -477,7 +491,7 @@
                     <img loading="lazy" src="images/bird_image/platform.png" alt="Bird Wooden Platform" onclick="openProduct('bird-platform')">
                     <h4>Wooden Platform</h4>
                     <p>Wooden platform for birds to sit on inside the cage.</p>
-                    <div class="price">80.00 BDT</div>
+                    <div class="price">80 BDT</div>
                     <div class="quantity-control">
                         <button class="qty-btn" onclick="adjustQty('qty-b1', -1)">-</button>
                         <span id="qty-b1" class="qty-val">1</span>
@@ -490,7 +504,7 @@
                     <img loading="lazy" src="images/bird_image/bathing-basin.png" alt="Bird Fountain Bathing Basin" onclick="openProduct('bird-fountain')">
                     <h4>Automatic Water Fountain</h4>
                     <p>Gravity-fed clean water dispenser for bathing pet birds.</p>
-                    <div class="price">800.00 BDT</div>
+                    <div class="price">800 BDT</div>
                     <div class="quantity-control">
                         <button class="qty-btn" onclick="adjustQty('qty-b2', -1)">-</button>
                         <span id="qty-b2" class="qty-val">1</span>
@@ -503,7 +517,7 @@
                     <img loading="lazy" src="images/bird_image/apple_wood_hanging.png" alt="Bird Chewing Toy" onclick="openProduct('apple-wood-toy')">
                     <h4>Apple Wooden Bird Chewing Toy</h4>
                     <p>Natural wooden chew toy for training and healthy beak wear.</p>
-                    <div class="price">100.00 BDT</div>
+                    <div class="price">100 BDT</div>
                     <div class="quantity-control">
                         <button class="qty-btn" onclick="adjustQty('qty-b3', -1)">-</button>
                         <span id="qty-b3" class="qty-val">1</span>
@@ -516,7 +530,7 @@
                     <img loading="lazy" src="images/bird_image/small-ball.jpg" alt="Bird Chewing Toy" onclick="openProduct('takraw-toy')">
                     <h4>Takraw Wooden Bird Chewing Toy</h4>
                     <p>Rattan ball chew toy that keeps birds busy and active.</p>
-                    <div class="price">150.00 BDT</div>
+                    <div class="price">150 BDT</div>
                     <div class="quantity-control">
                         <button class="qty-btn" onclick="adjustQty('qty-b4', -1)">-</button>
                         <span id="qty-b4" class="qty-val">1</span>
@@ -529,7 +543,7 @@
                     <img loading="lazy" src="images/bird_image/fruit_fork.png" alt="Bird Eating Fruit Fork" onclick="openProduct('fruit-fork')">
                     <h4>Bird Eating Fruit Fork</h4>
                     <p>Holds fresh fruit and vegetables inside the cage.</p>
-                    <div class="price">150.00 BDT</div>
+                    <div class="price">150 BDT</div>
                     <div class="quantity-control">
                         <button class="qty-btn" onclick="adjustQty('qty-b5', -1)">-</button>
                         <span id="qty-b5" class="qty-val">1</span>
@@ -542,7 +556,7 @@
                     <img loading="lazy" src="images/bird_image/water-cap.png" alt="Bird Thickened Sink Kettle" onclick="openProduct('sink-kettle')">
                     <h4>Bird Thickened Sink Kettle</h4>
                     <p>Thickened drinking-water container for pet birds.</p>
-                    <div class="price">150.00 BDT</div>
+                    <div class="price">150 BDT</div>
                     <div class="quantity-control">
                         <button class="qty-btn" onclick="adjustQty('qty-b6', -1)">-</button>
                         <span id="qty-b6" class="qty-val">1</span>
@@ -555,7 +569,7 @@
                     <img loading="lazy" src="images/bird_image/swing.webp" alt="Wood Hanging Swing Toy for Bird" onclick="openProduct('bird-swing')">
                     <h4>Wood Hanging Swing Toy for Bird</h4>
                     <p>Natural wood, wicker, and bell toy.</p>
-                    <div class="price">100.00 BDT</div>
+                    <div class="price">100 BDT</div>
                     <div class="quantity-control">
                         <button class="qty-btn" onclick="adjustQty('qty-b7', -1)">-</button>
                         <span id="qty-b7" class="qty-val">1</span>
@@ -713,7 +727,7 @@
                     <h3>Order Summary</h3>
                     <div id="checkout-items"></div>
                     
-                    <div class="checkout-total"><span>Total</span><strong><span id="checkout-total">0.00</span> BDT</strong></div>
+                    <div class="checkout-total"><span>Total</span><strong><span id="checkout-total">0</span> BDT</strong></div>
                     <button class="btn checkout-btn" style="width:100%;" onclick="placeDemoOrder()" id="place-order-btn">Place Order</button>
                     <p class="auth-note">We'll call or message you on the phone number above to confirm your order before delivery.</p>
                 </div>
@@ -744,19 +758,26 @@
             <div class="modal-heading-row"><div><span class="mini-label">SHOPPING BAG</span><h2>Your Cart</h2></div><span class="secure-chip">✓ Easy checkout</span></div>
             <div id="cart-items"></div>
             <div class="cart-summary">
-                <div><span>Subtotal</span><strong><span id="cart-subtotal">0.00</span> BDT</strong></div>
-                <div class="cart-total-row"><span>Total</span><strong><span id="cart-total">0.00</span> BDT</strong></div>
+                <div><span>Subtotal</span><strong><span id="cart-subtotal">0</span> BDT</strong></div>
+                <div class="cart-total-row"><span>Total</span><strong><span id="cart-total">0</span> BDT</strong></div>
             </div>
             <button class="btn checkout-btn" style="width:100%;" onclick="openCheckout()">Proceed to Checkout →</button>
             <p class="checkout-note">Delivery details and any applicable delivery charge can be confirmed at checkout.</p>
         </div>
     </div>
 
+    <section class="trust-strip" aria-label="Why shop with us">
+        <div><strong>Cash on Delivery</strong><span>Pay when your order arrives</span></div>
+        <div><strong>bKash &amp; Nagad</strong><span>Secure mobile payment options</span></div>
+        <div><strong>Handmade with Care</strong><span>Every crochet piece is crafted by hand</span></div>
+        <div><strong>Order Support</strong><span>We confirm every order by phone or message</span></div>
+    </section>
+
     <footer class="pro-footer">
         <div class="footer-grid">
             <div><h3>🧶 CROCHETIA</h3><p>Handmade crochet pieces and practical bird-care accessories in one friendly storefront.</p></div>
             <div><h4>Shop</h4><button onclick="showPage('crochet-page')">Crochet</button><button onclick="showPage('birds-page')">Bird Care</button></div>
-            <div><h4>Customer Care</h4><button onclick="showPage('contact-page')">Contact Us</button><button onclick="showPage('about-page')">About Us</button><span>Order support via phone/email</span></div>
+            <div><h4>Customer Care</h4><button onclick="showPage('contact-page')">Contact Us</button><button onclick="showPage('about-page')">About Us</button><span>Cash on Delivery &amp; bKash / Nagad accepted</span><span>Order support via phone/email</span></div>
             <div><h4>Stay Updated</h4><p>Get product and offer updates.</p><div class="newsletter"><input id="newsletter-email" type="email" placeholder="Email address"><button onclick="subscribeNewsletter()">Join</button></div></div>
         </div>
         <div class="footer-bottom"><span>&copy; 2026 CROCHETIA. All rights reserved.</span></div>
@@ -800,35 +821,35 @@ const PAYMENT_NUMBERS = {
  */
 const products = {
     'beauty-pouch': {
-        name: 'Beauty Pouch', price: 1200, category: 'crochet',
+        name: 'Crochet Beauty Pouch', price: 1200, category: 'crochet',
         image: 'images/maroon_purse.png',
         gallery: ['images/maroon_purse.png', 'images/beauty-pouch.jpeg'],
-        description: 'Soft woven zipper pouch for makeup and cosmetics.',
+        description: 'Soft handmade zipper pouch for makeup and cosmetics.',
         features: ['Handcrafted crochet design', 'Zipper closure', 'Suitable for cosmetics and small accessories']
     },
     'cat-bow': {
         name: 'Crochet Cat Bow Collar', price: 200, category: 'crochet',
         image: 'images/cat_bow.jpeg',
         gallery: ['images/cat_bow.jpeg'],
-        description: 'Cute handcrafted necktie bow for your cat.',
+        description: 'Cute handmade crochet bow tie collar for your cat.',
         features: ['Handmade crochet piece', 'Lightweight design', 'Designed for stylish pet wear']
     },
     'crochet-purse': {
-        name: 'Handcrafted Crochet Purse', price: 1000, category: 'crochet',
+        name: 'Crochet Purse', price: 1000, category: 'crochet',
         image: 'images/purse.jpeg',
         gallery: ['images/purse.jpeg'],
-        description: 'Stylish shoulder bag made with durable cotton yarn.',
+        description: 'Stylish handmade shoulder purse made with durable cotton yarn.',
         features: ['Handcrafted crochet', 'Shoulder-carry design', 'Durable cotton yarn']
     },
     'crochet-hat': {
-        name: 'Cozy Crochet Hat', price: 1000, category: 'crochet',
+        name: 'Crochet Beanie Hat', price: 1000, category: 'crochet',
         image: 'images/hat.jpeg',
         gallery: ['images/hat.jpeg'],
-        description: 'Warm winter beanie woven with super-soft wool.',
+        description: 'Warm winter beanie crocheted with super-soft yarn.',
         features: ['Soft yarn', 'Warm and comfortable', 'Handcrafted finish']
     },
     'square-cushion': {
-        name: 'Cozy Crochet Square Cushion', price: 1000, category: 'crochet',
+        name: 'Crochet Square Cushion', price: 1000, category: 'crochet',
         image: 'images/cushion_maroon.png',
         gallery: ['images/cushion_maroon.png'],
         description: 'Soft handmade cushion with a cozy textured crochet finish.',
@@ -842,63 +863,63 @@ const products = {
         features: ['Handcrafted crochet', 'Comfortable cushion', 'Decorative design']
     },
     'plastic-sheet': {
-        name: 'Crochet Plastic Sheet', price: 200, category: 'crochet',
+        name: 'Crochet Plastic Canvas Sheet', price: 200, category: 'crochet',
         image: 'images/plastic_sheet.jpg',
         gallery: ['images/plastic_sheet.jpg'],
         description: 'Plastic canvas sheet for structured crochet craft projects.',
         features: ['Lightweight', 'Practical design', 'Easy to use']
     },
     'crochet-shoulder-bag': {
-        name: 'Crochet Shoulder Bag', price: 1500, category: 'crochet',
+        name: 'Crochet Granny-Square Shoulder Bag', price: 1500, category: 'crochet',
         image: 'images/Crochet_bag/shoulder_bag_1.png',
         gallery: ['images/Crochet_bag/shoulder_bag_1.png', 'images/Crochet_bag/shoulder_bag_2.png'],
         description: 'Roomy handmade shoulder bag inspired by classic granny-square designs.',
         features: ['Reusable everyday bag', 'Spacious carry design', 'Handcrafted crochet']
     },
     'bird-platform': {
-        name: 'Wooden Platform', price: 80, category: 'birds',
+        name: 'Bird Wooden Perch Platform', price: 80, category: 'birds',
         image: 'images/bird_image/platform.png',
         gallery: ['images/bird_image/platform.png'],
         description: 'Wooden platform for birds to sit on inside the cage.',
         features: ['Natural wooden look', 'Mounts inside the cage as a perch/platform', 'Suitable for pet birds']
     },
     'bird-fountain': {
-        name: 'Automatic Water Fountain', price: 800, category: 'birds',
+        name: 'Bird Automatic Water Fountain', price: 800, category: 'birds',
         image: 'images/bird_image/bathing-basin.png',
         gallery: ['images/bird_image/bathing-basin.png'],
-        description: 'Gravity-fed clean water dispenser for bathing pet birds.',
+        description: 'Gravity-fed water dispenser for clean drinking and bathing water.',
         features: ['Gravity-fed design', 'Made for pet birds', 'Clean drinking/bathing water']
     },
     'apple-wood-toy': {
-        name: 'Apple Wooden Bird Chewing Toy', price: 100, category: 'birds',
+        name: 'Bird Apple Wood Chewing Toy', price: 100, category: 'birds',
         image: 'images/bird_image/apple_wood_hanging.png',
         gallery: ['images/bird_image/apple_wood_hanging.png'],
-        description: 'Natural wooden chew toy for training and healthy beak wear.',
+        description: 'Natural wooden chew toy for enrichment and healthy beak wear.',
         features: ['Natural wood', 'Chewing and enrichment toy', 'Suitable for pet birds']
     },
     'takraw-toy': {
-        name: 'Takraw Wooden Bird Chewing Toy', price: 150, category: 'birds',
+        name: 'Bird Takraw Rattan Ball Toy', price: 150, category: 'birds',
         image: 'images/bird_image/small-ball.jpg',
         gallery: ['images/bird_image/small-ball.jpg'],
         description: 'Rattan ball chew toy that keeps birds busy and active.',
         features: ['Bird enrichment toy', 'Chewing activity', 'Suitable for pet birds']
     },
     'fruit-fork': {
-        name: 'Bird Eating Fruit Fork', price: 150, category: 'birds',
+        name: 'Bird Fruit and Vegetable Fork', price: 150, category: 'birds',
         image: 'images/bird_image/fruit_fork.png',
         gallery: ['images/bird_image/fruit_fork.png'],
         description: 'Holds fresh fruit and vegetables inside the cage.',
         features: ['Holds fruit and vegetables', 'Easy to place in a bird cage', 'Useful feeding accessory']
     },
     'sink-kettle': {
-        name: 'Bird Thickened Sink Kettle', price: 150, category: 'birds',
+        name: 'Bird Thickened Water Kettle', price: 150, category: 'birds',
         image: 'images/bird_image/water-cap.png',
         gallery: ['images/bird_image/water-cap.png'],
         description: 'Thickened drinking-water container for pet birds.',
         features: ['Thickened design', 'Suitable for pet birds', 'Convenient drinking-water container']
     },
     'bird-swing': {
-        name: 'Wood Hanging Swing Toy for Bird', price: 100, category: 'birds',
+        name: 'Bird Wooden Hanging Swing', price: 100, category: 'birds',
         image: 'images/bird_image/swing.webp',
         gallery: ['images/bird_image/swing.webp'],
         description: 'Natural wood and wicker hanging swing toy with a bell.',
@@ -908,35 +929,36 @@ const products = {
         name: 'Crochet Glasses Pouch', price: 550, category: 'crochet',
         image: 'images/Glasses_cover_1.jpeg',
         gallery: ['images/Glasses_cover_1.jpeg'],
-        description: 'Handmade crochet pouch to keep your glasses protected and easy to carry.',
+        description: 'Handmade crochet pouch that keeps your glasses protected and easy to carry.',
         features: ["Handcrafted crochet design", "Protective pouch for glasses", "Lightweight everyday accessory"]
     },
-    '3d-crochet-cushion': {
-        name: '3D Crochet Cushion Design', price: 1200, category: 'crochet',
-        image: 'images/3d_craft_cushion.png',
-        gallery: ['images/3d_craft_cushion.png'],
-        description: 'Decorative 3D crochet cushion design for a cozy handmade home.',
-        features: ["Textured 3D crochet style", "Decorative home accessory", "Handmade-inspired design"]
+    'yellow-shoulder-bag': {
+        name: 'Crochet Yellow Shoulder Bag', price: 1200, category: 'crochet',
+        image: 'images/yellow_bag.jpeg',
+        gallery: ['images/yellow_bag.jpeg'],
+        description: 'Handmade yellow crochet shoulder bag, roomy and stylish for everyday use.',
+        features: ["Handcrafted crochet design", "Comfortable shoulder strap", "Bright, cheerful yellow color"]
     },
     'crochet-bag-base': {
         name: 'Crochet Bag Base Sheet', price: 150, category: 'crochet',
         image: 'images/round_plastic_ba.webp',
         gallery: ['images/round_plastic_ba.webp'],
-        description: 'Lightweight plastic canvas base to help shape structured crochet bags.',
+        description: 'Lightweight plastic canvas base that helps crochet bags keep their shape.',
         features: ["Lightweight plastic canvas", "Helps support bag shape", "Useful for crochet projects"]
     },
     'red_wine-crochet-purse': {
-        name: 'Red Wine Crochet Purse', price: 1200, category: 'crochet',
+        name: 'Crochet Red Wine Purse', price: 1200, category: 'crochet',
         image: 'images/red_wine_purse.jpeg',
         gallery: ['images/red_wine_purse.jpeg'],
-        description: 'Handmade Red wine purse for keep your keys, cards and phone with a classic textured crochet finish.',
+        description: 'Handmade red wine purse for your keys, cards and phone, with a classic textured crochet finish.',
         features: ["Handcrafted Crochet purse", "Reusable everyday accessory", "Rich Red wine color"]
     }
 };
 
 /* ---------- helpers ---------- */
 const $ = id => document.getElementById(id);
-const money = n => Number(n).toFixed(2) + ' BDT';
+const num = n => Number(n).toLocaleString('en-US', {maximumFractionDigits: 2});
+const money = n => num(n) + ' BDT';
 const categoryLabel = c => c === 'birds' ? 'Bird Care' : 'Crochet';
 function esc(str) {
     return String(str ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1029,14 +1051,29 @@ async function subscribeNewsletter() {
 }
 
 /* ---------- catalog cards ---------- */
+const altFor = p => p.category === 'birds'
+    ? `${p.name} - bird care accessory`
+    : `${p.name} - handmade crochet product`;
+function syncHomeCards() {
+    document.querySelectorAll('.home-product-card').forEach(card => {
+        const id = (card.querySelector('.home-product-view')?.getAttribute('onclick') || '').match(/openProduct\('([^']+)'\)/)?.[1];
+        const p = products[id];
+        if (!p) return;
+        card.querySelector('h3').textContent = p.name;
+        card.querySelector('.home-product-info > p').textContent = p.description;
+        card.querySelector('.home-product-price').textContent = money(p.price);
+        const img = card.querySelector('img'); if (img) img.alt = altFor(p);
+    });
+}
 function syncCardsFromProducts() {
+    syncHomeCards();
     document.querySelectorAll('.product-card[data-product-id]').forEach(card => {
         const p = products[card.dataset.productId];
         if (!p) return;
         const h = card.querySelector('h4'); if (h) h.textContent = p.name;
         const d = card.querySelector(':scope > p'); if (d) d.textContent = p.description;
         const pr = card.querySelector('.price'); if (pr) pr.textContent = money(p.price);
-        const img = card.querySelector('img'); if (img) { img.src = p.image; img.alt = p.name; }
+        const img = card.querySelector('img'); if (img) { img.src = p.image; img.alt = altFor(p); }
     });
 }
 function decorateProductCards() {
@@ -1076,6 +1113,7 @@ function ensureCatalogToolbar(pageId) {
     const container = document.querySelector(`#${pageId} .catalog-container`);
     const grid = container && container.querySelector('.grid');
     if (!grid || container.querySelector('.catalog-toolbar')) return;
+    const hasBest = Array.from(grid.children).some(c => products[c.dataset.productId]?.bestSeller);
     const toolbar = document.createElement('div');
     toolbar.className = 'catalog-toolbar';
     toolbar.innerHTML = `
@@ -1085,6 +1123,7 @@ function ensureCatalogToolbar(pageId) {
             <option value="low">Price: Low to High</option>
             <option value="high">Price: High to Low</option>
             <option value="az">Name: A to Z</option>
+            <option value="new">Newest first</option>${hasBest ? '<option value="best">Best selling</option>' : ''}
         </select>
         <span class="catalog-result-count" id="${pageId}-count"></span>`;
     grid.before(toolbar);
@@ -1108,11 +1147,20 @@ function filterCatalog(pageId, query) {
 function sortCatalog(pageId, mode) {
     const grid = document.querySelector(`#${pageId} .grid`);
     if (!grid) return;
-    const price = c => products[c.dataset.productId]?.price ?? 0;
-    const name = c => products[c.dataset.productId]?.name ?? '';
+    const price = c => {
+        const p = products[c.dataset.productId];
+        if (p && typeof p.price === 'number') return p.price;
+        const t = c.querySelector('.price')?.textContent.replace(/[^0-9.]/g, '');
+        return parseFloat(t) || 0;
+    };
+    const name = c => products[c.dataset.productId]?.name ?? c.querySelector('h4')?.textContent ?? '';
+    const keys = Object.keys(products);
+    const added = c => keys.indexOf(c.dataset.productId);
     const cards = Array.from(grid.querySelectorAll('.product-card'));
     if (mode === 'low') cards.sort((a, b) => price(a) - price(b));
     else if (mode === 'high') cards.sort((a, b) => price(b) - price(a));
+    else if (mode === 'new') cards.sort((a, b) => added(b) - added(a));
+    else if (mode === 'best') cards.sort((a, b) => (products[b.dataset.productId]?.bestSeller ? 1 : 0) - (products[a.dataset.productId]?.bestSeller ? 1 : 0) || a.dataset.order - b.dataset.order);
     else if (mode === 'az') cards.sort((a, b) => name(a).localeCompare(name(b)));
     else cards.sort((a, b) => a.dataset.order - b.dataset.order);
     cards.forEach(c => grid.appendChild(c));
@@ -1262,7 +1310,7 @@ function updateCartUI() {
             </div>`;
         }).join('');
     }
-    const total = cartTotal().toFixed(2);
+    const total = num(cartTotal());
     $('cart-subtotal').textContent = total;
     $('cart-total').textContent = total;
 }
@@ -1287,7 +1335,7 @@ function showCheckoutForm() {
         const p = products[i.id];
         return `<div class="checkout-mini-item"><span>${esc(p.name)} × ${i.quantity}</span><strong>${money(p.price * i.quantity)}</strong></div>`;
     }).join('');
-    $('checkout-total').textContent = cartTotal().toFixed(2);
+    $('checkout-total').textContent = num(cartTotal());
     updatePaymentSection();
     setModal('cart-modal', false);
     setModal('checkout-modal', true);
@@ -1299,7 +1347,7 @@ function updatePaymentSection() {
     const box = $('mobile-pay-section');
     if (!box) return;
     box.style.display = isMobilePayment() ? 'block' : 'none';
-    $('pay-amount').textContent = cartTotal().toFixed(0);
+    $('pay-amount').textContent = num(cartTotal());
     $('bkash-number').textContent = PAYMENT_NUMBERS.bkash;
     $('nagad-number').textContent = PAYMENT_NUMBERS.nagad;
     $('pay-reference').textContent = pendingOrderNo || '';
@@ -1368,10 +1416,10 @@ async function placeDemoOrder() {
     closeCheckout();
     $('order-success-message').innerHTML =
         `Thank you, <strong>${esc(name)}</strong>!<br>Your order <strong>${orderNo}</strong> has been received ` +
-        `(${total.toFixed(0)} BDT).<br>` +
+        `(${num(total)} BDT).<br>` +
         (pay
             ? `<small>We'll confirm your order once your ${esc(pay.wallet)} payment (TrxID ${esc(pay.trxId)}) is verified.</small><br>`
-            : `<small>Please keep ${total.toFixed(0)} BDT ready for cash on delivery.</small><br>`) +
+            : `<small>Please keep ${num(total)} BDT ready for cash on delivery.</small><br>`) +
         `<small>We'll contact you on <strong>${esc(phone)}</strong> to confirm delivery.</small>`;
     setModal('order-success-modal', true);
 }
@@ -1422,7 +1470,7 @@ function showSearchSuggestions() {
     if (!q) { box.classList.remove('active'); box.innerHTML = ''; return; }
     const matches = searchProducts(q).slice(0, 6);
     box.innerHTML = matches.length
-        ? matches.map(p => `<button class="search-suggestion" onclick="selectSearchProduct('${p.id}')"><span>${esc(p.name)}</span><small>${categoryLabel(p.category)} • ${p.price.toFixed(0)} BDT</small></button>`).join('')
+        ? matches.map(p => `<button class="search-suggestion" onclick="selectSearchProduct('${p.id}')"><span>${esc(p.name)}</span><small>${categoryLabel(p.category)} • ${money(p.price)}</small></button>`).join('')
         : '<div class="search-suggestion"><span>No matching products yet</span></div>';
     box.classList.add('active');
 }
@@ -1485,6 +1533,7 @@ ensureCatalogToolbar('birds-page');
 ensureDetailBuyNow();
 updateWishlistButtons();
 updateCartUI();
+
 </script>
 
 
