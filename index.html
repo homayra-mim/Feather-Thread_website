@@ -194,17 +194,7 @@
                         <div class="home-product-bottom"><span class="home-product-price">৳200</span><button class="home-product-view" onclick="openProduct('plastic-sheet')">View Product</button></div>
                     </div>
                 </article>
-                <article class="home-product-card">
-                    <div class="home-product-image-wrap" onclick="openProduct('table-cloth-sheet')">
-                        <img loading="lazy" src="images/Table_cloth_sheet.webp" alt="Designable Table Cloth Sheet">
-                    </div>
-                    <div class="home-product-info">
-                        <span class="home-product-category">CROCHET</span>
-                        <h3>Designable Table Cloth Sheet</h3>
-                        <p>Handmade crochet table cloth with a cheerful flower design.</p>
-                        <div class="home-product-bottom"><span class="home-product-price">৳250</span><button class="home-product-view" onclick="openProduct('table-cloth-sheet')">View Product</button></div>
-                    </div>
-                </article>
+ 
                 <article class="home-product-card">
                     <div class="home-product-image-wrap" onclick="openProduct('crochet-shoulder-bag')">
                         <img loading="lazy" src="images/Crochet_bag/shoulder_bag_1.png" alt="Crochet Shoulder Bag">
@@ -405,20 +395,6 @@
                     </div>
                     <button class="btn" onclick="addToCart('plastic-sheet', 'qty-c7')">Add to Cart</button>
                 </div>
-
-                <div class="product-card card-crochet-8" data-product-id="table-cloth-sheet">
-                    <img loading="lazy" src="images/Table_cloth_sheet.webp" alt="Designable Table cloth sheet" onclick="openProduct('table-cloth-sheet')">
-                    <h4>Designable Table Cloth Sheet</h4>
-                    <p>Handmade crochet table cloth with a cheerful flower design.</p>
-                    <div class="price">250.00 BDT</div>
-                    <div class="quantity-control">
-                        <button class="qty-btn" onclick="adjustQty('qty-cnew1', -1)">-</button>
-                        <span id="qty-cnew1" class="qty-val">1</span>
-                        <button class="qty-btn" onclick="adjustQty('qty-cnew1', 1)">+</button>
-                    </div>
-                    <button class="btn" onclick="addToCart('table-cloth-sheet', 'qty-cnew1')">Add to Cart</button>
-                </div>
-
 
                 <div class="product-card card-cnew-new" data-product-id="crochet-shoulder-bag">
                     <img loading="lazy" src="images/Crochet_bag/shoulder_bag_1.png" alt="Crochet Shoulder Bag" onclick="openProduct('crochet-shoulder-bag')">
@@ -871,13 +847,6 @@ const products = {
         gallery: ['images/plastic_sheet.jpg'],
         description: 'Plastic canvas sheet for structured crochet craft projects.',
         features: ['Lightweight', 'Practical design', 'Easy to use']
-    },
-    'table-cloth-sheet': {
-        name: 'Designable Table Cloth Sheet', price: 250, category: 'crochet',
-        image: 'images/Table_cloth_sheet.webp',
-        gallery: ['images/Table_cloth_sheet.webp'],
-        description: 'Handmade crochet table cloth with a cheerful flower design.',
-        features: ['Handmade crochet style', 'Compact table cloth design', 'Home decor accessory']
     },
     'crochet-shoulder-bag': {
         name: 'Crochet Shoulder Bag', price: 1500, category: 'crochet',
