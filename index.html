@@ -60,6 +60,14 @@ body {
 .preorder-notice-banner span {
     font-size: 1.3rem;
 }
+
+/* Location detection hint */
+.location-hint {
+    font-size: 0.82rem;
+    color: #2a9d8f;
+    margin-top: 4px;
+    font-weight: 500;
+}
     </style>
 </head>
 <body>
@@ -703,7 +711,21 @@ body {
                 <div>
                     <div class="form-group"><label for="checkout-name">Full Name</label><input id="checkout-name" type="text" placeholder="Your full name"></div>
                     <div class="form-group"><label for="checkout-phone">Phone</label><input id="checkout-phone" type="tel" placeholder="01XXXXXXXXX"></div>
-                    <div class="form-group"><label for="checkout-address">Delivery Address</label><textarea id="checkout-address" placeholder="House, road, area, city"></textarea></div>
+                    
+                    <div class="form-group">
+                        <label for="checkout-address">Delivery Address</label>
+                        <textarea id="checkout-address" placeholder="House, road, area, city (e.g. Mirpur, Dhaka)" oninput="detectLocationFromAddress()"></textarea>
+                        <div id="detected-location-hint" class="location-hint"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="checkout-region">Delivery Location Region</label>
+                        <select id="checkout-region" onchange="updateCheckoutTotal()">
+                            <option value="inside">Inside Dhaka (70 BDT)</option>
+                            <option value="outside">Outside Dhaka (120 BDT)</option>
+                        </select>
+                    </div>
+
                     <div class="form-group"><label for="checkout-payment">Payment Method</label>
                         <select id="checkout-payment" onchange="updatePaymentSection()">
                             <option value="Cash on Delivery">Cash on Delivery</option>
@@ -754,6 +776,9 @@ body {
                     <h3>Order Summary</h3>
                     <div id="checkout-items"></div>
                     
+                    <div class="checkout-subtotal-row" style="display:flex; justify-content:space-between; margin-top:12px; font-size:0.9rem; opacity:0.8;"><span>Subtotal</span><span id="checkout-subtotal-display">0 BDT</span></div>
+                    <div class="checkout-delivery-row" style="display:flex; justify-content:space-between; margin-top:6px; font-size:0.9rem; opacity:0.8;"><span>Delivery Charge</span><span id="checkout-delivery-display">70 BDT</span></div>
+                    
                     <div class="checkout-total"><span>Total</span><strong><span id="checkout-total">0</span> BDT</strong></div>
                     <button class="btn checkout-btn" style="width:100%;" onclick="placeDemoOrder()" id="place-order-btn">Place Order</button>
                     <p class="auth-note">We'll call or message you on the phone number above to confirm your order before delivery.</p>
@@ -789,7 +814,7 @@ body {
                 <div class="cart-total-row"><span>Total</span><strong><span id="cart-total">0</span> BDT</strong></div>
             </div>
             <button class="btn checkout-btn" style="width:100%;" onclick="openCheckout()">Proceed to Checkout →</button>
-            <p class="checkout-note">Delivery details and any applicable delivery charge can be confirmed at checkout.</p>
+            <p class="checkout-note">Delivery charge (70 BDT inside Dhaka / 120 BDT outside Dhaka) will be added based on your delivery address.</p>
         </div>
     </div>
 
@@ -923,7 +948,7 @@ const products = {
         image: 'images/bird_image/fruit_fork.png',
         gallery: ['images/bird_image/fruit_fork.png'],
         description: 'Holds fresh fruit and vegetables inside the cage.',
-        features: ['Holds fruit and vegetables', 'Easy to place in a bird cage', 'Useful feeding accessory']
+        features: ['Holds fresh fruit and vegetables', 'Easy to place in a bird cage', 'Useful feeding accessory']
     },
     'sink-kettle': {
         name: 'Bird Thickened Water Kettle', price: 150, category: 'birds',
@@ -1294,7 +1319,14 @@ function changeCartQty(index, delta) {
     saveCart(); updateCartUI();
 }
 function removeCartItem(index) { cart.splice(index, 1); saveCart(); updateCartUI(); }
-function cartTotal() { return cart.reduce((s, i) => s + products[i.id].price * i.quantity, 0); }
+function cartSubtotal() { return cart.reduce((s, i) => s + products[i.id].price * i.quantity, 0); }
+function getDeliveryFee() {
+    const region = $('checkout-region')?.value;
+    return region === 'outside' ? 120 : 70;
+}
+function cartTotal() {
+    return cartSubtotal() + (cart.length ? getDeliveryFee() : 0);
+}
 function toggleCart() {
     const m = $('cart-modal');
     m.style.display = m.style.display === 'flex' ? 'none' : 'flex';
@@ -1319,9 +1351,9 @@ function updateCartUI() {
             </div>`;
         }).join('');
     }
-    const total = num(cartTotal());
-    $('cart-subtotal').textContent = total;
-    $('cart-total').textContent = total;
+    const subtotal = num(cartSubtotal());
+    $('cart-subtotal').textContent = subtotal;
+    $('cart-total').textContent = num(cartSubtotal());
 }
 
 function quickBuy(id, qty = 1) {
@@ -1329,7 +1361,7 @@ function quickBuy(id, qty = 1) {
     openCheckout();
 }
 
-/* ---------- checkout ---------- */
+/* ---------- checkout & automatic location detection ---------- */
 function openCheckout() {
     if (!cart.length) return toast('Your cart is empty.');
     setModal('cart-modal', false);
@@ -1343,12 +1375,51 @@ function showCheckoutForm() {
         const p = products[i.id];
         return `<div class="checkout-mini-item"><span>${esc(p.name)} × ${i.quantity}</span><strong>${money(p.price * i.quantity)}</strong></div>`;
     }).join('');
-    $('checkout-total').textContent = num(cartTotal());
+    detectLocationFromAddress();
     updatePaymentSection();
     setModal('cart-modal', false);
     setModal('checkout-modal', true);
 }
 function closeCheckout() { setModal('checkout-modal', false); }
+
+function detectLocationFromAddress() {
+    const address = $('checkout-address').value.toLowerCase();
+    const regionSelect = $('checkout-region');
+    const hint = $('detected-location-hint');
+    if (!regionSelect) return;
+
+    // Common keywords for Dhaka locations
+    const dhakaKeywords = ['dhaka', 'uttara', 'mirpur', 'gulshan', 'banani', 'dhanmondi', 'mohammadpur', 'bashundhara', 'tejgaon', 'motijheel', 'ramna', 'khilgaon', 'rampura', 'badda', 'jatrabari', 'lalbagh', 'cantonment', 'savar', 'keraniganj'];
+    
+    let isDhaka = dhakaKeywords.some(keyword => address.includes(keyword));
+
+    if (address.trim() === '') {
+        hint.textContent = '';
+        updateCheckoutTotal();
+        return;
+    }
+
+    if (isDhaka) {
+        regionSelect.value = 'inside';
+        hint.textContent = '✓ Detected: Inside Dhaka (70 BDT delivery)';
+    } else {
+        regionSelect.value = 'outside';
+        hint.textContent = '✓ Detected: Outside Dhaka (120 BDT delivery)';
+    }
+    updateCheckoutTotal();
+}
+
+function updateCheckoutTotal() {
+    const sub = cartSubtotal();
+    const fee = getDeliveryFee();
+    const total = sub + fee;
+    $('checkout-subtotal-display').textContent = num(sub) + ' BDT';
+    $('checkout-delivery-display').textContent = num(fee) + ' BDT';
+    $('checkout-total').textContent = num(total);
+    if (isMobilePayment()) {
+        $('pay-amount').textContent = num(total);
+    }
+}
 
 function isMobilePayment() { return $('checkout-payment').value === 'Mobile Payment'; }
 function updatePaymentSection() {
@@ -1395,6 +1466,8 @@ async function placeDemoOrder() {
     const name = $('checkout-name').value.trim();
     const phone = $('checkout-phone').value.trim();
     const address = $('checkout-address').value.trim();
+    const region = $('checkout-region').value;
+    const deliveryFee = getDeliveryFee();
     const note = $('checkout-note').value.trim();
     if (!name || !phone || !address) return toast('Please complete name, phone and delivery address.');
 
@@ -1408,7 +1481,7 @@ async function placeDemoOrder() {
     const total = cartTotal();
 
     const ok = await withBusyButton($('place-order-btn'), 'Placing order…', () => sendToSheet('order', {
-        orderNo, name, phone, address, payment, note,
+        orderNo, name, phone, address, region, deliveryFee, payment, note,
         trxId: pay ? pay.trxId : '',
         senderNo: pay ? pay.sender : '',
         items: cart.map(i => ({name: products[i.id].name, qty: i.quantity, price: products[i.id].price}))
@@ -1423,7 +1496,7 @@ async function placeDemoOrder() {
     closeCheckout();
     $('order-success-message').innerHTML =
         `Thank you, <strong>${esc(name)}</strong>!<br>Your order <strong>${orderNo}</strong> has been received ` +
-        `(${num(total)} BDT).<br>` +
+        `(${num(total)} BDT including ${deliveryFee} BDT delivery).<br>` +
         (pay
             ? `<small>We'll confirm your order once your ${esc(pay.wallet)} payment (TrxID ${esc(pay.trxId)}) is verified.</small><br>`
             : `<small>Please keep ${num(total)} BDT ready for cash on delivery.</small><br>`) +
