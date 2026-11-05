@@ -23,6 +23,25 @@
 .trust-strip div{display:flex;flex-direction:column;gap:4px;text-align:center}
 .trust-strip strong{font-size:1rem}
 .trust-strip span{font-size:.85rem;opacity:.75}
+
+/* Fix header permanently to the top while scrolling */
+body {
+    padding-top: 130px; /* Adjust body offset so content doesn't hide behind fixed header */
+}
+.market-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.header-actions {
+    opacity: 1;
+    visibility: visible;
+}
     </style>
 </head>
 <body>
@@ -45,7 +64,7 @@
             <button onclick="showPage('birds-page')">🦜 Bird Care</button>
             <button onclick="showPage('about-page')">About Us</button>
             <button onclick="showPage('contact-page')">Contact</button>
-            <div class="header-actions">
+            <div class="header-actions" id="header-cart-actions">
                 <button class="header-action" onclick="openWishlist()"><span>♡</span><small>Wishlist</small><strong><span id="wishlist-count">0</span> saved</strong></button>
                 <button class="header-action cart-action" onclick="toggleCart()"><span>🛒</span><small>Cart</small><strong><span id="cart-count">0</span> items</strong></button>
             </div>
@@ -328,7 +347,6 @@
                         <span id="qty-c1" class="qty-val">1</span>
                         <button class="qty-btn" onclick="adjustQty('qty-c1', 1)">+</button>
                     </div>
-                    <button class="btn" onclick="addToCart('beauty-pouch', 'qty-c1')">Add to Cart</button>
                 </div>
 
                 <div class="product-card card-crochet-2" data-product-id="cat-bow">
@@ -341,7 +359,6 @@
                         <span id="qty-c2" class="qty-val">1</span>
                         <button class="qty-btn" onclick="adjustQty('qty-c2', 1)">+</button>
                     </div>
-                    <button class="btn" onclick="addToCart('cat-bow', 'qty-c2')">Add to Cart</button>
                 </div>
 
                 <div class="product-card card-crochet-3" data-product-id="crochet-purse">
@@ -354,7 +371,6 @@
                         <span id="qty-c3" class="qty-val">1</span>
                         <button class="qty-btn" onclick="adjustQty('qty-c3', 1)">+</button>
                     </div>
-                    <button class="btn" onclick="addToCart('crochet-purse', 'qty-c3')">Add to Cart</button>
                 </div>
 
                 <div class="product-card card-crochet-4" data-product-id="crochet-hat">
@@ -367,7 +383,6 @@
                         <span id="qty-c4" class="qty-val">1</span>
                         <button class="qty-btn" onclick="adjustQty('qty-c4', 1)">+</button>
                     </div>
-                    <button class="btn" onclick="addToCart('crochet-hat', 'qty-c4')">Add to Cart</button>
                 </div>
 
                 <div class="product-card card-crochet-5" data-product-id="square-cushion">
@@ -380,7 +395,6 @@
                         <span id="qty-c5" class="qty-val">1</span>
                         <button class="qty-btn" onclick="adjustQty('qty-c5', 1)">+</button>
                     </div>
-                    <button class="btn" onclick="addToCart('square-cushion', 'qty-c5')">Add to Cart</button>
                 </div>
 
                 <div class="product-card card-crochet-6" data-product-id="triangle-cushion">
@@ -393,7 +407,6 @@
                         <span id="qty-c6" class="qty-val">1</span>
                         <button class="qty-btn" onclick="adjustQty('qty-c6', 1)">+</button>
                     </div>
-                    <button class="btn" onclick="addToCart('triangle-cushion', 'qty-c6')">Add to Cart</button>
                 </div>
 
 
@@ -407,7 +420,6 @@
                         <span id="qty-c7" class="qty-val">1</span>
                         <button class="qty-btn" onclick="adjustQty('qty-c7', 1)">+</button>
                     </div>
-                    <button class="btn" onclick="addToCart('plastic-sheet', 'qty-c7')">Add to Cart</button>
                 </div>
 
                 <div class="product-card card-cnew-new" data-product-id="crochet-shoulder-bag">
@@ -420,7 +432,6 @@
                         <span id="qty-cnew3" class="qty-val">1</span>
                         <button class="qty-btn" onclick="adjustQty('qty-cnew3', 1)">+</button>
                     </div>
-                    <button class="btn" onclick="addToCart('crochet-shoulder-bag', 'qty-cnew3')">Add to Cart</button>
                 </div>
 
 
@@ -434,7 +445,6 @@
                         <span id="qty-c10" class="qty-val">1</span>
                         <button class="qty-btn" onclick="adjustQty('qty-c10', 1)">+</button>
                     </div>
-                    <button class="btn" onclick="addToCart('crochet-glasses-pouch', 'qty-c10')">Add to Cart</button>
                 </div>
 
                 <div class="product-card card-crochet-11" data-product-id="yellow-shoulder-bag">
@@ -447,7 +457,6 @@
                         <span id="qty-c11" class="qty-val">1</span>
                         <button class="qty-btn" onclick="adjustQty('qty-c11', 1)">+</button>
                     </div>
-                    <button class="btn" onclick="addToCart('yellow-shoulder-bag', 'qty-c11')">Add to Cart</button>
                 </div>
 
                 <div class="product-card card-crochet-13" data-product-id="crochet-bag-base">
@@ -460,7 +469,6 @@
                         <span id="qty-c13" class="qty-val">1</span>
                         <button class="qty-btn" onclick="adjustQty('qty-c13', 1)">+</button>
                     </div>
-                    <button class="btn" onclick="addToCart('crochet-bag-base', 'qty-c13')">Add to Cart</button>
                 </div>
 
                 <div class="product-card card-crochet-14" data-product-id="red_wine-crochet-purse">
@@ -473,7 +481,6 @@
                         <span id="qty-c14" class="qty-val">1</span>
                         <button class="qty-btn" onclick="adjustQty('qty-c14', 1)">+</button>
                     </div>
-                    <button class="btn" onclick="addToCart('red_wine-crochet-purse', 'qty-c14')">Add to Cart</button>
                 </div>
             </div>
         </div>
@@ -497,7 +504,6 @@
                         <span id="qty-b1" class="qty-val">1</span>
                         <button class="qty-btn" onclick="adjustQty('qty-b1', 1)">+</button>
                     </div>
-                    <button class="btn" onclick="addToCart('bird-platform', 'qty-b1')">Add to Cart</button>
                 </div>
 
                 <div class="product-card card-bird-2" data-product-id="bird-fountain">
@@ -510,7 +516,6 @@
                         <span id="qty-b2" class="qty-val">1</span>
                         <button class="qty-btn" onclick="adjustQty('qty-b2', 1)">+</button>
                     </div>
-                    <button class="btn" onclick="addToCart('bird-fountain', 'qty-b2')">Add to Cart</button>
                 </div>
 
                 <div class="product-card card-bird-3" data-product-id="apple-wood-toy">
@@ -523,7 +528,6 @@
                         <span id="qty-b3" class="qty-val">1</span>
                         <button class="qty-btn" onclick="adjustQty('qty-b3', 1)">+</button>
                     </div>
-                    <button class="btn" onclick="addToCart('apple-wood-toy', 'qty-b3')">Add to Cart</button>
                 </div>
 
                  <div class="product-card card-bird-4" data-product-id="takraw-toy">
@@ -536,7 +540,6 @@
                         <span id="qty-b4" class="qty-val">1</span>
                         <button class="qty-btn" onclick="adjustQty('qty-b4', 1)">+</button>
                     </div>
-                    <button class="btn" onclick="addToCart('takraw-toy', 'qty-b4')">Add to Cart</button>
                 </div>
 
                 <div class="product-card card-bird-5" data-product-id="fruit-fork">
@@ -549,7 +552,6 @@
                         <span id="qty-b5" class="qty-val">1</span>
                         <button class="qty-btn" onclick="adjustQty('qty-b5', 1)">+</button>
                     </div>
-                    <button class="btn" onclick="addToCart('fruit-fork', 'qty-b5')">Add to Cart</button>
                 </div>
 
                 <div class="product-card card-bird-6" data-product-id="sink-kettle">
@@ -562,7 +564,6 @@
                         <span id="qty-b6" class="qty-val">1</span>
                         <button class="qty-btn" onclick="adjustQty('qty-b6', 1)">+</button>
                     </div>
-                    <button class="btn" onclick="addToCart('sink-kettle', 'qty-b6')">Add to Cart</button>
                 </div>
 
                 <div class="product-card card-bird-7" data-product-id="bird-swing">
@@ -575,7 +576,6 @@
                         <span id="qty-b7" class="qty-val">1</span>
                         <button class="qty-btn" onclick="adjustQty('qty-b7', 1)">+</button>
                     </div>
-                    <button class="btn" onclick="addToCart('bird-swing', 'qty-b7')">Add to Cart</button>
                 </div>
 
             </div>
@@ -794,31 +794,18 @@
 <script>
 /* =====================================================================
    CROCHETIA — store script
-   - `products` is the single source of truth for name, price, image,
-     description and category. Cards on the page are synced from it.
-   - Orders, pre-orders and messages are saved to the shop's Google Sheet
-     (Apps Script), which also emails the shop.
    ===================================================================== */
 
-const SHOP_PHONE = '01817099416';   // shown to customers if an order can't be sent
+const SHOP_PHONE = '01817099416';
 
-/* Google Sheet order system (Apps Script web app). Orders depend on this URL. */
 const ORDER_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwXmJBXZZwXhl9a6ML-QnpTsEHcgVgWqdCNsjn6dPSqbK_nh6uBLdp5Vflzu1Je8nxz/exec';
 const SHEET_TOKEN = 'crochetia-2026';
 
-/* Mobile payment numbers shown at checkout. Change these to your real
-   bKash / Nagad account numbers. */
 const PAYMENT_NUMBERS = {
     bkash: '01817099416',
     nagad: '01817099416'
-};    // must match SHARED_TOKEN in Code.gs
+};
 
-/*
- * Add more pictures for a product by adding paths to its gallery array.
- * Example:
- * gallery: ['images/bird_image/platform.png',
- *           'images/bird_image/platform-side.png']
- */
 const products = {
     'beauty-pouch': {
         name: 'Crochet Beauty Pouch', price: 1200, category: 'crochet',
@@ -978,8 +965,7 @@ function toast(message) {
     stack.appendChild(item);
     setTimeout(() => item.remove(), 2600);
 }
-/* Sends data to the Google Sheet and waits for the reply.
-   Resolves true only when the script confirms it was saved. */
+
 async function sendToSheet(type, data) {
     if (!ORDER_SHEET_URL) return false;
     try {
@@ -996,7 +982,7 @@ async function sendToSheet(type, data) {
         return false;
     }
 }
-/* Disables a button and shows a "sending" label while a request runs. */
+
 async function withBusyButton(btn, label, task) {
     const old = btn ? btn.textContent : '';
     if (btn) { btn.disabled = true; btn.textContent = label; btn.style.opacity = .7; }
@@ -1008,7 +994,7 @@ async function withBusyButton(btn, label, task) {
 let cart = readJSON('featherThreadCart', []).filter(i => i && products[i.id]);
 let wishlist = readJSON('featherThreadWishlist', []).filter(id => products[id]);
 let currentProductId = null;
-let pendingOrderNo = null;        // created when checkout opens, so it can be used as the payment reference
+let pendingOrderNo = null;
 
 /* ---------- navigation ---------- */
 function showPage(pageId) {
@@ -1098,17 +1084,18 @@ function decorateProductCards() {
         card.appendChild(wish);
 
         const addBtn = card.querySelector('button.btn');
-        if (addBtn) {
-            addBtn.textContent = '🛒 Add to Cart';
-            const actions = document.createElement('div');
-            actions.className = 'product-card-actions';
-            actions.innerHTML = `<button class="buy-now" type="button">Buy Now</button><button class="buy-now" type="button">View Details</button>`;
-            actions.children[0].onclick = () => quickBuy(id);
-            actions.children[1].onclick = () => openProduct(id);
-            addBtn.insertAdjacentElement('afterend', actions);
-        }
+        if (addBtn) addBtn.remove();
+        
+        const existingActions = card.querySelector('.product-card-actions');
+        if (existingActions) existingActions.remove();
+
+        const actions = document.createElement('div');
+        actions.className = 'product-card-actions';
+        actions.innerHTML = `<button class="buy-now" type="button" style="width:100%" onclick="openProduct('${id}')">View Details</button>`;
+        card.appendChild(actions);
     });
 }
+
 function ensureCatalogToolbar(pageId) {
     const container = document.querySelector(`#${pageId} .catalog-container`);
     const grid = container && container.querySelector('.grid');
@@ -1273,11 +1260,6 @@ function addCartProduct(id, quantity = 1, silent = false) {
     updateCartUI();
     if (!silent) toast(`Added ${quantity} × ${p.name} to cart`);
 }
-function addToCart(id, qtyElementId) {
-    const el = $(qtyElementId);
-    addCartProduct(id, parseInt(el.textContent) || 1);
-    el.textContent = '1';
-}
 function changeCartQty(index, delta) {
     if (!cart[index]) return;
     cart[index].quantity += delta;
@@ -1315,7 +1297,6 @@ function updateCartUI() {
     $('cart-total').textContent = total;
 }
 
-/* Buy Now adds the item to the existing cart (it no longer wipes the cart) and opens checkout. */
 function quickBuy(id, qty = 1) {
     addCartProduct(id, qty, true);
     openCheckout();
@@ -1341,7 +1322,7 @@ function showCheckoutForm() {
     setModal('checkout-modal', true);
 }
 function closeCheckout() { setModal('checkout-modal', false); }
-/* ---------- mobile payment ---------- */
+
 function isMobilePayment() { return $('checkout-payment').value === 'Mobile Payment'; }
 function updatePaymentSection() {
     const box = $('mobile-pay-section');
@@ -1366,7 +1347,6 @@ function fallbackCopy(text, done) {
     try { document.execCommand('copy'); done(); } catch (e) { toast('Number: ' + text); }
     t.remove();
 }
-/* Returns payment details, or null (with a message) if something is missing. */
 function readMobilePayment() {
     const wallet = (document.querySelector('input[name="pay-wallet"]:checked') || {}).value;
     const sender = $('pay-sender').value.replace(/\D/g, '');
@@ -1484,7 +1464,7 @@ function ensureSearchPage() {
     const div = document.createElement('div');
     div.id = 'search-page';
     div.className = 'page-view';
-    div.innerHTML = `<div class="search-results-page"><button class="back-btn" onclick="showPage('home-page')">← Back to Home</button><div class="search-results-head"><div><span class="mini-label">SEARCH</span><h2 id="search-results-title">Search results</h2></div><span id="search-results-count" class="catalog-result-count"></span></div><div id="search-results-grid" class="grid"></div><div id="search-empty" class="search-empty" style="display:none;">No products found. Try a different keyword.</div></div>`;
+    div.innerHTML = `<div class="search-results-page"><button class="btn" onclick="showPage('home-page')">← Back to Home</button><div class="search-results-head"><div><span class="mini-label">SEARCH</span><h2 id="search-results-title">Search results</h2></div><span id="search-results-count" class="catalog-result-count"></span></div><div id="search-results-grid" class="grid"></div><div id="search-empty" class="search-empty" style="display:none;">No products found. Try a different keyword.</div></div>`;
     document.querySelector('footer').before(div);
 }
 function runGlobalSearch() {
@@ -1499,10 +1479,8 @@ function runGlobalSearch() {
             <h4>${esc(p.name)}</h4>
             <p>${esc(p.description)}</p>
             <div class="price">${money(p.price)}</div>
-            <button class="btn" onclick="addCartProduct('${p.id}', 1)">🛒 Add to Cart</button>
             <div class="product-card-actions">
-                <button class="buy-now" onclick="quickBuy('${p.id}')">Buy Now</button>
-                <button class="buy-now" onclick="openProduct('${p.id}')">View Details</button>
+                <button class="buy-now" onclick="openProduct('${p.id}')" style="width:100%">View Details</button>
             </div>
         </div>`).join('');
     $('search-results-title').textContent = `Results for “${q}”`;
@@ -1535,7 +1513,6 @@ updateWishlistButtons();
 updateCartUI();
 
 </script>
-
 
 </body>
 </html>
