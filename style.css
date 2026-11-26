@@ -1592,3 +1592,13 @@ header.market-header {
     .home-product-info h3 { font-size: 0.85rem; }
     .home-product-info p { font-size: 0.72rem; }
 }
+
+/* ===== FEATURED COLLECTIONS: compact on phones only ===== */
+@media (max-width: 760px) {
+    .showcase-container { margin: 10px !important; padding: 10px !important; }
+    .showcase-title { font-size: .92rem !important; margin-bottom: 6px !important; }
+    .slideshow-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 6px !important; }
+    .slideshow-card { height: 105px !important; border-radius: 8px !important; }
+    .slideshow-card img { padding: 2px !important; }
+    .slideshow-card .overlay-label { padding: 3px 4px !important; font-size: .62rem !important; }
+}
